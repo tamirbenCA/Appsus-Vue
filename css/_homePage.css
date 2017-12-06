@@ -8,6 +8,7 @@
     justify-content: center;
     background-size:contain; 
     background-repeat:no-repeat; 
+    box-sizing: border;
 }
 
 .mail-app {
