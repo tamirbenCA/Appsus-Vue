@@ -1,5 +1,4 @@
 'use strict'
-
 import myRoutes from './routes.js'
 
 
@@ -9,7 +8,7 @@ const myRouter = new VueRouter({ routes: myRoutes })
 new Vue({
     template: `
         <section>
-                <router-view></router-view>
+            <router-view></router-view>
         </section>
     `,
    
