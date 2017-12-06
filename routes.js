@@ -1,10 +1,10 @@
-import homePage from './pages/homePage.js'
+import noteHomePage from './pages/noteHomePage.js'
 import noteDetailsPage from './pages/noteDetailsPage.js'
 
 const routes = [
     {
         path: '/',
-        component: homePage
+        component: noteHomePage
     },
     {
         path: '/note/create',
