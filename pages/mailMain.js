@@ -1,40 +1,34 @@
 import mailService from '../services/mailService.js'
 import navBar from '../cmp/navBar.js'
 import mailDetails from '../cmp/mailDetails.js'
-<<<<<<< HEAD
+import mailList from '../cmp/mailList.js'
+import mailFilter from '../cmp/mailFilter.js'
 
-
-=======
->>>>>>> e2ef7fc69db250c1cd3d41bf0452679fb2945ba9
 
 export default {
     template: `
         <section>
         <navBar></navBar>
         <h1>MAIL APP</h1>
-<<<<<<< HEAD
         
-        <input type="search" v-model="term" @input="searchMail" placeholder="Search for mail" />
-=======
-        <div> Mails unread {{checkUnreadMails}}</div>
-        <input type="search" v-model="term" @input="searchWord" placeholder="Search for mail" />
->>>>>>> e2ef7fc69db250c1cd3d41bf0452679fb2945ba9
-        <ul>
-            <li v-for="mail in mails" @click="selectMail(mail)">
-                {{mail.subject}}
-                {{mail.sender}}
-                {{mail.timestamp}}
-                <!-- <img :src="mail.jpg" :alt="mailImage"> -->
-            </li>
-        </ul>  
-        <mail-details v-if="selectedMail" :mail="selectedMail"  @mailId="deleteMail"></mail-details>   
+        <email-filter></email-filter>
+        
+        <mail-list :mails="mails"></mail-list>
+        
+        <router-link to="/note/main/newMail"> 
+        <button >compose new mail </button>
+        </router-link>    
+
+        
+        <mail-details v-if="selectedMail" :mail="selectedMail"  @mailId="deleteMail"></mail-details>
+        <mail-details v-else :mail="firstMail"  @mailId="deleteMail"></mail-details>    
         </section>   
                 `,
     data() {
         return {
-            term: '',
             mails: [],
             selectedMail: null,
+            firstMail:null
         }
     },
     created() {
@@ -45,14 +39,6 @@ export default {
             })
     },
     methods: {
-        searchMail() {
-            mailService.queryBySearchWord(this.term)
-                .then(mails => this.mails = mails)
-                .catch(err => {
-                    console.log(err);
-                    this.mails = [];
-                })
-        },
         selectMail(mail) {
             console.log('mail', mail);
             this.selectedMail = mail;
@@ -75,6 +61,9 @@ export default {
     },
     components: {
         navBar,
-        mailDetails
+        mailDetails,
+        mailList,
+        mailFilter,
+        
     },
 }
