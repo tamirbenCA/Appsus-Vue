@@ -10,6 +10,7 @@ function getMails() {
         return axios.get('http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={date|2015-1-1}&body={lorem|30}&isRead={bool}&pretty=true')
             .then(fillTextMails => {
                 mails = fillTextMails.data
+                // console.log('mails:', mails)
                 return mails
             })
     }
@@ -22,12 +23,20 @@ function queryBySearchWord(term) {
             filteredMails.push(mail);
         }
     })
-    console.log('filtered:', filteredMails)
+    // console.log('filtered:', filteredMails)
     return Promise.resolve(filteredMails);
 }
 
 function checkUnreadMails() {
-    // use reduce
+    var UnreadMailsCount = mails.reduce((acc, mail) => {
+        if (!mail.isRead)       acc += 1;
+    return acc;
+    }, 0);
+    var res = {
+        unreadMails: UnreadMailsCount,
+        totelMails: mails.length
+    }
+    Promise.resolve(res);
 }
 
 export default {
