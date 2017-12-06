@@ -8,7 +8,7 @@
     justify-content: center;
     background-size:contain; 
     background-repeat:no-repeat; 
-    box-sizing: border;
+    /* box-sizing: content-box; */
 }
 
 .mail-app {
@@ -34,7 +34,7 @@
 }
 
 .mail-app:hover, .note-app:hover, .map-app:hover {
-    border: 3px solid black;
+    outline: 3px solid black;
 }
 
 h1{
