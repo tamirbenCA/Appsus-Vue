@@ -8,9 +8,8 @@ const myRouter = new VueRouter({routes : myRoutes})
 new Vue({
     template: `
         <section>
-                <h1>Mister Keeper</h1> 
+                <h1>Sprint 3 - Appsus</h1> 
                 <router-view></router-view>
-                <footer>cofferights 2018</footer>            
         </section>
     `,
     router: myRouter,
