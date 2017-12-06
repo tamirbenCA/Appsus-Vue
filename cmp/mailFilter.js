@@ -1,5 +1,4 @@
 
-
 export default {
     template: `
         <section>
@@ -23,7 +22,6 @@ export default {
                     this.firstMail = this.mails[0]
                 })
         },
-
 
     }
 }

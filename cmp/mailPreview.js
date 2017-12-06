@@ -2,14 +2,19 @@
 
 export default {
     template: `
-        <section>
+        <section :chosenMail="item" @click="goToMail(item.id)">
             {{item.subject}}
             {{item.sender}}
             {{item.timestamp}}
             <!-- <img :src="item.jpg" :alt="mailImage"> -->
         </section>
     `,
-
-    props: ['item']
+    data() {
+        return {
+            chosenMail: null
+        }
+    },
+    props: ['item'],
+ 
 }
 

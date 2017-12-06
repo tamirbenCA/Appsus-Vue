@@ -3,6 +3,8 @@ import noteMain from './pages/noteMain.js'
 import noteDetailsPage from './pages/noteDetailsPage.js'
 import mapMain from './pages/mapMain.js'
 import mailMain from './pages/mailMain.js'
+import composeNewMail from './pages/composeNewMail.js'
+import mailCompose from './cmp/mailCompose.js'
 
 const routes = [
     {
@@ -32,6 +34,14 @@ const routes = [
     },
     {
         path: '/note/main',
+        component: mailMain
+    },
+    {
+        path: '/mail/main/newMail',
+        component: mailCompose
+    },
+    {
+        path: '/mail/main/',
         component: mailMain
     },
 ];

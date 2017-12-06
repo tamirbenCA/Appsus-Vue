@@ -83,18 +83,20 @@ export default {
           <button class="button is-link">Submit</button>
         </div>
         <div class="control">
-          <button class="button is-text">Cancel</button>
+
+        <router-link to="/mail/main/"> 
+        <button class="button is-text">Cancel</button>
+        </router-link> 
+
+
+          
         </div>
       </div>
       
         
         </section>
     `,
-    methods: {
-        emitDelete() {
-            this.$emit('mailId', this.noteId)
-        }
-    },
-    props: ['mail']
+    
+
 }
 

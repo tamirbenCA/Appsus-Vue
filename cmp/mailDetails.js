@@ -1,27 +1,33 @@
-
+import mailPreview from '../cmp/mailPreview.js'
 
 export default {
     template: `
-        <section>
+        <section >
 
-        {{mail.subject}}
-        {{mail.senderName}}        
-        {{mail.timestamp}}
-        {{mail.senderMail}}
-        {{mail.body}}
+        {{chosenMail.subject}}
+        {{chosenMail.senderName}}        
+        {{chosenMail.timestamp}}
+        {{chosenMail.senderMail}}
+        {{chosenMail.body}}
         <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDelete"></i>
         </section>
     `,
     data() {
         return {
-           noteId:mail.id
+            noteId: chosenMail.id
         }
     },
     methods: {
         emitDelete() {
             this.$emit('mailId', this.noteId)
-        }
+        },
+
+
     },
-    props: ['mail']
+    props: ['chosenMail'],
+
+    components: {
+        mailPreview
+    },
 }
 
