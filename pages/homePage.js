@@ -3,7 +3,7 @@
 export default {
     template: `
         <section>
-            Home Page
+            
         </section>   
                 `,
                 

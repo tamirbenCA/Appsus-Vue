@@ -1,0 +1,33 @@
+.mail-app, .note-app ,.map-app{
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width:80%;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.mail-app:hover, .note-app:hover, .map-app:hover {
+    border: 3px solid black;
+}
+
+h1{
+    font-size: 60px;
+    text-align: center;
+    font-family:'Lato';
+}
+
+
