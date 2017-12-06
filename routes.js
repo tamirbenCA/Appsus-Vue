@@ -2,7 +2,7 @@ import homePage from './pages/homePage.js'
 import noteMain from './pages/noteMain.js'
 import noteDetailsPage from './pages/noteDetailsPage.js'
 // import mapMain from './pages/mapMain.js'
-// import emailMain from './pages/emailMain.js'
+import mailMain from './pages/mailMain.js'
 
 const routes = [
     {
@@ -30,10 +30,10 @@ const routes = [
     //     path: '/map/main',
     //     component: mapMain
     // },
-    // {
-    //     path: '/email/main',
-    //     component: emailMain
-    // },
+    {
+        path: '/mail/main',
+        component: mailMain
+    },
 ];
 
 export default routes;
