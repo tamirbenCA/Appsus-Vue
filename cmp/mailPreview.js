@@ -2,18 +2,13 @@
 
 export default {
     template: `
-        <section :chosenMail="item" @click="goToMail(item.id)">
+        <section :chosenMail="item" @click="goToMail(item.id)" class="email-prev">
             {{item.subject}}
             {{item.sender}}
             {{item.timestamp}}
-            <!-- <img :src="item.jpg" :alt="mailImage"> -->
+            <i class="fa fa-trash-o" aria-hidden="true" @click="emitDelete"></i>
         </section>
     `,
-    data() {
-        return {
-            chosenMail: null
-        }
-    },
     props: ['item'],
  
 }

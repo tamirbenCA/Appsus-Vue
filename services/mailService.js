@@ -15,8 +15,8 @@ function getMails() {
                 // console.log('mails:', mails)
 
                 mails.forEach(mail => {
-                    console.log(mail.timeStamp)
-                    console.log(new Date(mail.timeStamp))
+                    // console.log(mail.timeStamp)
+                    // console.log(new Date(mail.timeStamp))
                 })
                 return mails
             })

@@ -2,14 +2,14 @@ import mailPreview from '../cmp/mailPreview.js'
 
 export default {
     template: `
-        <section >
+        <section class="details">
 
         {{chosenMail.subject}}
         {{chosenMail.senderName}}        
         {{chosenMail.timestamp}}
         {{chosenMail.senderMail}}
         {{chosenMail.body}}
-        <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDelete"></i>
+        <i class="fa fa-trash-o" aria-hidden="true"  ></i>
         </section>
     `,
     data() {
@@ -30,4 +30,6 @@ export default {
         mailPreview
     },
 }
+
+
 

@@ -5,22 +5,23 @@ import mailList from '../cmp/mailList.js'
 import mailFilter from '../cmp/mailFilter.js'
 
 {/* <mail-details v-else :mail="firstMail"  @mailId="deleteMail"></mail-details>  */}
+
+
 export default {
     template: `
         <section>
         <navBar></navBar>
         <h1>MAIL APP</h1>
-        
-        <mail-filter></mail-filter>
-        
-        <mail-list :mails="mails"></mail-list>
-        
         <router-link to="/mail/main/newMail"> 
         <button >compose new mail </button>
         </router-link>    
+        <mail-filter></mail-filter>
+        
+        <mail-list :mails="mails"></mail-list>
+     <mail-details></mail-details> 
+        
 
         
-        <mail-details></mail-details>
            
         </section>   
                 `,
@@ -46,7 +47,7 @@ export default {
         },
         deleteMail(mailId) {
             console.log('mailId', mailId)
-            MailService.deleteMailChosen(mailId)
+            mailService.deleteMailChosen(mailId)
                 .then(res =>
                     this.$router.push('/note/main')
                 )

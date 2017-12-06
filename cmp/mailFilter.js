@@ -1,9 +1,10 @@
+import mailService from '../services/mailService.js'
 
 export default {
     template: `
         <section>
 
-        <input type="search" v-model="term" @input="searchMail" placeholder="Search for mail" /> 
+        <input class="search-box" type="search" v-model="term" @input="searchMail" placeholder="Search for mail" /> 
         </section>
     `,
     data() {

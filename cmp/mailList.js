@@ -2,9 +2,9 @@ import mailPreview from '../cmp/mailPreview.js'
 
 export default {
     template: `
-        <section>
+        <section class="list">
 
-        ul>
+        <ul>
         <li v-for="mail in mails" @click="selectMail(mail)">
             <mail-preview :item="mail"> </mail-preview>
             <!-- <img :src="mail.jpg" :alt="mailImage"> -->
