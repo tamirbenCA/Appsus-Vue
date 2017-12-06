@@ -1,14 +1,26 @@
 .mail-app, .note-app ,.map-app{
     width: 300px;
     height: 300px;
-    border: 1px solid black;
     border-radius: 15px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-size:contain; 
+    background-repeat:no-repeat; 
 }
 
+.mail-app {
+    background-image: url("../img/icons/mail.png");
+}
+
+.note-app {
+    background-image: url("../img/icons/note.png");
+}
+
+.map-app {
+    background-image: url("../img/icons/map.png");
+}
 
 .container{
     display: flex;

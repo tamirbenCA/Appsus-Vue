@@ -1,0 +1,40 @@
+.nav-bar{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    justify-content: space-between;
+    margin: 20px 20px;
+}
+
+.app-icons{
+    display: flex;
+    flex-direction: row;
+}
+
+.map-app-lnk , .mail-app-lnk ,.note-app-lnk{
+    text-decoration: none;   
+    background-repeat:no-repeat;
+    background-size:contain;  
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
+.map-app-lnk {
+    background-image:  url("../img/icons/map.png");
+}
+
+.mail-app-lnk {
+    background-image: url("../img/icons/mail.png");
+}
+
+.note-app-lnk {
+    background-image: url("../img/icons/note.png");
+}
+
+.logo{
+    font-size: 2em;
+    font-family: 'Lato';
+    font-weight: bold;
+}

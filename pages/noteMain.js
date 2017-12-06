@@ -1,8 +1,10 @@
 import noteService from '../services/noteService.js'
+import navBar from '../cmp/navBar.js'
 
 export default {
     template: `
         <section>
+        <navBar></navBar>
         <button @click="addNote">Add New Note</button>
         <button @click="sort('date')">Sort By Date</button>
         <button @click="sort('priority')">Sort By Priority</button>
@@ -70,5 +72,8 @@ export default {
         compareByPrio(a, b) {
             return a.priority - b.priority;
         }
+    },
+    components:{
+        navBar
     },
 }
