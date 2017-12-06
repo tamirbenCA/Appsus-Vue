@@ -5,6 +5,9 @@ export default {
         <section>
         <navBar></navBar>
         <h1>MAP APP</h1>
+
+
+        
         
         </section>   
                 `,
