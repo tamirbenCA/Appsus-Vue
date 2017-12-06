@@ -31,7 +31,7 @@ const routes = [
         component: mapMain
     },
     {
-        path: '/mail/main',
+        path: '/note/main',
         component: mailMain
     },
 ];
