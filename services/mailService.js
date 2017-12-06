@@ -1,16 +1,23 @@
-var mails = [];
+// const MIN_TIMESTAMP = 1420063200000     // 1/1/2015 00:00:00
+const MIN_TIMESTAMP = 1483221600000     // 1/1/2017 00:00:00
+const MAX_TIMESTAMP = 1512943199000     // 10/12/2017 23:59:59
+                                        // timeStamp in MM/DD/YYYY format
 
-function sendMail() {
-    console.log('sending')
-}
+var mails = [];
 
 function getMails() {
     if (mails.length > 0)       return Promise.resolve(mails)
     else {
-        return axios.get('http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={date|2015-1-1}&body={lorem|30}&isRead={bool}&pretty=true')
+        // prev ajax 'http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={date|2015-1-1}&body={lorem|30}&isRead={bool}&pretty=true'
+        return axios.get(`http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={numberRange|${MIN_TIMESTAMP},${MAX_TIMESTAMP}}&body={lorem|30}&isRead={bool}&pretty=true`)
             .then(fillTextMails => {
                 mails = fillTextMails.data
                 // console.log('mails:', mails)
+
+                mails.forEach(mail => {
+                    console.log(mail.timeStamp)
+                    console.log(new Date(mail.timeStamp))
+                })
                 return mails
             })
     }
@@ -39,9 +46,40 @@ function checkUnreadMails() {
     Promise.resolve(res);
 }
 
+function sendMail(newMail) {
+    newMail.senderName = 'May & Ben'
+    newMail.senderMail = 'codingAcademy@misterBit.com'    
+    newMail.timeStamp = Date.now;
+    newMail.isRead = false;
+    mails.push(newMail)
+    Promise.resolve(mails);
+}
+
+function deleteMail() {
+    // how to find the correct mail? id???
+}
+
+// should be on client side
+function sortByDate() {
+    this.mails = this.mails.sort((a, b) => {
+        return a.timeStamp - b.timeStamp
+    })
+}
+
+// should be on client side
+function sortBySubject() {
+    this.mails = this.mails.sort((a, b) => {
+        if (a.subject.toLowerCase() > b.subject.toLowerCase()) return 1;
+        else if (a.subject.toLowerCase() < b.subject.toLowerCase()) return -1;
+        else return 0;
+    })
+}
+
+
 export default {
     getMails,
-    sendMail,
     queryBySearchWord,
-    checkUnreadMails
+    checkUnreadMails,
+    sendMail,
+    deleteMail
 }
