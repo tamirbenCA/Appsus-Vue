@@ -49,11 +49,6 @@ h1{
     border: 1px solid red;
 }
 
-.email-prev{
-    border: 1px solid black;
-    cursor: pointer;
-}
-
 .search-box{
     border: 1px solid black;
     margin-left: 40px;
