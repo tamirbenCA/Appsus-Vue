@@ -12,12 +12,11 @@ function getMails() {
         return axios.get(`http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={numberRange|${MIN_TIMESTAMP},${MAX_TIMESTAMP}}&body={lorem|30}&isRead={bool}&pretty=true`)
             .then(fillTextMails => {
                 mails = fillTextMails.data
-                // console.log('mails:', mails)
-
-                mails.forEach(mail => {
-                    // console.log(mail.timeStamp)
-                    // console.log(new Date(mail.timeStamp))
+                // first time after receving the mails from server it sort by date, newest first.
+                mails = mails.sort((a, b) => {
+                    return b.timeStamp - a.timeStamp
                 })
+                // console.log('mails:', mails)
                 return mails
             })
     }
@@ -58,6 +57,8 @@ function sendMail(newMail) {
 function deleteMail() {
     // how to find the correct mail? id???
 }
+
+
 
 // should be on client side
 function sortByDate() {

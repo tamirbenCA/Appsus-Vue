@@ -15,7 +15,7 @@ export default {
         <router-link to="/mail/main/newMail"> 
         <button >compose new mail </button>
         </router-link>    
-        <mail-filter></mail-filter>
+        <mail-filter @filteredMails="filterRes"></mail-filter>
         
         <mail-list :mails="mails"></mail-list>
         <mail-details :chosen-mail="chosenMail" ></mail-details> 
@@ -53,13 +53,18 @@ export default {
                     this.$router.push('/note/main')
                 )
         },
-        computed: {
-            checkUnreadMails() {
-                this.unreadMails = mailService.checkUnreadMails()
-                .then(res => {
-                    return res;
+    computed: {
+        checkUnreadMails() {
+            this.unreadMails = mailService.checkUnreadMails()
+            .then(res => {
+                return res;
                 })
             }
+        },
+        filterRes(resMails) {
+            console.log('inside filterRes')
+            console.log('resMails:', resMails)
+            this.mails = resMails;
         }
     },
     components: {
