@@ -2,7 +2,7 @@ import mailPreview from '../cmp/mailPreview.js'
 
 export default {
     template: `
-        <section class="list">
+        <section class="mailsList">
 
         <ul>
         <li v-for="mail in mails" @click="mailClicked(mail)">

@@ -17,11 +17,15 @@ export default {
     props: ['item'],
      methods: {
         emitDeleteMail(mailId) {
-            debugger;
             EventBusService.$emit('deleteMail', mailId)
             // this.mails = mailService.deleteMail(mailId);
         },
     },
- 
+    computed: {
+        timeStampToDate() {
+            var d = new Date(this.item.timeStamp)
+            return d.toLocaleString('en-GB');
+        }
+    }
 }
 

@@ -25,7 +25,7 @@ export default {
                 <mail-details :chosen-mail="chosenMail"></mail-details> 
             </div>
         
-                <mail-status :width="checkWidth"> </mail-status>
+                <mail-status :width="unreadMails"> </mail-status>
             
         </div>
         
@@ -41,26 +41,6 @@ export default {
             unreadMails:null
         }
     },
-    created() {
-
-        mailService.getMails() 
-            .then(mails => {
-                this.mails = mails
-                this.chosenMail = this.mails[0]
-                console.log(this)
-                
-                mailService.checkUnreadMails()
-                    .then((res) => {
-                        this.unreadMails = res
-                        console.log('this.unreadMails',this.unreadMails)
-                    } )
-            });   
-            EventBusService.$on('deleteMail',(emailId)=>{
-                this.deleteMail(emailId)
-
-            })  
-    },
-
     methods: {
         showmail(presentMail) {
             this.chosenMail = presentMail;
@@ -70,6 +50,10 @@ export default {
             .then(res => {
                 this.mails = res
                 this.chosenMail = this.mails[0]
+                mailService.checkUnreadMails()
+                .then((res) => {
+                    this.unreadMails = res
+                })
             })
 
         },
@@ -77,11 +61,23 @@ export default {
             this.mails = resMails;
         }
     },
-    computed: {
-        checkWidth() {
-            return this.unreadMails;
-        }
-    },
+    created() {
+        mailService.getMails() 
+        .then(mails => {
+            this.mails = mails
+            this.chosenMail = this.mails[0]
+            console.log(this)
+            
+            mailService.checkUnreadMails()
+            .then((res) => {
+                this.unreadMails = res
+                console.log('this.unreadMails',this.unreadMails)
+            })
+            EventBusService.$on('deleteMail',emailId => {
+                this.deleteMail(emailId)
+            });   
+        })
+    },  
     components: {
         navBar,
         mailDetails,

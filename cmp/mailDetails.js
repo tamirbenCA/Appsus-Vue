@@ -5,11 +5,11 @@ import EventBusService from '../services/EventBusService.js'
 
 export default {
     template: `
-        <section class="details" v-if="chosenMail" >
+        <section class="mailDetails" v-if="chosenMail" >
         <div class="head-mail">
             <h3 class="subject">{{chosenMail.subject}} </br></h3>   
             <h5 class="mail-info"> {{chosenMail.senderName}} </br>     </h5>   
-            <h5 class="mail-info"> {{chosenMail.timeStamp}}</br></h5>
+            <h5 class="mail-info"> {{timeStampToDate}}</br></h5>
         </div>
          
          <div>
@@ -21,6 +21,7 @@ export default {
          
         </section>
     `,
+    props: ['chosen-mail'],
     data() {
         return {
             mailId: this.chosenMail ? this.chosenMail.id : null
@@ -34,10 +35,15 @@ export default {
             // this.mails = mailService.deleteMail(mailId);
         },
     },
-    props: ['chosen-mail'],
+    computed: {
+        timeStampToDate() {
+            var d = new Date(this.chosenMail.timeStamp)
+            return d.toLocaleString('en-GB');
+        }
+    },
     components: {
         mailPreview
-    },
+    }
 }
 
 
