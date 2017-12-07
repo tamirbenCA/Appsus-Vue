@@ -45,7 +45,7 @@ export default {
                 <button class="button is-link" @click="saveNote">{{(note.title) ? 'Save' : 'Add'}}</button>
                 <!-- <button @click="deleteNote(note.id)" v-if="!isNew"><i class="fa fa-trash-o" aria-hidden="true"></button> -->
                 <!-- <button @click="deleteNote(note.id)" v-if="!isNew">🗑</button> -->
-                <router-link to="/note/main" class="button is-text">Cancel</router-link>               
+                <button class="button is-text" @click="cancelNote(note.id)">Cancel</button>               
                 <span class="button note-details-delete" @click="deleteNote(note.id)" v-if="!isNew"><i class="fa fa-trash-o" aria-hidden="true"></i></span>               
                 <!-- <i class="fa fa-trash-o" aria-hidden="true" @click="deleteNote(note.id)" v-if="!isNew"></i> -->
                 <!-- <router-link to="/note/main" class="button">Cancel</router-link>                -->
@@ -115,6 +115,17 @@ export default {
         .catch(err => {
           console.error('Error deleting');
         })
+    },
+    cancelNote(noteId) {
+      if (this.isNew) {
+      noteService.deleteNote(noteId)
+        .then(_ => {
+          this.$router.push('/note/main')
+        })
+        .catch(err => {
+          console.error('Error deleting');
+        })
+      } else this.$router.push('/note/main');
     }
   },
   computed: {
