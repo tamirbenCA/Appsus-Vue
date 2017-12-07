@@ -5,7 +5,7 @@ import mailList from '../cmp/mailList.js';
 import mailFilter from '../cmp/mailFilter.js';
 import mailStatus from '../cmp/mailStatus.js';
 import EventBusService from '../services/EventBusService.js';
-{/* <mail-details v-else :mail="firstMail"  @mailId="deleteMail"></mail-details>  */ }
+
 
 
 export default {
@@ -18,8 +18,7 @@ export default {
         
         <div class="box">
             <div class="front-page">
-                <mail-list :mails="mails" @presentMail="showmail">
-                </mail-list>
+                <mail-list :mails="mails" @presentMail="showmail"></mail-list>
                 <mail-details :chosen-mail="chosenMail"></mail-details> 
             </div>   
         </div>    

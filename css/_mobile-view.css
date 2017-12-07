@@ -28,6 +28,7 @@
 
     .front-page{
         height: 1000px;
+        flex-direction: column;
     }
 
     .mailsList::-webkit-scrollbar { 

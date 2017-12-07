@@ -137,6 +137,17 @@ function filterReadUnread(status) {
     }
 }
 
+
+function getMailById(mailId) {
+    console.log('mailId',mailId)
+    return new Promise((resolve, reject) => {
+        var foundMail = mails.find(mail => mail.id === +mailId)
+        if (foundMail) resolve(foundMail)
+        else reject();
+    })
+
+}
+
 export default {
     getMails,
     queryBySearchWord,
@@ -144,6 +155,6 @@ export default {
     sendMail,
     deleteMail,
     updateMailStatus,
-    filterReadUnread
-
+    filterReadUnread,
+    getMailById
 }

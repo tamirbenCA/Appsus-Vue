@@ -6,6 +6,7 @@ import mailMain from './pages/mailMain.js'
 import composeNewMail from './pages/composeNewMail.js'
 import mailCompose from './cmp/mailCompose.js'
 import mailDetails from './cmp/mailDetails.js'
+import showMailOnMobile from './pages/showMailOnMobile.js'
 
 const routes = [
     {
@@ -37,14 +38,15 @@ const routes = [
         path: '/mail/main/',
         component: mailMain
     },
-    // {
-    //     path: 'mail/:action',
-    //     component : HomePage
-    // },
     {
         path: '/mail/main/newMail',
         component: mailCompose
     },
+    {
+        path: '/mail/main/viewMail:mailId',
+        component: showMailOnMobile
+    },
+ 
   
 ];
 

@@ -60,7 +60,8 @@
     height: 50px;
     overflow: hidden; 
     display: flex;
-    flex-direction: row-reverse   
+    flex-direction: row-reverse;
+    box-sizing: border-box;
 }
 
 .filter-checkbox{
