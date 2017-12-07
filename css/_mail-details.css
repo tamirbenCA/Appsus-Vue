@@ -1,0 +1,17 @@
+.subject{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.mail-info{
+    font-size: 15px;
+}
+
+.head-mail{
+    border-bottom: 1px dashed black;
+}
+
+.front-page{
+    width:80%;
+    height: 600px;
+}

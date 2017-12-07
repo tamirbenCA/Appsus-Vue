@@ -43,10 +43,7 @@ h1{
     font-family:'Lato';
 }
 
-.list{
-    border: 1px solid black;
-    padding-left: 50px;
-}
+
 
 .details{
     border: 1px solid red;
@@ -59,6 +56,11 @@ h1{
 .search-box{
     border: 1px solid black;
     margin-left: 40px;
+}
+
+.front-page{
+    display: flex;
+    flex-direction: row;
 }
 
 

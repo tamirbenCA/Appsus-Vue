@@ -2,10 +2,10 @@
 
 export default {
     template: `
-        <section   class="email-prev">
+        <section class="email-prev">
             {{item.subject}}
-            {{item.sender}}
-            {{item.timestamp}}
+            {{item.senderMail}}
+            {{item.timeStamp}}
             <i class="fa fa-trash-o" aria-hidden="true" @click="emitDelete"></i>
         </section>
     `,
