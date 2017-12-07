@@ -65,11 +65,15 @@ h1{
     margin: 50px;
 }
 
-.status{
-    height: 30px;
-    background-color: blue;
+.status-bar {
+    background-color: red;
+    text-align: center;
 }
 
+.status-bar-container{
+    border: 1px solid black;
+   
+}
 .box{
     width:80%;
     display: flex;

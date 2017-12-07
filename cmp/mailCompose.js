@@ -5,7 +5,7 @@ export default {
         <div class="field">
         <label class="label">Subject</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Text input">
+          <input class="input" type="text" placeholder="Text input" required>
         </div>
       </div>
       
@@ -14,16 +14,16 @@ export default {
       <div class="field">
         <label class="label">To:</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+          <!-- <input class="input" type="email" placeholder="Email input"> -->
+          <input class="input" type="email" placeholder="name@email.com" required/>
           <span class="icon is-small is-left">
             <i class="fa fa-envelope"></i>
           </span>
-          <span class="icon is-small is-right">
+          <span v-show="true" class="icon is-small is-right">
             <i class="fa fa-warning"></i>
           </span>
         </div>
-        <p class="help is-danger">This email is invalid</p>
-      </div>
+        </div>
       
       
       

@@ -27,21 +27,23 @@ function getMails() {
             .catch(err => {
                 mails = [
                     {
-                        id: 1,
-                        senderName: 'Ben Tamir',
-                        senderMail: 'tamirben@gmail.com',
-                        subject: 'no filltext service',
-                        timeStamp: Date.now(),
-                        body: 'When will filltext fix the site? error 503'
-                    },
-                    {
-                        id: 2,
-                        senderName: 'May Schiller',
-                        senderMail: 'may.schiller@gmail.com',
-                        subject: 'ben wrote this for me',
-                        timeStamp: Date.now(),
-                        body: 'bla bla bla'
-                    },
+                    id: 1,
+                    senderName: 'Ben Tamir',
+                    senderMail: 'tamirben@gmail.com',
+                    subject: 'no filltext service',
+                    timeStamp: Date.now(),
+                    body: 'When will filltext fix the site? error 503',
+                    isRead: false
+                },
+                {
+                    id: 2,
+                    senderName: 'May Schiller',
+                    senderMail: 'mayschiller@gmail.com',
+                    subject: 'ben wrote this for me',
+                    timeStamp: Date.now(),
+                    body: 'bla bla bla',
+                    isRead: false
+                },
                 ]
                 return mails;
             })
@@ -60,7 +62,8 @@ function queryBySearchWord(term) {
 }
 
 function checkUnreadMails() {
-        var UnreadMailsCount = mails.reduce((acc, mail) => {
+    if (mails.length === 0)     return Promise.resolve(0)
+    var UnreadMailsCount = mails.reduce((acc, mail) => {
         if (!mail.isRead) acc += 1;
         return acc;
     }, 0);
@@ -74,15 +77,18 @@ function sendMail(newMail) {
     newMail.senderMail = 'codingAcademy@misterBit.com'
     newMail.timeStamp = Date.now;
     newMail.isRead = false;
-    mails.push(newMail)
-    Promise.resolve(mails);
+    mails.splice(0, 0, newMail)     // inserting newMail into mails array at position 0 and deleting 0 items
+    return Promise.resolve(mails);
 }
 
-function deleteMail() {
-    // how to find the correct mail? id???
+function deleteMail(mailId) {
+    return new Promise((resolve, reject)=>{
+        var mailIdx = mails.findIndex(mail => mail.id === mailId)
+        mails.splice(mailIdx, 1);
+        console.log('mails.length',mails.length)
+        resolve(mails)
+    });    
 }
-
-
 
 // should be on client side
 function sortByDate() {

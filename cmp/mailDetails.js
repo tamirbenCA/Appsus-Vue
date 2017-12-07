@@ -1,4 +1,7 @@
 import mailPreview from '../cmp/mailPreview.js'
+import mailService from '../services/mailService.js'
+import EventBusService from '../services/EventBusService.js'
+
 
 export default {
     template: `
@@ -14,7 +17,7 @@ export default {
             <h5 class="mail-info"> {{chosenMail.body}}</h5>  
             
          </div>
-         <button  @click="deleteMail(chosenMail.id)">Delete</button>
+         <button  @click="emitDeleteMail(chosenMail.id)">Delete</button>
          
         </section>
     `,
@@ -25,8 +28,10 @@ export default {
         }
     },
     methods: {
-        deleteMail(chosenMailId) {
-            console.log('chosenMailId',chosenMailId)
+        emitDeleteMail(mailId) {
+            console.log('hiiii')
+            EventBusService.$emit('deleteMail', mailId)
+            // this.mails = mailService.deleteMail(mailId);
         },
     },
     props: ['chosen-mail'],

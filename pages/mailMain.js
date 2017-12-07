@@ -1,9 +1,10 @@
-import mailService from '../services/mailService.js'
-import navBar from '../cmp/navBar.js'
-import mailDetails from '../cmp/mailDetails.js'
-import mailList from '../cmp/mailList.js'
-import mailFilter from '../cmp/mailFilter.js'
-import mailStatus from '../cmp/mailStatus.js'
+import mailService from '../services/mailService.js';
+import navBar from '../cmp/navBar.js';
+import mailDetails from '../cmp/mailDetails.js';
+import mailList from '../cmp/mailList.js';
+import mailFilter from '../cmp/mailFilter.js';
+import mailStatus from '../cmp/mailStatus.js';
+import EventBusService from '../services/EventBusService.js';
 {/* <mail-details v-else :mail="firstMail"  @mailId="deleteMail"></mail-details>  */ }
 
 
@@ -23,9 +24,9 @@ export default {
                 <mail-list :mails="mails" @presentMail="showmail"></mail-list>
                 <mail-details :chosen-mail="chosenMail"></mail-details> 
             </div>
-            <div class="status">
-                <mail-status :style="{width:checkWidth + '%'}"> </mail-status>
-            </div>
+        
+                <mail-status :width="checkWidth"> </mail-status>
+            
         </div>
         
             
@@ -41,47 +42,44 @@ export default {
         }
     },
     created() {
+
         mailService.getMails() 
             .then(mails => {
                 this.mails = mails
                 this.chosenMail = this.mails[0]
-                console.log(' this.chosenMail',  this.chosenMail)
-                this.unreadMails = mailService.checkUnreadMails()
-                .then(res => {
-                    console.log('res', res )
-                    return res;
-                })
-            });
+                console.log(this)
+                
+                mailService.checkUnreadMails()
+                    .then((res) => {
+                        this.unreadMails = res
+                        console.log('this.unreadMails',this.unreadMails)
+                    } )
+            });   
+            EventBusService.$on('deleteMail',(emailId)=>{
+                this.deleteMail(emailId)
 
-            
-            
+            })  
     },
-
 
     methods: {
         showmail(presentMail) {
-            console.log('presentMail',presentMail)
             this.chosenMail = presentMail;
         },
         deleteMail(mailId) {
-            console.log('mailId', mailId)
-            mailService.deleteMailChosen(mailId)
-                .then(res =>
-                    this.$router.push('/note/main')
-                )
+            mailService.deleteMail(mailId)
+            .then(res => {
+                this.mails = res
+                this.chosenMail = this.mails[0]
+            })
+
         },
-        
         filterRes(resMails){
             this.mails = resMails;
         }
     },
     computed: {
         checkWidth() {
-            
-            this.unreadMails = mailService.checkUnreadMails()
-                .then(res => {
-                    return res;
-                })
+            return this.unreadMails;
         }
     },
     components: {
