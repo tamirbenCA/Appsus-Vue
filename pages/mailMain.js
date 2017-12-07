@@ -15,15 +15,11 @@ export default {
         <router-link to="/mail/main/newMail"> 
         <button >compose new mail </button>
         </router-link>    
-<<<<<<< HEAD
         <mail-filter @filterMails="filterRes"></mail-filter>
         <div class="front-page">
             <mail-list :mails="mails" @presentMail="showmail"></mail-list>
             <mail-details :chosen-mail="chosenMail"></mail-details> 
         </div>
-=======
-        <mail-filter @filteredMails="filterRes"></mail-filter>
->>>>>>> 2c358747a308a9e2f601b75f0aad7f22edc5136c
         
         
 
@@ -60,7 +56,6 @@ export default {
                     this.$router.push('/note/main')
                 )
         },
-<<<<<<< HEAD
         computed: {
             checkUnreadMails() {
                 this.unreadMails = mailService.checkUnreadMails()
@@ -71,14 +66,6 @@ export default {
 
             filterRes(resMails){
                 this.mails = res.mails;
-=======
-    computed: {
-        checkUnreadMails() {
-            this.unreadMails = mailService.checkUnreadMails()
-            .then(res => {
-                return res;
-                })
->>>>>>> 2c358747a308a9e2f601b75f0aad7f22edc5136c
             }
         },
         filterRes(resMails) {
