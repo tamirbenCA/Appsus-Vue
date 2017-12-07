@@ -39,3 +39,12 @@
 .mail-compose-body {
     min-height:60px;
 }
+
+.mail-header {
+    padding-left: 60px;
+}
+
+.email-prev{
+    border: 1px solid black;
+    cursor: pointer;
+}

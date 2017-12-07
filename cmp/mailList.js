@@ -16,13 +16,11 @@ export default {
     `,
     methods: {
         mailClicked(mail) {
-            this.$emit('presentMail', mail)
             if(mail.isRead === false) {
                 mail.isRead = true;
                 mailService.updateMailStatus(mail);
-            }
-              
-            
+            }    
+            this.$emit('presentMail', mail)
         }
     },
 

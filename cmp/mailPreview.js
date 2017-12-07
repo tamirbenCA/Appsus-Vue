@@ -2,7 +2,7 @@ import EventBusService from '../services/EventBusService.js'
 
 export default {
     template: `
-        <section :class="classObject">
+        <section class="email-prev" :class="{'unread-mail': !this.item.isRead}">
             {{item.subject}}
             {{item.senderMail}}
             {{timeStampToDate}}
@@ -27,12 +27,12 @@ export default {
             var d = new Date(this.item.timeStamp)
             return d.toLocaleString('en-GB');
         },
-        classObject() {
-            return {
-                'email-prev': true,
-                'unread-mail': !this.item.isRead
-            }
-        }
+        // classObject() {
+        //     return {
+        //         // 'email-prev': true,
+        //         'unread-mail': !this.item.isRead
+        //     }
+        // }
     }
 }
 

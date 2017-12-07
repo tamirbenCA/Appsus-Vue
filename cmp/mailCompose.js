@@ -43,8 +43,12 @@ export default {
 `,
 data() {
   return {
-    mail: {},
-    isComposeActive : true                
+    isComposeActive : true,
+    mail: {
+      isRead: false,
+      senderName: 'May & Ben',
+      timeStamp: Date.now()
+    }
   }
 },
     methods: {
@@ -54,7 +58,7 @@ data() {
       sendMail() {
     
         mailService.sendMail(this.mail)
-        this.$router.push('/mail/main')
+          .then(this.$router.push('/mail/main'))
       },
       
 

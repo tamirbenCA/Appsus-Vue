@@ -73,14 +73,10 @@ function checkUnreadMails() {
 }
 
 function sendMail(newMail) {
-    console.log('newMail', newMail);
-    newMail.senderName = 'May & Ben'
-    // newMail.senderMail = 'codingAcademy@misterBit.com'
-    newMail.timeStamp = Date.now();
-    newMail.isRead = false;
-    mails.splice(0, 0, newMail)     // inserting newMail into mails array at position 0 and deleting 0 items
-    console.log(newMail)
-    return Promise.resolve(mails);
+    // console.log('newMail', newMail);
+    // mails.splice(0, 0, newMail)     // inserting newMail into mails array at position 0 and deleting 0 items
+    mails.unshift( newMail)
+    return Promise.resolve();
 }
 
 function deleteMail(mailId) {

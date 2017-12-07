@@ -12,10 +12,7 @@ export default {
     template: `
         <section>
         <navBar></navBar>
-        <h1>MAIL APP</h1>
-        <router-link to="/mail/main/newMail"> 
-            <button >compose new mail </button>
-        </router-link>    
+        <h1>MAIL APP</h1>    
         <mail-filter @filterMailsEvent="filterRes"></mail-filter>
 
         
