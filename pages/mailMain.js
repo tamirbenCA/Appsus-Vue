@@ -18,7 +18,7 @@ export default {
         <mail-filter></mail-filter>
         
         <mail-list :mails="mails"></mail-list>
-     <mail-details></mail-details> 
+        <mail-details :chosen-mail="chosenMail" ></mail-details> 
         
 
         
@@ -29,7 +29,8 @@ export default {
         return {
             mails: [],
             selectedMail: null,
-            firstMail:null
+            firstMail:null,
+            chosenMail:null
         }
     },
     created() {

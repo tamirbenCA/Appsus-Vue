@@ -2,7 +2,7 @@
 
 export default {
     template: `
-        <section :chosenMail="item" @click="goToMail(item.id)" class="email-prev">
+        <section   class="email-prev">
             {{item.subject}}
             {{item.sender}}
             {{item.timestamp}}
@@ -10,6 +10,14 @@ export default {
         </section>
     `,
     props: ['item'],
+    methods: {
+        emitDelete() {
+            console.log('mailPreview')
+            // this.$emit('mailId', this.noteId)
+        },
+
+
+    },
  
 }
 
