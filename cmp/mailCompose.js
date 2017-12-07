@@ -14,7 +14,7 @@ export default {
       <div class="field">
         <label class="label">To:</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+          <input class="input" type="email" placeholder="Email input">
           <span class="icon is-small is-left">
             <i class="fa fa-envelope"></i>
           </span>
@@ -22,8 +22,7 @@ export default {
             <i class="fa fa-warning"></i>
           </span>
         </div>
-        <p class="help is-danger">This email is invalid</p>
-      </div>
+        </div>
       
       
       
