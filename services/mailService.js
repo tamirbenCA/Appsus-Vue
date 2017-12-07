@@ -15,8 +15,8 @@ function getMails() {
                 mails = fillTextMails.data
                 // first time after receving the mails from server it sort by date, newest first.
                 mails.forEach((mail, idx) => {
-                    mail.id = idx
-                    mail.timeStamp = (new Date(mail.time)).getTime()
+                    mail.id = idx + 1;
+                    mail.timeStamp = (new Date(mail.time)).getTime();
                 })
                 mails = mails.sort((a, b) => {
                     return b.timeStamp - a.timeStamp
@@ -27,6 +27,7 @@ function getMails() {
             .catch(err => {
                 mails = [
                     {
+                    id: 1,
                     senderName: 'Ben Tamir',
                     senderMail: 'tamirben@gmail.com',
                     subject: 'no filltext service',
@@ -34,6 +35,7 @@ function getMails() {
                     body: 'When will filltext fix the site? error 503'
                 },
                 {
+                    id: 2,
                     senderName: 'May Schiller',
                     senderMail: 'mayschiller@gmail.com',
                     subject: 'ben wrote this for me',
@@ -62,10 +64,7 @@ function checkUnreadMails() {
         if (!mail.isRead)       acc += 1;
     return acc;
     }, 0);
-    var res = {
-        unreadMails: UnreadMailsCount,
-        totelMails: mails.length
-    }
+    var res = UnreadMailsCount / mails.length * 100;
     Promise.resolve(res);
 }
 
