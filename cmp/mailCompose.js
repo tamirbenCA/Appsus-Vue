@@ -30,6 +30,7 @@ export default {
           <div class="field is-grouped">
             <div class="control">
               <button class="button is-link">Send</button>
+       
             </div>
             <div class="control">
               <router-link to="/mail/main/" class="button is-text">Cancel</router-link>
@@ -51,9 +52,11 @@ data() {
           this.$router.push('/')
       },
       sendMail() {
+    
         mailService.sendMail(this.mail)
         this.$router.push('/mail/main')
-      }
+      },
+      
 
     },
 }

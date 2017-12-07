@@ -67,12 +67,13 @@ function checkUnreadMails() {
         if (!mail.isRead) acc += 1;
         return acc;
     }, 0);
-    var res = UnreadMailsCount / mails.length * 100;
+    var res = parseInt(UnreadMailsCount / mails.length * 100);
     console.log('res', res);
     return Promise.resolve(res);
 }
 
 function sendMail(newMail) {
+    console.log('newMail', newMail);
     newMail.senderName = 'May & Ben'
     // newMail.senderMail = 'codingAcademy@misterBit.com'
     newMail.timeStamp = Date.now();
@@ -89,10 +90,10 @@ function deleteMail(mailId) {
     });
 }
 
-function updateMailStatus(mailId) {
+function updateMailStatus(mail) {
     return new Promise((resolve, reject) => {
-        var idx = mails.findIndex(mail => mail.id === mailId)
-        mails[idx].isRead = true;
+        var idx = mails.findIndex(item => item.id === mail.id)
+        mails[idx].isRead = mail.isRead;
         resolve()
     });
 }
@@ -133,7 +134,6 @@ function filterReadUnread(status) {
         })
         return Promise.resolve(filteredMails);
     }
-
 }
 
 export default {

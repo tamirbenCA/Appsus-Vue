@@ -19,7 +19,7 @@ export default {
             this.$emit('presentMail', mail)
             if(mail.isRead === false) {
                 mail.isRead = true;
-                mailService.updateMailStatus(mail.id);
+                mailService.updateMailStatus(mail);
             }
               
             
