@@ -2,7 +2,7 @@ import mailService from '../services/mailService.js'
 
 export default {
     template: `
-    <div class="modal" :class="{'is-active' : isComposeActive}" @keyUp.esc="test">
+    <div class="modal" :class="{'is-active' : isComposeActive}">
     <div class="modal-background" @click="closeModal"></div>
     <div class="modal-card">
       <header class="modal-card-head">

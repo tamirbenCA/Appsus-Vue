@@ -78,6 +78,7 @@ function sendMail(newMail) {
     newMail.timeStamp = Date.now();
     newMail.isRead = false;
     mails.splice(0, 0, newMail)     // inserting newMail into mails array at position 0 and deleting 0 items
+    console.log(newMail)
     return Promise.resolve(mails);
 }
 
