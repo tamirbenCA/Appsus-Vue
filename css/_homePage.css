@@ -23,7 +23,7 @@
     background-image: url("../img/icons/map.png");
 }
 
-/* .container{
+.container{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -31,7 +31,7 @@
     width:80%;
     height: 500px;
     margin: 0 auto;
-} */
+}
 
 .mail-app:hover, .note-app:hover, .map-app:hover {
     outline: 3px solid black;
