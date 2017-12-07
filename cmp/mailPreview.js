@@ -6,17 +6,14 @@ export default {
             {{item.subject}}
             {{item.senderMail}}
             {{item.timeStamp}}
-            <i class="fa fa-trash-o" aria-hidden="true" @click="emitDelete"></i>
+            <button  @click="deleteMail(item.id)">Delete</button>
         </section>
     `,
     props: ['item'],
-    methods: {
-        emitDelete() {
-            console.log('mailPreview')
-            // this.$emit('mailId', this.noteId)
+     methods: {
+        deleteMail(mailId) {
+           
         },
-
-
     },
  
 }

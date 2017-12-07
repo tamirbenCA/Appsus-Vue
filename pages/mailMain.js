@@ -16,11 +16,19 @@ export default {
             <button >compose new mail </button>
         </router-link>    
         <mail-filter @filterMailsEvent="filterRes"></mail-filter>
-        <div class="front-page">
-            <mail-list :mails="mails" @presentMail="showmail"></mail-list>
-            <mail-details :chosen-mail="chosenMail"></mail-details> 
+
+        
+        <div class="box">
+            <div class="front-page">
+                <mail-list :mails="mails" @presentMail="showmail"></mail-list>
+                <mail-details :chosen-mail="chosenMail"></mail-details> 
+            </div>
+            <div class="status">
+                <mail-status :style="{width:checkWidth + '%'}"> </mail-status>
+            </div>
         </div>
-        <mail-status :style="{width:checkWidth + '%'}"> </mail-status>    
+        
+            
         </section>   
                 `,
     data() {
@@ -38,13 +46,14 @@ export default {
                 this.mails = mails
                 this.chosenMail = this.mails[0]
                 console.log(' this.chosenMail',  this.chosenMail)
+                this.unreadMails = mailService.checkUnreadMails()
+                .then(res => {
+                    console.log('res', res )
+                    return res;
+                })
             });
 
-            this.unreadMails = mailService.checkUnreadMails()
-            .then(res => {
-                console.log('res', res )
-                return res;
-            })
+            
             
     },
 
@@ -68,6 +77,7 @@ export default {
     },
     computed: {
         checkWidth() {
+            
             this.unreadMails = mailService.checkUnreadMails()
                 .then(res => {
                     return res;

@@ -2,10 +2,11 @@
 
 export default {
     template: `
-        <section class="status">
-           
+        <section >
+           {{width}}
         </section>
     `,
+    props: ['width'],
  
 }
 

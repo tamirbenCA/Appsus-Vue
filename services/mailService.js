@@ -60,8 +60,7 @@ function queryBySearchWord(term) {
 }
 
 function checkUnreadMails() {
-    debugger;
-    var UnreadMailsCount = mails.reduce((acc, mail) => {
+        var UnreadMailsCount = mails.reduce((acc, mail) => {
         if (!mail.isRead) acc += 1;
         return acc;
     }, 0);

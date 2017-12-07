@@ -12,7 +12,7 @@ export default {
          <div>
             <h5 class="mail-info"> {{chosenMail.senderMail}}</br></h5>  
             <h5 class="mail-info"> {{chosenMail.body}}</h5>  
-            <i class="fa fa-trash-o" aria-hidden="true"  ></i>
+            
          </div>
          <button  @click="deleteMail(chosenMail.id)">Delete</button>
          
