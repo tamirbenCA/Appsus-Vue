@@ -13,8 +13,8 @@ export default {
             <input class="search-box" type="search" v-model="term" @input="searchMail" placeholder="Search for mail" />
             <div class="filter-checkbox">
                 <label><input type="radio" value="all" v-model="type" @change="searchMail"> All</label>
-                <label><input type="radio" value="true" v-model="type" @change="searchMail"> read</label>
-                <label><input type="radio" value="false" v-model="type" @change="searchMail"> unread</label>
+                <label><input type="radio" value="true" v-model="type" @change="searchMail"> Read</label>
+                <label><input type="radio" value="false" v-model="type" @change="searchMail"> Unread</label>
             </div>
              
         </section>
