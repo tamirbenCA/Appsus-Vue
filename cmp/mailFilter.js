@@ -19,7 +19,7 @@ export default {
                 .then(mails => {
                     this.filterMails = mails
                     // console.log('filter:', this.filterMails);
-                    this.$emit('filteredMails', this.filterMails)
+                    this.$emit('filterMails', this.filterMails)
                 })
                 .catch(err => {
                     console.log(err);

@@ -63,9 +63,8 @@ export default {
                         return res;
                     })
             },
-
             filterRes(resMails){
-                this.mails = res.mails;
+                this.mails = resMails;
             }
         },
         filterRes(resMails) {
