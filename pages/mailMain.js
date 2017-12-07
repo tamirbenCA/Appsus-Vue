@@ -54,6 +54,7 @@ export default {
             mailService.deleteMail(mailId)
             .then(res => {
                 this.mails = res
+                
                 this.chosenMail = this.mails[0]
                 mailService.checkUnreadMails()
                 .then((res) => {
@@ -70,6 +71,7 @@ export default {
         mailService.getMails() 
         .then(mails => {
             this.mails = mails
+            console.log('this.mails',this.mails)
             this.chosenMail = this.mails[0]
             mailService.checkUnreadMails()
             .then((res) => {

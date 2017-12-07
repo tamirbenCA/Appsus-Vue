@@ -27,23 +27,23 @@ function getMails() {
             .catch(err => {
                 mails = [
                     {
-                    id: 1,
-                    senderName: 'Ben Tamir',
-                    senderMail: 'tamirben@gmail.com',
-                    subject: 'no filltext service',
-                    timeStamp: Date.now(),
-                    body: 'When will filltext fix the site? error 503',
-                    isRead: false
-                },
-                {
-                    id: 2,
-                    senderName: 'May Schiller',
-                    senderMail: 'mayschiller@gmail.com',
-                    subject: 'ben wrote this for me',
-                    timeStamp: Date.now(),
-                    body: 'bla bla bla',
-                    isRead: false
-                },
+                        id: 1,
+                        senderName: 'Ben Tamir',
+                        senderMail: 'tamirben@gmail.com',
+                        subject: 'no filltext service',
+                        timeStamp: Date.now(),
+                        body: 'When will filltext fix the site? error 503',
+                        isRead: false
+                    },
+                    {
+                        id: 2,
+                        senderName: 'May Schiller',
+                        senderMail: 'mayschiller@gmail.com',
+                        subject: 'ben wrote this for me',
+                        timeStamp: Date.now(),
+                        body: 'bla bla bla',
+                        isRead: false
+                    },
                 ]
                 return mails;
             })
@@ -62,7 +62,7 @@ function queryBySearchWord(term) {
 }
 
 function checkUnreadMails() {
-    if (mails.length === 0)     return Promise.resolve(0);
+    if (mails.length === 0) return Promise.resolve(0);
     var UnreadMailsCount = mails.reduce((acc, mail) => {
         if (!mail.isRead) acc += 1;
         return acc;
@@ -82,19 +82,19 @@ function sendMail(newMail) {
 }
 
 function deleteMail(mailId) {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         var mailIdx = mails.findIndex(mail => mail.id === mailId)
         mails.splice(mailIdx, 1);
         resolve(mails)
-    });    
+    });
 }
 
 function updateMailStatus(mailId) {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         var idx = mails.findIndex(mail => mail.id === mailId)
         mails[idx].isRead = true;
         resolve()
-    });    
+    });
 }
 
 // should be on client side
@@ -124,13 +124,16 @@ function sortBySender() {
 
 function filterReadUnread(status) {
     var filteredMails = [];
-    mails.forEach(mail => {
-        if (mail.isRread === status) {
-            filteredMails.push(mail);
-        }
-    })
-    // console.log('filtered:', filteredMails)
-    return Promise.resolve(filteredMails);
+    if (status === 'all') return Promise.resolve(mails);
+    else {
+        if (status === 'true') status = true
+        if (status === 'false') status = false
+        filteredMails = mails.filter(mail => {
+            return mail.isRead === status
+        })
+        return Promise.resolve(filteredMails);
+    }
+
 }
 
 export default {
@@ -139,6 +142,7 @@ export default {
     checkUnreadMails,
     sendMail,
     deleteMail,
-    updateMailStatus
+    updateMailStatus,
+    filterReadUnread
 
 }
