@@ -17,6 +17,7 @@ export default {
             <h5 class="mail-info"> {{chosenMail.body}}</h5>  
             
          </div>
+         <button @click="markUnread(chosenMail)">Mark as unread</button>
          <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDeleteMail(chosenMail.id)"></i>
          
          
@@ -35,6 +36,11 @@ export default {
             EventBusService.$emit('deleteMail', mailId)
             // this.mails = mailService.deleteMail(mailId);
         },
+        markUnread(chosenMail) {
+            chosenMail.isRead = false;
+            mailService.updateMailStatus(chosenMail)
+
+          }
     },
     computed: {
         timeStampToDate() {
