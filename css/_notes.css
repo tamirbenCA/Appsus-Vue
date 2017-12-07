@@ -5,10 +5,6 @@ input  {
     padding: 10px;
 }
 
-select {
-    margin: 10px;
-}
-
 textarea {
     border: none;
     background: none;
@@ -84,12 +80,12 @@ a {
     flex-wrap: wrap;
 }
 
-.deleteOnNote {
+/* .deleteOnNote {
     width: 20px;
     height: 20px;
     margin: 0;
     padding: 0;
-}
+} */
 
 .note-header {
     display: flex;
@@ -162,4 +158,22 @@ a {
     right: 150px;
     top: 200px;
     /* z-index: -1; */
+}
+
+.note-details-footer {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    /* align-content: center; */
+}
+
+.note-details-delete {
+    /* text-decoration: unset; */
+    /* text-decoration-color: white; */
+    border: none;
+}
+
+.note-details-delete:hover {
+    background-color: whitesmoke;
+    color: #363636;
 }

@@ -20,7 +20,8 @@ export default {
                             <img v-if="note.image" :src="'../img/' + note.image" />
                         </div>
                         <div class="note-footer">
-                            <button class="deleteOnNote" @click="deleteNote(note.id)">🗑</button><br>
+                            <!-- <button class="deleteOnNote" @click="deleteNote(note.id)">🗑</button><br> -->
+                            <i class="fa fa-trash-o" aria-hidden="true" @click="deleteNote(note.id)"></i>
                         </div>
                     </div></router-link>
                 </div>            
