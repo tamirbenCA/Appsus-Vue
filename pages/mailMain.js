@@ -13,7 +13,7 @@ export default {
         <navBar></navBar>
         <h1>MAIL APP</h1>
         <router-link to="/mail/main/newMail"> 
-        <button >compose new mail </button>
+            <button >compose new mail </button>
         </router-link>    
         <mail-filter @filterMails="filterRes"></mail-filter>
         <div class="front-page">
@@ -39,9 +39,8 @@ export default {
         mailService.getMails()
             .then(mails => {
                 this.mails = mails
-                console.log('this.mails',this.mails)
                 this.chosenMail = this.mails[0]
-                // console.log('mails', this.mails)
+                console.log(' this.chosenMail',  this.chosenMail)
             })
     },
     methods: {
@@ -65,13 +64,8 @@ export default {
             },
 
             filterRes(resMails){
-                this.mails = res.mails;
+                this.mails = resMails;
             }
-        },
-        filterRes(resMails) {
-            console.log('inside filterRes')
-            console.log('resMails:', resMails)
-            this.mails = resMails;
         }
     },
     components: {
