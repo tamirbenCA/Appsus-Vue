@@ -74,8 +74,8 @@ function checkUnreadMails() {
 
 function sendMail(newMail) {
     newMail.senderName = 'May & Ben'
-    newMail.senderMail = 'codingAcademy@misterBit.com'
-    newMail.timeStamp = Date.now;
+    // newMail.senderMail = 'codingAcademy@misterBit.com'
+    newMail.timeStamp = Date.now();
     newMail.isRead = false;
     mails.splice(0, 0, newMail)     // inserting newMail into mails array at position 0 and deleting 0 items
     return Promise.resolve(mails);

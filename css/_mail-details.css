@@ -15,3 +15,12 @@
     width:80%;
     height: 600px;
 }
+
+.mailsList {
+    width: 40vw;   
+}
+
+.mailDetails {
+    width: 57vw;
+    border: 1px solid black;
+}
