@@ -1,15 +1,15 @@
-const MIN_TIMESTAMP = 1483221600000;        // 1/1/2017 00:00:00
-const MAX_TIMESTAMP = 1512943199000;        // 10/12/2017 23:59:59
+// const MIN_TIMESTAMP = 1483221600000;        // 1/1/2017 00:00:00
+// const MAX_TIMESTAMP = 1512943199000;        // 10/12/2017 23:59:59
 // date format: MM/DD/YYYY format
-const MIN_DATE = 1-1-2017;
-const MAX_DATE = 12-10-2017;
+const MIN_DATE = '1-1-2017';
+const MAX_DATE = '12-10-2017';
 
 var mails = [];
 
 function getMails() {
     if (mails.length > 0)       return Promise.resolve(mails)
     else {
-        // prev ajax '`http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={numberRange|${MIN_TIMESTAMP},${MAX_TIMESTAMP}}&body={lorem|30}&isRead={bool}&pretty=true`'
+        // prev ajax `http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={numberRange|${MIN_TIMESTAMP},${MAX_TIMESTAMP}}&body={lorem|30}&isRead={bool}&pretty=true`
         return axios.get(`http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&time={date|${MIN_DATE},${MAX_DATE}}&body={lorem|30}&isRead={bool}&pretty=true`)
             .then(fillTextMails => {
                 mails = fillTextMails.data
@@ -23,6 +23,25 @@ function getMails() {
                 })
                 // console.log('mails:', mails)
                 return mails
+            })
+            .catch(err => {
+                mails = [
+                    {
+                    senderName: 'Ben Tamir',
+                    senderMail: 'tamirben@gmail.com',
+                    subject: 'no filltext service',
+                    timeStamp: Date.now(),
+                    body: 'When will filltext fix the site? error 503'
+                },
+                {
+                    senderName: 'May Schiller',
+                    senderMail: 'mayschiller@gmail.com',
+                    subject: 'ben wrote this for me',
+                    timeStamp: Date.now(),
+                    body: 'bla bla bla'
+                },
+                ]
+                return mails;
             })
     }
 }
