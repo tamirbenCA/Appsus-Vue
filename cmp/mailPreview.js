@@ -2,20 +2,20 @@ import EventBusService from '../services/EventBusService.js'
 
 export default {
     template: `
-        <section class="email-prev">
+        <section :class="classObject">
             {{item.subject}}
             {{item.senderMail}}
-            {{item.timeStamp}}
+            {{timeStampToDate}}
             <i class="fa fa-trash-o" aria-hidden="true" @click="emitDeleteMail(item.id)"></i>
             
         </section>
     `,
+    props: ['item'],
     data() {
         return {
             mails: [],
         }
     },
-    props: ['item'],
      methods: {
         emitDeleteMail(mailId) {
             EventBusService.$emit('deleteMail', mailId)
@@ -26,6 +26,12 @@ export default {
         timeStampToDate() {
             var d = new Date(this.item.timeStamp)
             return d.toLocaleString('en-GB');
+        },
+        classObject() {
+            return {
+                'email-prev': true,
+                'unread-mail': !this.item.isRead
+            }
         }
     }
 }

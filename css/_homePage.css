@@ -58,12 +58,6 @@ h1{
     margin-left: 40px;
 }
 
-.front-page{
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    margin: 50px;
-}
 
 .status-bar {
     background-color: red;

@@ -1,8 +1,9 @@
 @import '_vendor.css';
 @import '_homePage.css';
 @import '_nav-bar.css';
-@import '_mail-details.css';
+
 /* Components */
 
+@import '_mail.css';
 @import '_notes.css';
 
