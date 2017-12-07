@@ -62,12 +62,12 @@ function queryBySearchWord(term) {
 }
 
 function checkUnreadMails() {
-    if (mails.length === 0)     return Promise.resolve(0)
+    if (mails.length === 0)     return Promise.resolve(0);
     var UnreadMailsCount = mails.reduce((acc, mail) => {
         if (!mail.isRead) acc += 1;
         return acc;
     }, 0);
-    var res = parseInt(UnreadMailsCount / mails.length * 100)
+    var res = UnreadMailsCount / mails.length * 100;
     console.log('res', res);
     return Promise.resolve(res);
 }
@@ -84,9 +84,16 @@ function sendMail(newMail) {
 function deleteMail(mailId) {
     return new Promise((resolve, reject)=>{
         var mailIdx = mails.findIndex(mail => mail.id === mailId)
-        mails.splice(mailIdx, 1);
-        console.log('mails.length',mails.length)
+        mail.splice(mailIdx, 1);
         resolve(mails)
+    });    
+}
+
+function updateMailStatus(mailId) {
+    return new Promise((resolve, reject)=>{
+        var idx = mails.findIndex(mail => mail.id === mailId)
+        mails[idx].isRead = true;
+        resolve()
     });    
 }
 
@@ -106,11 +113,32 @@ function sortBySubject() {
     })
 }
 
+// should be on client side
+function sortBySender() {
+    this.mails = this.mails.sort((a, b) => {
+        if (a.senderName.toLowerCase() > b.senderName.toLowerCase()) return 1;
+        else if (a.senderName.toLowerCase() < b.senderName.toLowerCase()) return -1;
+        else return 0;
+    })
+}
+
+function filterReadUnread(status) {
+    var filteredMails = [];
+    mails.forEach(mail => {
+        if (mail.isRread === status) {
+            filteredMails.push(mail);
+        }
+    })
+    // console.log('filtered:', filteredMails)
+    return Promise.resolve(filteredMails);
+}
 
 export default {
     getMails,
     queryBySearchWord,
     checkUnreadMails,
     sendMail,
-    deleteMail
+    deleteMail,
+    updateMailStatus
+
 }
