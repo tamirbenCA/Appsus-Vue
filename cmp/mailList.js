@@ -1,4 +1,6 @@
 import mailPreview from '../cmp/mailPreview.js'
+import mailService from '../services/mailService.js';
+
 
 export default {
     template: `
@@ -14,9 +16,13 @@ export default {
     `,
     methods: {
         mailClicked(mail) {
-            console.log('mail',mail)
             this.$emit('presentMail', mail)
-            mail.isRead = true;
+            if(mail.isRead === false) {
+                mail.isRead = true;
+                mailService.updateMailStatus(mail.id);
+            }
+              
+            
         }
     },
 

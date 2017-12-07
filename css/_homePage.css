@@ -51,6 +51,7 @@ h1{
 
 .email-prev{
     border: 1px solid black;
+    cursor: pointer;
 }
 
 .search-box{

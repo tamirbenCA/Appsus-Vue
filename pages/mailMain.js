@@ -44,6 +44,11 @@ export default {
     methods: {
         showmail(presentMail) {
             this.chosenMail = presentMail;
+            mailService.checkUnreadMails()
+            .then((res) => {
+                this.unreadMails = res
+
+            })
         },
         deleteMail(mailId) {
             mailService.deleteMail(mailId)
@@ -69,6 +74,7 @@ export default {
             mailService.checkUnreadMails()
             .then((res) => {
                 this.unreadMails = res
+
             })
             EventBusService.$on('deleteMail',emailId => {
                 this.deleteMail(emailId)
