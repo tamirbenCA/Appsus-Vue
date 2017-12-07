@@ -1,3 +1,6 @@
+import EventBusService from '../services/EventBusService.js'
+
+
 // const MIN_TIMESTAMP = 1483221600000;        // 1/1/2017 00:00:00
 // const MAX_TIMESTAMP = 1512943199000;        // 10/12/2017 23:59:59
 // date format: MM/DD/YYYY format
@@ -68,7 +71,8 @@ function checkUnreadMails() {
         return acc;
     }, 0);
     var res = parseInt(UnreadMailsCount / mails.length * 100);
-    console.log('res', res);
+    EventBusService.$emit('unreadMailNotification', UnreadMailsCount)    
+    // console.log('res', res);
     return Promise.resolve(res);
 }
 
