@@ -14,7 +14,9 @@ export default {
     `,
     methods: {
         mailClicked(mail) {
+            console.log('mail',mail)
             this.$emit('presentMail', mail)
+            mail.isRead = true;
         }
     },
 

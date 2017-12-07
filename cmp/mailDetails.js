@@ -17,7 +17,8 @@ export default {
             <h5 class="mail-info"> {{chosenMail.body}}</h5>  
             
          </div>
-         <button  @click="emitDeleteMail(chosenMail.id)">Delete</button>
+         <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDeleteMail(chosenMail.id)"></i>
+         
          
         </section>
     `,

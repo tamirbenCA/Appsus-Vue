@@ -84,7 +84,7 @@ function sendMail(newMail) {
 function deleteMail(mailId) {
     return new Promise((resolve, reject)=>{
         var mailIdx = mails.findIndex(mail => mail.id === mailId)
-        mail.splice(mailIdx, 1);
+        mails.splice(mailIdx, 1);
         resolve(mails)
     });    
 }

@@ -6,7 +6,8 @@ export default {
             {{item.subject}}
             {{item.senderMail}}
             {{item.timeStamp}}
-            <button  @click="emitDeleteMail(item.id)">Delete</button>
+            <i class="fa fa-trash-o" aria-hidden="true" @click="emitDeleteMail(item.id)"></i>
+            
         </section>
     `,
     data() {
