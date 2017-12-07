@@ -13,6 +13,9 @@ function getMails() {
             .then(fillTextMails => {
                 mails = fillTextMails.data
                 // first time after receving the mails from server it sort by date, newest first.
+                mails.forEach((mail, idx) => {
+                    mail.id = idx
+                })
                 mails = mails.sort((a, b) => {
                     return b.timeStamp - a.timeStamp
                 })

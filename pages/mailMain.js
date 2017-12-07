@@ -62,7 +62,6 @@ export default {
                         return res;
                     })
             },
-
             filterRes(resMails){
                 this.mails = resMails;
             }
