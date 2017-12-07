@@ -13,9 +13,9 @@ export default {
         <navBar></navBar>
         <h1>MAIL APP</h1>
         <router-link to="/mail/main/newMail"> 
-        <button >compose new mail </button>
+            <button >compose new mail </button>
         </router-link>    
-        <mail-filter @filterMails="filterRes"></mail-filter>
+        <mail-filter @filterMailsEvent="filterRes"></mail-filter>
         <div class="front-page">
             <mail-list :mails="mails" @presentMail="showmail"></mail-list>
             <mail-details :chosen-mail="chosenMail"></mail-details> 
@@ -39,9 +39,8 @@ export default {
         mailService.getMails()
             .then(mails => {
                 this.mails = mails
-                console.log('this.mails',this.mails)
                 this.chosenMail = this.mails[0]
-                // console.log('mails', this.mails)
+                console.log(' this.chosenMail',  this.chosenMail)
             })
     },
     methods: {
@@ -56,21 +55,17 @@ export default {
                     this.$router.push('/note/main')
                 )
         },
-        computed: {
-            checkUnreadMails() {
-                this.unreadMails = mailService.checkUnreadMails()
-                    .then(res => {
-                        return res;
-                    })
-            },
-            filterRes(resMails){
-                this.mails = resMails;
-            }
-        },
-        filterRes(resMails) {
-            console.log('inside filterRes')
-            console.log('resMails:', resMails)
+        
+        filterRes(resMails){
             this.mails = resMails;
+        }
+    },
+    computed: {
+        checkUnreadMails() {
+            this.unreadMails = mailService.checkUnreadMails()
+                .then(res => {
+                    return res;
+                })
         }
     },
     components: {
