@@ -61,7 +61,14 @@ h1{
 .front-page{
     display: flex;
     flex-direction: row;
+    overflow: hidden;
+    margin: 50px;
 }
 
+.status{
+    width:80%;
+    height: 30px;
+    background-color: blue;
+}
 
 

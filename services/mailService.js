@@ -7,7 +7,7 @@ const MAX_DATE = '12-10-2017';
 var mails = [];
 
 function getMails() {
-    if (mails.length > 0)       return Promise.resolve(mails)
+    if (mails.length > 0) return Promise.resolve(mails)
     else {
         // prev ajax `http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={numberRange|${MIN_TIMESTAMP},${MAX_TIMESTAMP}}&body={lorem|30}&isRead={bool}&pretty=true`
         return axios.get(`http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&time={date|${MIN_DATE},${MAX_DATE}}&body={lorem|30}&isRead={bool}&pretty=true`)
@@ -27,21 +27,21 @@ function getMails() {
             .catch(err => {
                 mails = [
                     {
-                    id: 1,
-                    senderName: 'Ben Tamir',
-                    senderMail: 'tamirben@gmail.com',
-                    subject: 'no filltext service',
-                    timeStamp: Date.now(),
-                    body: 'When will filltext fix the site? error 503'
-                },
-                {
-                    id: 2,
-                    senderName: 'May Schiller',
-                    senderMail: 'mayschiller@gmail.com',
-                    subject: 'ben wrote this for me',
-                    timeStamp: Date.now(),
-                    body: 'bla bla bla'
-                },
+                        id: 1,
+                        senderName: 'Ben Tamir',
+                        senderMail: 'tamirben@gmail.com',
+                        subject: 'no filltext service',
+                        timeStamp: Date.now(),
+                        body: 'When will filltext fix the site? error 503'
+                    },
+                    {
+                        id: 2,
+                        senderName: 'May Schiller',
+                        senderMail: 'may.schiller@gmail.com',
+                        subject: 'ben wrote this for me',
+                        timeStamp: Date.now(),
+                        body: 'bla bla bla'
+                    },
                 ]
                 return mails;
             })
@@ -60,17 +60,19 @@ function queryBySearchWord(term) {
 }
 
 function checkUnreadMails() {
+    debugger;
     var UnreadMailsCount = mails.reduce((acc, mail) => {
-        if (!mail.isRead)       acc += 1;
-    return acc;
+        if (!mail.isRead) acc += 1;
+        return acc;
     }, 0);
     var res = UnreadMailsCount / mails.length * 100;
-    Promise.resolve(res);
+    console.log('res', res);
+    return Promise.resolve(res);
 }
 
 function sendMail(newMail) {
     newMail.senderName = 'May & Ben'
-    newMail.senderMail = 'codingAcademy@misterBit.com'    
+    newMail.senderMail = 'codingAcademy@misterBit.com'
     newMail.timeStamp = Date.now;
     newMail.isRead = false;
     mails.push(newMail)

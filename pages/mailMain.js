@@ -3,7 +3,7 @@ import navBar from '../cmp/navBar.js'
 import mailDetails from '../cmp/mailDetails.js'
 import mailList from '../cmp/mailList.js'
 import mailFilter from '../cmp/mailFilter.js'
-
+import mailStatus from '../cmp/mailStatus.js'
 {/* <mail-details v-else :mail="firstMail"  @mailId="deleteMail"></mail-details>  */ }
 
 
@@ -20,11 +20,7 @@ export default {
             <mail-list :mails="mails" @presentMail="showmail"></mail-list>
             <mail-details :chosen-mail="chosenMail"></mail-details> 
         </div>
-        
-        
-
-        
-           
+        <mail-status :style="{width:checkWidth + '%'}"> </mail-status>    
         </section>   
                 `,
     data() {
@@ -32,17 +28,27 @@ export default {
             mails: [],
             selectedMail: null,
             firstMail: null,
-            chosenMail: null
+            chosenMail: null,
+            unreadMails:null
         }
     },
     created() {
-        mailService.getMails()
+        mailService.getMails() 
             .then(mails => {
                 this.mails = mails
                 this.chosenMail = this.mails[0]
                 console.log(' this.chosenMail',  this.chosenMail)
+            });
+
+            this.unreadMails = mailService.checkUnreadMails()
+            .then(res => {
+                console.log('res', res )
+                return res;
             })
+            
     },
+
+
     methods: {
         showmail(presentMail) {
             console.log('presentMail',presentMail)
@@ -61,7 +67,7 @@ export default {
         }
     },
     computed: {
-        checkUnreadMails() {
+        checkWidth() {
             this.unreadMails = mailService.checkUnreadMails()
                 .then(res => {
                     return res;
@@ -73,5 +79,6 @@ export default {
         mailDetails,
         mailList,
         mailFilter,
+        mailStatus
     },
 }
