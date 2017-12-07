@@ -39,7 +39,6 @@ export default {
         markUnread(chosenMail) {
             chosenMail.isRead = false;
             mailService.updateMailStatus(chosenMail)
-
           }
     },
     computed: {
