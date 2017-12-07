@@ -33,16 +33,16 @@ const routes = [
         component: mapMain
     },
     {
-        path: '/note/main',
+        path: '/mail/main/',
         component: mailMain
     },
+    // {
+    //     path: 'mail/:action',
+    //     component : HomePage
+    // },
     {
         path: '/mail/main/newMail',
         component: mailCompose
-    },
-    {
-        path: '/mail/main/',
-        component: mailMain
     },
 ];
 

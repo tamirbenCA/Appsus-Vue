@@ -2,58 +2,59 @@ import mailService from '../services/mailService.js'
 
 export default {
     template: `
-        <form>
-        <div class="field">
-        <label class="label">Subject</label>
-        <div class="control">
-          <input class="input" type="text" v-model="mail.subject" placeholder="Text input" required>
-        </div>
-      </div>
-      
-      <div class="field">
-        <label class="label">To:</label>
-        <div class="control has-icons-left has-icons-right">
-          <!-- <input class="input" type="email" placeholder="Email input"> -->
-          <input class="input" type="email" v-model="mail.senderMail" placeholder="name@email.com" required/>
-          <span class="icon is-small is-left">
-            <i class="fa fa-envelope"></i>
-          </span>
-          <!-- <span v-show="true" class="icon is-small is-right"> -->
-            <!-- <i class="fa fa-warning"></i> -->
-          <!-- </span> -->
-        </div>
-        </div>
-      
-      <div class="field">
-        <label class="label">Message</label>
-        <div class="control">
-          <textarea class="textarea" v-model="mail.body" placeholder="Textarea"></textarea>
-        </div>
-      </div>
-      
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-link" @click="sendMail">Submit</button>
-        </div>
-        <div class="control">
-        <router-link to="/mail/main/"> 
-        <button class="button is-text">Cancel</button>
-        </router-link> 
-        </div>
-      </div>
+    <div class="modal" :class="{'is-active' : isComposeActive}" @keyUp.esc="test">
+    <div class="modal-background" @click="closeModal"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Compose Mail</p>
+        <router-link tag="button" to="/mail/main/" class="delete" aria-label="close"></router-link>
+      </header>
+      <section class="modal-card-body">
+        <h2></h2>
+        <form @submit.prevent="sendMail">
+          <div class="field">
+            <div class="control">
+              <input v-model="mail.senderMail" class="input" type="email" placeholder="To e.g name@client.com" required>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input v-model="mail.subject" class="input" type="text" placeholder="Subject" required>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <textarea v-model="mail.body" class="textarea mail-compose-body" rows="2" placeholder="Description"></textarea>
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-link">Send</button>
+            </div>
+            <div class="control">
+              <router-link to="/mail/main/" class="button is-text">Cancel</router-link>
+            </div>
+          </div>
         </form>
-    `,
-    data() {
-      return {
-        mail: {}
-      }
-    },
+      </section>
+    </div>
+  </div>
+`,
+data() {
+  return {
+    mail: {},
+    isComposeActive : true                
+  }
+},
     methods: {
+      closeModal() {
+          this.$router.push('/')
+      },
       sendMail() {
         mailService.sendMail(this.mail)
         this.$router.push('/mail/main')
       }
-    }
 
+    },
 }
 

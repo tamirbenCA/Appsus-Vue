@@ -18,9 +18,24 @@
 
 .mailsList {
     width: 40vw;   
+    overflow-y: scroll;
 }
 
 .mailDetails {
     width: 57vw;
     border: 1px solid black;
+}
+
+.unread-mail {
+    font-weight: bold;
+}
+
+.front-page{
+    display: flex;
+    flex-direction: row;
+    margin: 50px;
+}
+
+.mail-compose-body {
+    min-height:60px;
 }
