@@ -1,0 +1,52 @@
+
+@media screen and (max-width: 480px) {
+    .mailDetails{
+        display: none;
+    }
+    .front-page{
+        width: 100%;
+    }
+
+    .box{
+        padding: 0;
+        margin-top: 30px;
+    }
+    .status-bar-container{
+       display: none;
+    }
+    .mail-header{
+        margin-top: 40px;
+        width:90%;
+        display: flex; 
+        height: 94px;
+    }
+
+    .mailsList{
+        padding: 0;
+        overflow-y:hidden;
+    }
+
+    .front-page{
+        height: 1000px;
+    }
+
+    .mailsList::-webkit-scrollbar { 
+        display: none; 
+    }
+
+    .fa-chevron-right{
+        display: inline;
+    }
+
+    .email-prev{
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .fa-trash-o{
+        margin-right: 5px;
+    }
+
+
+    
+}

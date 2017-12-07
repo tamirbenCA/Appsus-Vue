@@ -5,6 +5,7 @@ import mapMain from './pages/mapMain.js'
 import mailMain from './pages/mailMain.js'
 import composeNewMail from './pages/composeNewMail.js'
 import mailCompose from './cmp/mailCompose.js'
+import mailDetails from './cmp/mailDetails.js'
 
 const routes = [
     {
@@ -44,6 +45,7 @@ const routes = [
         path: '/mail/main/newMail',
         component: mailCompose
     },
+  
 ];
 
 export default routes;

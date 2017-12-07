@@ -3,11 +3,12 @@ import EventBusService from '../services/EventBusService.js'
 export default {
     template: `
         <section class="email-prev" :class="{'unread-mail': !this.item.isRead}">
+     
+        <i  class="fa fa-chevron-right" aria-hidden="true"></i>
+            <i class="fa fa-trash-o" aria-hidden="true" @click="emitDeleteMail(item.id)"></i>
             {{item.subject}}
             {{item.senderMail}}
-            {{timeStampToDate}}
-            <i class="fa fa-trash-o" aria-hidden="true" @click="emitDeleteMail(item.id)"></i>
-            
+            {{timeStampToDate}}   
         </section>
     `,
     props: ['item'],
@@ -21,6 +22,8 @@ export default {
             EventBusService.$emit('deleteMail', mailId)
             // this.mails = mailService.deleteMail(mailId);
         },
+
+    
     },
     computed: {
         timeStampToDate() {

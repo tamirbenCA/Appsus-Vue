@@ -12,21 +12,17 @@ export default {
     template: `
         <section>
         <navBar></navBar>
-        <h1>MAIL APP</h1>    
+         
         <mail-filter @filterMailsEvent="filterRes"></mail-filter>
-
+        <mail-status :width="unreadMails"> </mail-status>
         
         <div class="box">
             <div class="front-page">
-                <mail-list :mails="mails" @presentMail="showmail"></mail-list>
+                <mail-list :mails="mails" @presentMail="showmail">
+                </mail-list>
                 <mail-details :chosen-mail="chosenMail"></mail-details> 
-            </div>
-        
-                <mail-status :width="unreadMails"> </mail-status>
-            
-        </div>
-        
-            
+            </div>   
+        </div>    
         </section>   
                 `,
     data() {

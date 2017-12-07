@@ -5,6 +5,8 @@
 
 .mail-info{
     font-size: 15px;
+    line-height: 43px;
+    
 }
 
 .head-mail{
@@ -12,18 +14,18 @@
 }
 
 .front-page{
-    width:80%;
+    background-color: #E8ECEF;
     height: 600px;
+    margin: 0 auto;
 }
 
 .mailsList {
-    width: 40vw;   
     overflow-y: scroll;
+     padding: 8px; 
 }
 
 .mailDetails {
-    width: 57vw;
-    border: 1px solid black;
+    padding: 10px;
 }
 
 .unread-mail {
@@ -33,7 +35,8 @@
 .front-page{
     display: flex;
     flex-direction: row;
-    margin: 50px;
+    /* margin: 50px; */
+    border: 1px solid black;
 }
 
 .mail-compose-body {
@@ -41,10 +44,35 @@
 }
 
 .mail-header {
-    padding-left: 60px;
+    /* width:60%; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: left;
+    padding-left: 50px;
+    
 }
 
 .email-prev{
-    border: 1px solid black;
+    border-bottom: 1px solid black;
     cursor: pointer;
+    height: 50px;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: row-reverse   
 }
+
+.filter-checkbox{
+    padding-left: 10px;
+}
+
+.fa-chevron-right{
+    display: none;
+}
+
+/* @media screen and (max-width: 480px) {
+    .fa-chevron-right{
+        display: none;
+    }
+} */
