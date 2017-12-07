@@ -7,7 +7,7 @@ const MAX_DATE = '12-10-2017';
 var mails = [];
 
 function getMails() {
-    if (mails.length > 0)       return Promise.resolve(mails)
+    if (mails.length > 0) return Promise.resolve(mails)
     else {
         // prev ajax `http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={numberRange|${MIN_TIMESTAMP},${MAX_TIMESTAMP}}&body={lorem|30}&isRead={bool}&pretty=true`
         return axios.get(`http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&time={date|${MIN_DATE},${MAX_DATE}}&body={lorem|30}&isRead={bool}&pretty=true`)
@@ -62,21 +62,23 @@ function queryBySearchWord(term) {
 }
 
 function checkUnreadMails() {
+    if (mails.length === 0)     return Promise.resolve(0);
     var UnreadMailsCount = mails.reduce((acc, mail) => {
-        if (!mail.isRead)       acc += 1;
-    return acc;
+        if (!mail.isRead) acc += 1;
+        return acc;
     }, 0);
     var res = UnreadMailsCount / mails.length * 100;
-    Promise.resolve(res);
+    console.log('res', res);
+    return Promise.resolve(res);
 }
 
 function sendMail(newMail) {
     newMail.senderName = 'May & Ben'
-    newMail.senderMail = 'codingAcademy@misterBit.com'    
+    newMail.senderMail = 'codingAcademy@misterBit.com'
     newMail.timeStamp = Date.now;
     newMail.isRead = false;
     mails.splice(0, 0, newMail)     // inserting newMail into mails array at position 0 and deleting 0 items
-    Promise.resolve(mails);
+    return Promise.resolve(mails);
 }
 
 function deleteMail(mailId) {
