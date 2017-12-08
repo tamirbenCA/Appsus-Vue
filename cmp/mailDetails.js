@@ -13,12 +13,13 @@ export default {
                     <h5 class="mail-info"> {{timeStampToDate}}</br></h5>
                     <h5 class="mail-info"> {{chosenMail.senderMail}}</br></h5>
                 </div>
-            </div>
-            
-            <div>
+                <div>
                 <i class="fa fa-envelope" aria-hidden="true" @click="markUnread(chosenMail)"></i>
                 <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDeleteMail(chosenMail.id)"></i>
             </div>
+            </div>
+            
+            
          
          <div>
             <h5 class="mail-info"> {{chosenMail.body}}</h5>  

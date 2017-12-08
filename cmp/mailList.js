@@ -6,9 +6,9 @@ export default {
     template: `
         <section class="mailsList">
             <ul>
-                <li v-for="mail in mails"  @click="mailClicked(mail)">
-                    <i class="fa fa-chevron-right" aria-hidden="true" @click="goToMail(mail.id)" ></i>
-                    <mail-preview :item="mail">
+                <li v-for="mail in mails" @click="mailClicked(mail)" >
+                    <i  class="fa fa-chevron-right" aria-hidden="true" @click="goToMail(mail.id)" ></i>
+                    <mail-preview :item="mail"  >
                     </mail-preview>
                     <!-- <img :src="mail.jpg" :alt="mailImage"> -->
                 </li>
