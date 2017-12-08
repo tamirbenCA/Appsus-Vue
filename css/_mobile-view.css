@@ -22,8 +22,10 @@
     }
 
     .mailsList{
-        padding: 0;
+        padding: 10px;
         overflow-y:hidden;
+        width:100%;
+        
     }
 
     .front-page{
@@ -48,6 +50,33 @@
         margin-right: 5px;
     }
 
+    li{
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .fa-chevron-right{
+        margin-top: 5px;
+    }
+
+    .mobile-page{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .icons-on-mobile{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width:25%;
+        justify-content: space-between;
+        
+    }
+
+    /* .fa-trash-o{
+        margin-bottom: 5px;
+    } */
 
     
 }

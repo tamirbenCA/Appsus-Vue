@@ -11,21 +11,33 @@
 
 .head-mail{
     border-bottom: 1px dashed black;
+    display: flex;
+    flex-direction: column;
 }
 
 .front-page{
     background-color: #E8ECEF;
     height: 600px;
     margin: 0 auto;
+    border-radius: 20px
+    
 }
 
 .mailsList {
     overflow-y: scroll;
-     padding: 8px; 
+     padding: 8px;
+     display: flex;
+     flex-direction: column;
+     width:30%;
+}
+
+li{
+    /* width:30%;  */
 }
 
 .mailDetails {
-    padding: 10px;
+    padding: 20px;
+    width:70%;
 }
 
 .unread-mail {

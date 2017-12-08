@@ -6,14 +6,19 @@ import EventBusService from '../services/EventBusService.js'
 export default {
     template: `
         <section class="mailDetails" v-if="chosenMail">  
-        <div class="head-mail">
-            <h3 class="subject">{{chosenMail.subject}} </br></h3>   
-            <h5 class="mail-info"> {{chosenMail.senderName}} </br>     </h5>   
-            <h5 class="mail-info"> {{timeStampToDate}}</br></h5>
-            <h5 class="mail-info"> {{chosenMail.senderMail}}</br></h5>
-            <i class="fa fa-envelope" aria-hidden="true" @click="markUnread(chosenMail)"></i>
-            <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDeleteMail(chosenMail.id)"></i>
-        </div>
+            <div class="head-mail">
+                <div>
+                    <h3 class="subject">{{chosenMail.subject}} </br></h3>   
+                    <h5 class="mail-info"> {{chosenMail.senderName}} </br>     </h5>   
+                    <h5 class="mail-info"> {{timeStampToDate}}</br></h5>
+                    <h5 class="mail-info"> {{chosenMail.senderMail}}</br></h5>
+                </div>
+            </div>
+            
+            <div>
+                <i class="fa fa-envelope" aria-hidden="true" @click="markUnread(chosenMail)"></i>
+                <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDeleteMail(chosenMail.id)"></i>
+            </div>
          
          <div>
             <h5 class="mail-info"> {{chosenMail.body}}</h5>  

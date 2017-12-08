@@ -47,10 +47,6 @@ h1{
 
 
 
-.details{
-    border: 1px solid red;
-}
-
 .search-box{
     border: 1px solid black;
     margin-left: 40px;
@@ -58,13 +54,14 @@ h1{
 
 
 .status-bar {
-    background-color: #1AE4DE;
+    background-color: #C5F4BF;
     text-align: center;
     height: 50px;
     width: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius:20px  0 0 20px  ;
 }
 
 .status-bar-container{
@@ -72,7 +69,7 @@ h1{
     margin: 0 auto;
     width: 80%;
     margin-top: 50px;
-    
+    border-radius: 20px;
 }
 /* .box{
     max-width: 900px;
@@ -82,8 +79,12 @@ h1{
     justify-content: center;
 } */
 
+.box{
+    border-radius: 20px
+}
 .fa-trash-o{
-   color: red;
+   color: #300436;
+   margin: 5px;
 }
 
 .fa-envelope{
