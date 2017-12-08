@@ -1,26 +1,26 @@
-.mapPageContainer{
-    width: 90%;
+.mapMainContainer {
+    width: 80%;
     height: 98%;    
     display: flex;
     justify-content: space-around;
 }
 
 .map {
-    /* height: 100%; */
-    width: 80%;
+    height: 70vh;
+    width: 90%;
     position: fixed;
     border: solid 2px black;
     border-radius: 10px;
 }
 
-.locationsContanier{
+/* .locationsContanier{ 
     background: rgba(247, 247, 247, 0.205); 
     height: 480px;   
     width: 19%;
     border-radius: 10px; 
     display: flex;
     flex-direction: column;
-}
+} */
 
 .searchInput{
     background: transparent;
