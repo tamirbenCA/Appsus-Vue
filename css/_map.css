@@ -1,0 +1,43 @@
+.mapPageContainer{
+    width: 90%;
+    height: 98%;    
+    display: flex;
+    justify-content: space-around;
+}
+
+.map {
+    /* height: 100%; */
+    width: 80%;
+    position: fixed;
+    border: solid 2px black;
+    border-radius: 10px;
+}
+
+.locationsContanier{
+    background: rgba(247, 247, 247, 0.205); 
+    height: 480px;   
+    width: 19%;
+    border-radius: 10px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.searchInput{
+    background: transparent;
+    width: 90%;
+    height: 6%;
+    border: 0px solid black;         
+    border-bottom: 2px solid black; 
+    color: rgb(226, 223, 223);
+    align-self: center;
+    font-size: 18px;
+}
+
+.searchInput::-webkit-input-placeholder{
+    color: black;
+}
+
+.searchInput:focus{
+    /* border: 2px solid rgba(10, 10, 10, 0.479); */
+    outline: none;
+}
