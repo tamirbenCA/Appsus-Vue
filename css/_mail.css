@@ -93,7 +93,9 @@ li{
     height: 100%;
 }
 
-
+.fa {
+    cursor: pointer;
+}
 
 .icons-on-mobile{
     display: flex;

@@ -6,6 +6,7 @@ import mapLocationDetails from './cmp/mapLocationDetails.js'
 import mailMain from './pages/mailMain.js'
 import composeNewMail from './pages/composeNewMail.js'
 import mailCompose from './cmp/mailCompose.js'
+import mailReply from './cmp/mailReply.js'
 import mailDetails from './cmp/mailDetails.js'
 import showMailOnMobile from './pages/showMailOnMobile.js'
 
@@ -50,6 +51,10 @@ const routes = [
     {
         path: '/mail/main/newMail',
         component: mailCompose
+    },
+    {
+        path: '/mail/replyMail/:chosenMailId',
+        component: mailReply
     },
     {
         path: '/mail/main/viewMail:mailId',
