@@ -32,10 +32,8 @@ export default {
             this.count = count;
         });
         mailService.checkUnreadMails();
-        // mailService.getMails()
-        //     .then (() => { mailService.checkUnreadMails()});
-        //     console.log('hi')
-            
+        mailService.getMails()
+            .then (() => { mailService.checkUnreadMails()});            
     }        
 }
 
