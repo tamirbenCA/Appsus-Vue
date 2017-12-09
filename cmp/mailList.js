@@ -17,7 +17,6 @@ export default {
     `,
     methods: {
         mailClicked(mail) {
-          
             if(mail.isRead === false) {
                 mail.isRead = true;
                 mailService.updateMailStatus(mail);

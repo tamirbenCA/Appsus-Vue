@@ -3,7 +3,6 @@ import EventBusService from '../services/EventBusService.js'
 export default {
     template: `
         <section class="email-prev" :class="{'unread-mail': !this.item.isRead}">
-            
             <i class="fa fa-trash-o" aria-hidden="true" @click="emitDeleteMail(item.id)"></i>
             {{item.subject}}
             {{item.senderMail}}

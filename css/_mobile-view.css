@@ -73,10 +73,14 @@
         justify-content: space-between;
         
     }
+    .map-app,.note-app,.mail-app{
+        width:120px;
+        height:120px;
+    }
 
-    /* .fa-trash-o{
-        margin-bottom: 5px;
-    } */
+    .container{
+        flex-direction: column;
+    }
 
     
 }
