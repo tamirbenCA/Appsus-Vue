@@ -4,13 +4,21 @@ import EventBusService from '../services/EventBusService.js'
 const GOOGLE_API_KEY = 'AIzaSyCkGXo73iO3SNrjIp9hxptFfE5duOCgKk4';
 var gLat;
 var gLng;
+var gUrl; // DO WE NEED THIS?
 var gMap;
-var gCurrPosition = {};
-var gMarkers;
 
 var locations = [
     {
     id: 1,
+    name: 'Current Location',
+    description: '',
+    photo: '',
+    lat: '',
+    lng: '',
+    tag: 'current'
+    },
+    {
+    id: 2,
     name: 'Arnold',
     description: '',
     photo: '../img/locations/arnold.jpg',
@@ -19,7 +27,7 @@ var locations = [
     tag: 'restaurant'
     },
     {
-    id: 2,
+    id: 3,
     name: 'Assuta',
     description: '',
     photo: '../img/locations/asuta.jpg',
@@ -28,7 +36,7 @@ var locations = [
     tag: 'hospital'
     },
     {
-    id: 3,
+    id: 4,
     name: 'David Yalin',
     description: '',
     photo: '../img/locations/david-yalin.jpg',
@@ -37,7 +45,7 @@ var locations = [
     tag: 'school'
     },
     {
-    id: 4,
+    id: 5,
     name: 'Coding Academy',
     description: '',
     photo: '',
@@ -47,33 +55,40 @@ var locations = [
     }
 ]
 
-function initMap(lat, lng) {
-    gMap = new google.maps.Map(document.querySelector('.map'), {
-        zoom: 15,
-        center: { lat, lng }
-    });
-    // console.log('gMap:', gMap)
-    var marker = new google.maps.Marker({
-        position: { lat, lng },
-        map: gMap,
-        title: 'Current Position'
-    });
-    // return Promise.resolve();
-}
-
 function getMap() {
     return gMap;
 }
 
-function getCurrPosition() {
+function getPosition() {
     navigator.geolocation.getCurrentPosition(showLocation, handleLocationError)
+        .then(() => { return Promise.resolve()
+            console.log('test1 showLocation')
+        } );
 }
 
 function showLocation(position) {
-    gCurrPosition.lat = position.coords.latitude
-    gCurrPosition.lng = position.coords.longitude
-    console.log('showLocation:', position)
-    initMap(gCurrPosition.lat, gCurrPosition.lng);
+    locations[0].lat = position.coords.latitude
+    locations[0].lng = position.coords.longitude
+    console.log('showLoacation:', position)
+    return Promise.resolve('test1');
+}
+
+function initMap() {
+    // var currLocation = { lat: locations[0].lat , lng: locations[0].lng };
+    var gMap = new google.maps.Map(document.querySelector('.map'), {
+        zoom: 15,
+        // center: currLocation
+    });
+    locations.forEach(location => {
+        var marker = new google.maps.Marker({
+            position: { lat: location.lat , lng: location.lng },
+            map: gMap,
+            title: location.name
+        });
+        // console.log('location:', location)
+    });
+    console.log('gMap:', gMap)
+    return Promise.resolve();
 }
 
 function handleLocationError(error) {
@@ -103,7 +118,7 @@ function getLocations() {
 function displayMap(lat, lng) {
     var gMap = new google.maps.Map(document.querySelector('.map'),{
             center: { lat, lng },
-            zoom: 10
+            zoom: 15
         }
     );
     var marker = new google.maps.Marker({
@@ -114,48 +129,24 @@ function displayMap(lat, lng) {
 
 function searchLocation(searchTerm) {
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchTerm}&key=${GOOGLE_API_KEY}`)
-        .then(res => {
-            // console.log(res)
+        .then(function (res){
+            // console.log('getLatLng:', res.data.results[0].geometry.location);
             var geoLatLng = res.data.results[0].geometry.location;
-            displayMap(geoLatLng.lat, geoLatLng.lng);
-            // console.log(geoLatLng)
+            console.log(geoLatLng)
+            // displayMap(geoLatLng.lat, geoLatLng.lng);
             return Promise.resolve(geoLatLng)
         });
 }
 
-// function setMapOnAll(map) {
-//     locations.forEach((location, i) => {
-//         location..setMap(gMap);
-//     }) 
-// }
 
-function displayLocations(status) {
-    console.log(status)
-    if (status) {
-        locations.forEach(location => {
-            var marker = new google.maps.Marker({
-                position: { lat: location.lat , lng: location.lng },
-                map: gMap,
-                title: location.name
-            });
-            marker.addListener('click', function() {
-                // console.log(location.id);
-                EventBusService.$emit('selectLocation', location)
-            })
-            // console.log('location:', location)
-        });
-    } else {
-        initMap(gCurrPosition.lat, gCurrPosition.lng);
-    }
-}
 
 export default {
-    initMap,
-    getMap,
     getLocations,
-    getCurrPosition,
+    getPosition,
     searchLocation,
-    displayLocations,
+    getMap,
+    initMap
+    getCurrLocation
 }
 
 

@@ -14,10 +14,12 @@ export default {
         }
     },
     mounted() {
-        mapService.getCurrPosition();        
-        // mapService.initMap().then(() => {
-            // console.log('emiting')
-        // this.$emit('mapLoaded')})
+        mapService.getPosition().then(() => {
+            console.log('1st promise')
+            mapService.initMap().then(() => {
+                this.$emit('mapLoaded') 
+            })
+        })
     },
     created() {
         EventBusService.$on('errorMsg',msg => {
