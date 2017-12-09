@@ -9,8 +9,13 @@ const MAX_DATE = '12-10-2017';
 
 var mails = [];
 
+function getMailsArray(){
+    return Promise.resolve(mails);
+}
+
+
 function getMails() {
-    if (mails.length > 0) return Promise.resolve(mails)
+    if (mails.length > 3) return Promise.resolve(mails);
     else {
         // prev ajax `http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={numberRange|${MIN_TIMESTAMP},${MAX_TIMESTAMP}}&body={lorem|30}&isRead={bool}&pretty=true`
         return axios.get(`http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&time={date|${MIN_DATE},${MAX_DATE}}&body={lorem|30}&isRead={bool}&pretty=true`)
@@ -24,7 +29,7 @@ function getMails() {
                 mails = mails.sort((a, b) => {
                     return b.timeStamp - a.timeStamp
                 })
-                // console.log('mails:', mails)
+                console.log('mails:', mails)
                 return mails
             })
             .catch(err => {
@@ -50,7 +55,8 @@ function getMails() {
                 ]
                 return mails;
             })
-    }
+    
+        }
 }
 
 function queryBySearchWord(term) {
@@ -60,19 +66,19 @@ function queryBySearchWord(term) {
             filteredMails.push(mail);
         }
     })
-    // console.log('filtered:', filteredMails)
     return Promise.resolve(filteredMails);
 }
 
 function checkUnreadMails() {
+    console.log('hi68')
     if (mails.length === 0) return Promise.resolve(0);
     var UnreadMailsCount = mails.reduce((acc, mail) => {
         if (!mail.isRead) acc += 1;
         return acc;
     }, 0);
     var res = parseInt(UnreadMailsCount / mails.length * 100);
+    console.log('UnreadMailsCount',UnreadMailsCount)
     EventBusService.$emit('unreadMailNotification', UnreadMailsCount)    
-    // console.log('res', res);
     return Promise.resolve(res);
 }
 
@@ -156,5 +162,6 @@ export default {
     deleteMail,
     updateMailStatus,
     filterReadUnread,
-    getMailById
+    getMailById,
+    getMailsArray
 }

@@ -84,8 +84,21 @@ li{
     display: none;
 }
 
-/* @media screen and (max-width: 480px) {
-    .fa-chevron-right{
-        display: none;
-    }
-} */
+.reply{
+    cursor: pointer;
+}
+
+
+
+.icons-on-mobile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width:10%;
+    justify-content: space-between;
+}
+
+.status-bar-empty{
+    text-align: center;
+}
+

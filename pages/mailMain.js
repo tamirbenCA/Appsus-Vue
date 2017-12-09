@@ -39,15 +39,16 @@ export default {
             mailService.checkUnreadMails()
             .then((res) => {
                 this.unreadMails = res
-                console.log('checkUnreadMails',res)  
+               
             })
         },
         deleteMail(mailId) {
+           
             mailService.deleteMail(mailId)
             .then(res => {
                 this.mails = res
                 
-                this.chosenMail = this.mails[0]
+                this.chosenMail = this.mails[0]                
                 mailService.checkUnreadMails()
                 .then((res) => {
                     this.unreadMails = res
@@ -63,13 +64,11 @@ export default {
         mailService.getMails() 
         .then(mails => {
             this.mails = mails
-            console.log('this.mails',this.mails)
             this.chosenMail = this.mails[0]
             mailService.checkUnreadMails()
             .then((res) => {
                 this.unreadMails = res;
-                console.log('res',res)
-
+                console.log(' this.unreadMails', this.unreadMails)
             })
             EventBusService.$on('deleteMail',emailId => {
                 this.deleteMail(emailId)

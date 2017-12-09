@@ -31,9 +31,11 @@ export default {
         EventBusService.$on('unreadMailNotification',count => {
             this.count = count;
         });
-        mailService.getMails()
-            .then (() => { mailService.checkUnreadMails()});
-        
+        mailService.checkUnreadMails();
+        // mailService.getMails()
+        //     .then (() => { mailService.checkUnreadMails()});
+        //     console.log('hi')
+            
     }        
 }
 

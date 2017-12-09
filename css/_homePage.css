@@ -56,7 +56,7 @@ h1{
 .status-bar {
     background-color: #C5F4BF;
     text-align: center;
-    height: 50px;
+    height: 30px;
     width: 60%;
     display: flex;
     align-items: center;
@@ -93,4 +93,8 @@ h1{
 .fa-envelope{
     color: #03064D;
     cursor: pointer;
+}
+
+.search-bar{
+    margin-left: 125px;
 }
