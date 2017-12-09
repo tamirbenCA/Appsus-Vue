@@ -10,11 +10,9 @@ import EventBusService from '../services/EventBusService.js';
 
 export default {
     template: `
-        <section>
+    <section class="mail-main">
         <navBar></navBar>
-         
-        <mail-filter @filterMailsEvent="filterRes"></mail-filter>
-        
+         <mail-filter @filterMailsEvent="filterRes"></mail-filter>
         <div class="box">
             <div class="front-page">
                 <mail-list :mails="mails" @presentMail="showmail"></mail-list>

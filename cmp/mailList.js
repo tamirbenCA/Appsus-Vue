@@ -4,7 +4,7 @@ import mailService from '../services/mailService.js';
 
 export default {
     template: `
-        <section class="mailsList">
+        <section class="mails-list">
             <ul>
                 <li v-for="mail in mails" @click="mailClicked(mail)" >
                     <i  class="fa fa-chevron-right" aria-hidden="true" @click="goToMail(mail.id)" ></i>
