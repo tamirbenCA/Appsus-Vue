@@ -66,7 +66,7 @@ export default {
             mailService.checkUnreadMails()
             .then((res) => {
                 this.unreadMails = res;
-                console.log(' this.unreadMails', this.unreadMails)
+                // console.log(' this.unreadMails', this.unreadMails)
             })
             EventBusService.$on('deleteMail',emailId => {
                 this.deleteMail(emailId)

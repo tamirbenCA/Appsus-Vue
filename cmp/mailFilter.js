@@ -4,7 +4,7 @@ export default {
     template: `
         <section class="mail-header">
         <div class="search-bar">
-            <router-link to="/mail/main/newMail" tag="button" style="padding:10px"> 
+            <router-link to="/mail/newMail" tag="button" style="padding:10px"> 
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </router-link>
         </div>

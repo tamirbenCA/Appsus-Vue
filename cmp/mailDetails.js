@@ -44,7 +44,7 @@ export default {
             mailService.updateMailStatus(chosenMail)
         },
         replyMail(chosenMailId) {
-            console.log('reply to', chosenMailId)
+            // console.log('reply to', chosenMailId)
             this.$router.push('/mail/replyMail/' + chosenMailId)
         }
     

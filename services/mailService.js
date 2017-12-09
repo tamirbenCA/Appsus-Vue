@@ -29,7 +29,7 @@ function getMails() {
                 mails = mails.sort((a, b) => {
                     return b.timeStamp - a.timeStamp
                 })
-                console.log('mails:', mails)
+                // console.log('mails:', mails)
                 return mails
             })
             .catch(err => {

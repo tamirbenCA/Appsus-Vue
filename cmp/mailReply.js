@@ -24,7 +24,7 @@ export default {
           </div>
           <div class="field">
             <div class="control">
-              <textarea v-model="mail.body" class="textarea mail-compose-body" rows="2" placeholder="Description"></textarea>
+              <textarea v-model="mail.body" class="textarea mail-compose-body" rows="7" placeholder="Description"></textarea>
             </div>
           </div>
           <div class="field is-grouped">
@@ -55,23 +55,25 @@ data() {
         this.mail.timeStamp = Date.now();
         mailService.sendMail(this.mail)
           .then(this.$router.push('/mail/main'))
-      }
+      },
+      timeStampToDate(timeStamp) {
+        var d = new Date(timeStamp)
+        return d.toLocaleString('en-GB');
+      },
     },
-  //   computed: {
-  //       timeStampToDate() {
-  //           var d = new Date(this.mail.timeStamp)
-  //           return d.toLocaleString('en-GB');
-  //       },
-  // },
     created() {
+      this.mail = {};
+      // var correctedDate;
+      // console.log(this.mail)
       var chosenMailId = +this.$route.params.chosenMailId;
       mailService.getMailById(chosenMailId)
         .then(mail => { 
-          console.log(mail)
+          // console.log(mail)
           this.mail = Object.assign({}, mail)
-          // var correctedDate = timeStampToDate(this.mail.timeStamp);
+          var correctedDate = this.timeStampToDate(this.mail.timeStamp);
+          console.log(correctedDate);
           this.mail.subject = 'RE: ' + mail.subject;
-          this.mail.body = `\n\n ${this.mail.senderName} wrote: \n` + this.mail.body; 
+          this.mail.body = `\n\nOn ${correctedDate}, ${this.mail.senderName} wrote: \n` + this.mail.body; 
       })
         .catch(err => {
           this.$router.push('/mail/main')

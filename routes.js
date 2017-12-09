@@ -49,7 +49,7 @@ const routes = [
         component: mailMain
     },
     {
-        path: '/mail/main/newMail',
+        path: '/mail/newMail',
         component: mailCompose
     },
     {
