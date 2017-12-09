@@ -10,34 +10,34 @@ var gMarkers;
 
 var locations = [
     {
-    id: 1,
+    id: 0,
     name: 'Arnold',
     description: '',
-    photo: '../img/locations/arnold.jpg',
+    photo: '',
     lat: 32.1047547,
     lng: 34.8197589,
     tag: 'restaurant'
     },
     {
-    id: 2,
+    id: 1,
     name: 'Assuta',
     description: '',
-    photo: '../img/locations/asuta.jpg',
+    photo: '',
     lat: 32.1079742,
     lng: 34.8307266,
     tag: 'hospital'
     },
     {
-    id: 3,
+    id: 2,
     name: 'David Yalin',
     description: '',
-    photo: '../img/locations/david-yalin.jpg',
+    photo: '',
     lat: 32.1116409,
     lng: 34.8197052,
     tag: 'school'
     },
     {
-    id: 4,
+    id: 3,
     name: 'Coding Academy',
     description: '',
     photo: '',
@@ -206,6 +206,8 @@ export default {
     createNewLocation,
     getLocationById,
     saveLocation,
+    deleteLocationChosen,
+    displayMap
 }
 
 
@@ -257,13 +259,16 @@ export default {
 
 
 
-// function deleteLocationChosen(locationId) {
-//     return new Promise((resolve, reject) => {
-//         var locationIdx = locations.findIndex(location => location.id === locationId)
-//         locations.splice(locationId, 1);
-//         resolve()
-//     });
-// }
+function deleteLocationChosen(locationId) {
+    console.log('locationId',locationId)
+    return new Promise((resolve, reject) => {
+        var locationIdx = locations.findIndex(location => location.id === locationId)
+        locations.splice(locationId, 1);
+        console.log('locations',locations)
+        
+        resolve()
+    });
+}
 
 
 

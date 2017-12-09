@@ -27,8 +27,8 @@ export default {
                                 {{currLocation.name}}
                             </li>
                         </ul>
-                        <div class="location-details" >
-                            <location-details v-if="openDetails" :location="selectedLocation" @closeDetails="closeDetails"></location-details> 
+                        <div class="location-details">
+                            <location-details  :location="selectedLocation" :class="{location-details:isActive}" @details="closeDetails"></location-details> 
                         </div>
                  </div>
                 <map-comp @mapLoaded="mapLoaded"></map-comp>
@@ -45,58 +45,55 @@ export default {
             map: null,
             chosenLocation: null,
             selectedLocation: null,
-            openDetails: null
+            isActive: false
         }
     },
     created() {
-        mapService.getCurrPosition();        
+        mapService.getCurrPosition();
         EventBusService.$on('selectLocation', location => {
             this.chosenLocation = location;
             console.log('chosenLocation:', this.chosenLocation);
         })
         mapService.getCurrPosition();
-        mapService.getLocations() 
-        .then(locations => {
-            this.locations = locations
-        })
+        mapService.getLocations()
+            .then(locations => {
+                this.locations = locations
+            })
     },
     methods: {
-        closeDetails(event) {
-            console.log('closing',event)            
-            this.openDetails = !this.openDetails;
-            console.log(this.openDetails)
+        closeDetails() {
+            this.isActive= false
         },
-        showDetails(location){
-            this.openDetails=true;
+        showDetails(location) {
             this.selectedLocation = location;
-            mapService.displayMap(location.lat,location.lng);
-     
+            mapService.displayMap(location.lat, location.lng);
+            this.isActive=true;
         },
         mapLoaded() {
             this.map = mapService.getMap();
             console.log('this map:', this.map)
-       },
-       searchLocation(searchTerm) {
-           mapService.searchLocation(searchTerm)
-            .then(location => {
-                this.chosenLocation = location
-                console.log('chosen location:', this.chosenLocation)
-            })
-       },
-       displaySavedLocations(status) {
-        //    console.log(this.locations, status)
-           mapService.displayLocations(status);
-       },
-       addLocation() {
-           console.log('add location', this.chosenLocation)
-           var newLocationId = mapService.createNewLocation(this.chosenLocation);
-           this.$router.push('/map/' + newLocationId)               
+        },
+        searchLocation(searchTerm) {
+            mapService.searchLocation(searchTerm)
+                .then(location => {
+                    this.chosenLocation = location
+                    console.log('chosen location:', this.chosenLocation)
+                })
+        },
+        displaySavedLocations(status) {
+            //    console.log(this.locations, status)
+            mapService.displayLocations(status);
+        },
+        addLocation() {
+            console.log('add location', this.chosenLocation)
+            var newLocationId = mapService.createNewLocation(this.chosenLocation);
+            this.$router.push('/map/' + newLocationId)
         }
     },
     mounted() {
         // mapService.getPosition()         
     },
-    components:{
+    components: {
         navBar,
         mapComp,
         mapSearch,

@@ -9,7 +9,7 @@
 
 .map {
     height: 70vh;
-    width: 90vw;
+    width: 60vw;
     position: fixed;
     border: solid 2px black;
     border-radius: 10px;
@@ -34,4 +34,33 @@
 
 .map-control-container {
     width: 90vw;
+}
+
+.map-box{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+li{
+    cursor: pointer;
+}
+h2{
+    font-size: 1.5em;
+}
+
+.location-detail-box{
+    display: flex;
+    flex-direction: row;
+}
+
+.location-details{
+    width: 100%;
+    padding: 10px;
+}
+
+.locations-list{
+    width: 100%;
 }

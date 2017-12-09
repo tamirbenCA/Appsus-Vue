@@ -9,6 +9,7 @@ import mailCompose from './cmp/mailCompose.js'
 import mailDetails from './cmp/mailDetails.js'
 import showMailOnMobile from './pages/showMailOnMobile.js'
 
+
 const routes = [
     {
         path: '/',
@@ -35,6 +36,7 @@ const routes = [
         path: '/map/main',
         component: mapMain
     },
+   
     {
         path: '/map/:locationId',
         component: mapLocationDetails
