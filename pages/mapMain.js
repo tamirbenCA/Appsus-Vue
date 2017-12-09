@@ -47,6 +47,11 @@ export default {
             this.selectedLocation = this.chosenLocation;
             this.openDetails=true;
         })
+        EventBusService.$on('defaultLocation', location => {
+            console.log('bus bus bus')
+            this.chosenLocation = location;
+            this.selectedLocation = this.chosenLocation;
+        })
         mapService.getCurrPosition();
         mapService.getLocations() 
         .then(locations => {
@@ -82,9 +87,9 @@ export default {
            mapService.displayLocations(status);
        },
        addLocation() {
-           console.log('add location', this.chosenLocation)
-           var newLocationId = mapService.createNewLocation(this.chosenLocation);
-           this.$router.push('/map/' + newLocationId)               
+            // console.log('add location', this.chosenLocation) 
+            var newLocationId = mapService.createNewLocation(this.chosenLocation);
+            this.$router.push('/map/' + newLocationId)               
         }
     },
     mounted() {

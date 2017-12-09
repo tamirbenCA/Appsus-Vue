@@ -140,6 +140,11 @@ a {
     margin-left: 10px;
 }
 
+.note-top-button {
+    height: 40px;
+    margin: 0 10px    
+}
+
 .note-footer {
     display: flex;
     flex-direction: row-reverse;
