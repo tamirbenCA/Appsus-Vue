@@ -14,14 +14,14 @@ export default {
         <navBar></navBar>
          
         <mail-filter @filterMailsEvent="filterRes"></mail-filter>
-        <mail-status :width="unreadMails"> </mail-status>
         
         <div class="box">
             <div class="front-page">
                 <mail-list :mails="mails" @presentMail="showmail"></mail-list>
                 <mail-details :chosen-mail="chosenMail"></mail-details> 
             </div>   
-        </div>    
+        </div>  
+        <mail-status :width="unreadMails"> </mail-status>  
         </section>   
                 `,
     data() {
@@ -39,7 +39,7 @@ export default {
             mailService.checkUnreadMails()
             .then((res) => {
                 this.unreadMails = res
-
+                console.log('checkUnreadMails',res)  
             })
         },
         deleteMail(mailId) {
@@ -67,7 +67,8 @@ export default {
             this.chosenMail = this.mails[0]
             mailService.checkUnreadMails()
             .then((res) => {
-                this.unreadMails = res
+                this.unreadMails = res;
+                console.log('res',res)
 
             })
             EventBusService.$on('deleteMail',emailId => {

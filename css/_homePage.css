@@ -67,9 +67,10 @@ h1{
 .status-bar-container{
     border: 1px solid black;
     margin: 0 auto;
-    width: 80%;
+    width: 78%;
     margin-top: 50px;
     border-radius: 20px;
+    margin-top: -10px;
 }
 /* .box{
     max-width: 900px;
@@ -80,13 +81,16 @@ h1{
 } */
 
 .box{
-    border-radius: 20px
+    margin-top: 20px;
+    border-radius: 20px;
 }
 .fa-trash-o{
    color: #300436;
    margin: 5px;
+   cursor: pointer;
 }
 
 .fa-envelope{
     color: #03064D;
+    cursor: pointer;
 }
