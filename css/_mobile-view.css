@@ -24,8 +24,11 @@
     .mailsList{
         padding: 10px;
         overflow-y:hidden;
-        width:100%;
-        
+    }
+
+    .mails-list{
+        width: 100%;
+        overflow-y:hidden;
     }
 
     .front-page{
