@@ -51,7 +51,6 @@ function createNote() {
     var newNote = _emptyNote();
     notes.push(newNote);
     return newNote.id + '/new';
-
 }
 
 

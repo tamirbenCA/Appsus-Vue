@@ -4,7 +4,8 @@ export default {
             <div>
                 <input class="search-box" type="search" placeholder="Search Location" v-model="term" @keyup.enter="searchLocation" @blur="searchLocation">
             </div>
-            <button class="display-locations-button" @click="displaySavedLocations">Display Saved Locations</button>
+            <button class="search-bar-button" @click="displaySavedLocations">Display Saved Locations</button>
+            <button class="search-bar-button" @click="addLocation">Add New Location</button>
         </section>
         `,
     data() {
@@ -20,6 +21,9 @@ export default {
       displaySavedLocations() {
         this.displayLocation = !this.displayLocation
         this.$emit('displaySavedLocations', this.displayLocation)
+      },
+      addLocation() {
+        this.$emit('addLocation')
       }
     }
   }
