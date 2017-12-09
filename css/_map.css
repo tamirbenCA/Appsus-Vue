@@ -1,0 +1,37 @@
+.map-main-container {
+    /* width: 80%; */
+    /* height: 98%;     */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.map {
+    height: 70vh;
+    width: 90vw;
+    position: fixed;
+    border: solid 2px black;
+    border-radius: 10px;
+}
+
+.search-box {
+    /* z-index: 99999; */
+    /* position: absolute; */
+    width: 300px;
+    /* padding: 10px; */
+    margin: 10px;
+}
+
+.search-map {
+    display: flex;
+    align-items: center;
+}
+
+.display-locations-button {
+    height: 40px;
+}
+
+.map-control-container {
+    width: 90vw;
+}
