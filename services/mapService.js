@@ -142,7 +142,7 @@ function displayLocations(status) {
                 title: location.name
             });
             marker.addListener('click', function() {
-                // console.log(location.id);
+                console.log(location);
                 EventBusService.$emit('selectLocation', location)
             })
             // console.log('location:', location)

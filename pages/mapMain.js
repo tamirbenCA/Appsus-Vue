@@ -17,10 +17,8 @@ export default {
             <div class="map-control-container">
                 <map-search @searchLocation="searchLocation" @displaySavedLocations="displaySavedLocations" @addLocation="addLocation"></map-search>
             </div>
-
             <div class="map-box"> 
                 <div class="location-detail-box">
-                    
                         <ul class="locations-list">
                         
                             <li v-for="currLocation in locations" @click="showDetails(currLocation)">
@@ -32,10 +30,7 @@ export default {
                         </div>
                  </div>
                 <map-comp @mapLoaded="mapLoaded"></map-comp>
-            </div>
-            
-            
-            
+            </div>  
         </section>
     </section>
     `,
@@ -52,7 +47,8 @@ export default {
         mapService.getCurrPosition();        
         EventBusService.$on('selectLocation', location => {
             this.chosenLocation = location;
-            console.log('chosenLocation:', this.chosenLocation);
+            this.selectedLocation = this.chosenLocation;
+            this.openDetails=true;
         })
         mapService.getCurrPosition();
         mapService.getLocations() 
@@ -67,6 +63,7 @@ export default {
             console.log(this.openDetails)
         },
         showDetails(location){
+            console.log('location',location)
             this.openDetails=true;
             this.selectedLocation = location;
             mapService.displayMap(location.lat,location.lng);

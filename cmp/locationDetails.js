@@ -1,4 +1,6 @@
 import mapService from '../services/mapService.js';
+import EventBusService from '../services/EventBusService.js';
+
 
 export default {
     template: `
@@ -63,30 +65,30 @@ export default {
 
         </section>
     `,
- 
-props: ['location'],
-methods: {
-    saveLocation(location) {
-        mapService.saveLocation(location)
-            .then(addedNote => {
-                this.$router.push('/map/main')
-            })
-            .catch(err => {
-                console.error(err);
-            })
+    
+    props: ['location'],
+    methods: {
+        saveLocation(location) {
+            mapService.saveLocation(location)
+                .then(addedNote => {
+                    this.$router.push('/map/main')
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+        },
+        deletLocation(locationId) {
+            console.log('locationId', locationId)
+            mapService.deleteLocationChosen(locationId)
+                .then(res =>
+                    this.$router.push('/map/main')
+                )
+        },
+        closeDetails() {
+            console.log('closing in location details');
+            this.$emit('closeDetails')
+            console.log('emiting')
+        }
     },
-    deletLocation(locationId) {
-        console.log('locationId',locationId)
-        mapService.deleteLocationChosen(locationId)
-            .then(res =>
-                this.$router.push('/map/main')
-            )
-    },
-    closeDetails() {
-        console.log('closing in location details');
-        this.$emit('closeDetails')
-        console.log('emiting')
-    }
-},
 
 }
