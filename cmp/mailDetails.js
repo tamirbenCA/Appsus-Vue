@@ -14,7 +14,7 @@ export default {
                     <h5 class="mail-info"> {{chosenMail.senderMail}}</br></h5>
                 </div>
                 <div class="icons-on-mobile">
-                <i class="fa fa-reply-all" aria-hidden="true"></i>  
+                <i class="fa fa-reply-all" aria-hidden="true" @click="replyMail(chosenMail.id)"></i>  
                 <i class="fa fa-envelope" aria-hidden="true" @click="markUnread(chosenMail)"></i>
                 <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDeleteMail(chosenMail.id)"></i>
                 
@@ -43,6 +43,10 @@ export default {
             chosenMail.isRead = false;
             mailService.updateMailStatus(chosenMail)
         },
+        replyMail(chosenMailId) {
+            // console.log('reply to', chosenMailId)
+            this.$router.push('/mail/replyMail/' + chosenMailId)
+        }
     
     },
     computed: {

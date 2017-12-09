@@ -17,13 +17,14 @@
 
 .front-page{
     background-color: #E8ECEF;
-    height: 480px;
+    /* height: 480px; */
+    height: 60vh;
     margin: 0 auto;
     border-radius: 20px;
-    width:80%;
+    width:90vw;
 }
 
-.mailsList {
+.mails-list {
     overflow-y: scroll;
      padding: 8px;
      display: flex;
@@ -88,7 +89,13 @@ li{
     cursor: pointer;
 }
 
+.mail-main {
+    height: 100%;
+}
 
+.fa {
+    cursor: pointer;
+}
 
 .icons-on-mobile{
     display: flex;

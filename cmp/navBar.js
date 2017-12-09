@@ -31,8 +31,12 @@ export default {
         EventBusService.$on('unreadMailNotification',count => {
             this.count = count;
         });
-        mailService.checkUnreadMails();
-        mailService.getMails()
+        // When the user enter to mail app as the 1st app, there were two getMails calls, 
+        // one from navBar and one from mailMain. Those two calls to the same function created
+        // a problem with the unread status bar. The following code prevent the navBar to call
+        // this function when there's mail in the url href.
+        if (document.location.href.includes('mail')) return
+        else mailService.getMails()
             .then (() => { mailService.checkUnreadMails()});            
     }        
 }

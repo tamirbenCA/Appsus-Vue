@@ -29,7 +29,7 @@ function getMails() {
                 mails = mails.sort((a, b) => {
                     return b.timeStamp - a.timeStamp
                 })
-                console.log('mails:', mails)
+                // console.log('mails:', mails)
                 return mails
             })
             .catch(err => {
@@ -70,14 +70,13 @@ function queryBySearchWord(term) {
 }
 
 function checkUnreadMails() {
-    console.log('hi68')
     if (mails.length === 0) return Promise.resolve(0);
     var UnreadMailsCount = mails.reduce((acc, mail) => {
         if (!mail.isRead) acc += 1;
         return acc;
     }, 0);
     var res = parseInt(UnreadMailsCount / mails.length * 100);
-    console.log('UnreadMailsCount',UnreadMailsCount)
+    // console.log('UnreadMailsCount',UnreadMailsCount)
     EventBusService.$emit('unreadMailNotification', UnreadMailsCount)    
     return Promise.resolve(res);
 }
@@ -151,7 +150,6 @@ function getMailById(mailId) {
         if (foundMail) resolve(foundMail)
         else reject();
     })
-
 }
 
 export default {
