@@ -3,11 +3,8 @@ import mapService from '../services/mapService.js';
 import navBar from '../cmp/navBar.js';
 import mapComp from '../cmp/mapComp.js';
 import mapSearch from '../cmp/mapSearch.js';
-// import locationPreview from '../cmp/locationPreview.js';
 import locationDetails from '../cmp/locationDetails.js';
 
-// {{ errorMsg }}    
-// <div class="map"></div>
 
 export default {
     template: `
