@@ -58,6 +58,9 @@ function initMap(lat, lng) {
         map: gMap,
         title: 'Current Position'
     });
+    marker.addListener('click', function() {
+        EventBusService.$emit('selectLocation', location)
+    })
     // return Promise.resolve();
 }
 
@@ -101,33 +104,33 @@ function getLocations() {
 
 
 function displayMap(lat, lng) {
+    var location = { lat , lng }
     var gMap = new google.maps.Map(document.querySelector('.map'),{
             center: { lat, lng },
-            zoom: 10
+            zoom: 15
         }
     );
     var marker = new google.maps.Marker({
         position: { lat, lng },
         map: gMap,
     });
+    marker.addListener('click', function() {
+        EventBusService.$emit('selectLocation', location)
+    })
 }
 
 function searchLocation(searchTerm) {
-    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchTerm}&key=${GOOGLE_API_KEY}`)
+    return new Promise((resolve, reject) => {
+        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchTerm}&key=${GOOGLE_API_KEY}`)
         .then(res => {
             // console.log(res)
             var geoLatLng = res.data.results[0].geometry.location;
-            displayMap(geoLatLng.lat, geoLatLng.lng);
+            displayMap(geoLatLng.lat, geoLatLng.lng)
             // console.log(geoLatLng)
-            return Promise.resolve(geoLatLng)
+                resolve(geoLatLng);
         });
+    })
 }
-
-// function setMapOnAll(map) {
-//     locations.forEach((location, i) => {
-//         location..setMap(gMap);
-//     }) 
-// }
 
 function displayLocations(status) {
     console.log(status)
@@ -149,6 +152,50 @@ function displayLocations(status) {
     }
 }
 
+function saveLocation(location) {
+    return new Promise((resolve, reject)=>{
+        var locationToUpdateIdx = locations.findIndex(currLocation => currLocation.id === location.id)
+        locations.splice(locationToUpdateIdx, 1, location);
+        resolve(location);
+    });
+}
+
+
+function createNewLocation(location) {
+    var newLocation = _emptyLocation(location);
+    locations.push(newLocation);
+    console.log(locations)
+    return newLocation.id + '/new';
+}
+
+function _emptyLocation(location) {
+    return {
+        id: _getNextId(),
+        name: '',
+        description: '',
+        photo: '',
+        lat: location.lat,
+        lng: location.lng,
+        tag: ''
+    }
+}
+
+function _getNextId() {
+    var maxId = locations.reduce((acc, location) => {
+        return (location.id > acc) ? location.id : acc
+    }, 0);
+    return maxId + 1;
+}
+
+
+function getLocationById(locationId) {
+    return new Promise((resolve, reject) => {
+        var foundLocation = locations.find(location => location.id === +locationId)
+        if (foundLocation) resolve(foundLocation)
+        else reject();
+    })
+}
+
 export default {
     initMap,
     getMap,
@@ -156,6 +203,9 @@ export default {
     getCurrPosition,
     searchLocation,
     displayLocations,
+    createNewLocation,
+    getLocationById,
+    saveLocation,
 }
 
 
@@ -173,33 +223,6 @@ export default {
 //         initMap(latUser, lngUser);
 //         });
 //     }
-// }
-
-
-// function createNewLocation() {
-//     var newLoation = _emptyLocation();
-//     locations.push(newLoation);
-//     return newLoation.id + '/new';
-
-// }
-
-// function _emptyLocation() {
-//     return {
-//         id: _getNextId(),
-//         name: '',
-//         description: '',
-//         photo: '',
-//         lat: '',
-//         lng: '',
-//         tag: ''
-//     }
-// }
-
-// function _getNextId() {
-//     var maxId = locations.reduce((acc, note) => {
-//         return (location.id > acc) ? location.id : acc
-//     }, 0);
-//     return maxId + 1;
 // }
 
 
@@ -231,22 +254,7 @@ export default {
 // }
 
 
-// function saveLocation(note) {
-//     return new Promise((resolve, reject) => {
-//         if (location.id) {
-//             var locationToUpdateIdx = locations.findIndex(currLocation => currLocation.id === location.id)
-//             locations.splice(locationToUpdateIdx, 1, note);
-//         }
-//         else {
-//             location.id = _getNextId();
-//             locations.push(location);
-//         }
 
-//         resolve()
-//         // reject()
-//     });
-
-// }
 
 
 // function deleteLocationChosen(locationId) {
@@ -258,14 +266,6 @@ export default {
 // }
 
 
-// function getLocationById(locationId) {
-//     return new Promise((resolve, reject) => {
-//         var foundLocation = locations.find(location => location.id === +locationId)
-//         if (foundLocation) resolve(foundLocation)
-//         else reject();
-//     })
-
-// }
 
 
 // function getPosition() {
