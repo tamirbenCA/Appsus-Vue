@@ -43,10 +43,10 @@ img {
 }
 
 .note {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     width: 250px;
-    min-height: 250px;
+    min-height: 190px;
     padding: 10px;
     border: 2px solid black;
     background: linear-gradient(to bottom,white 35px,#e6ebed 1px);
@@ -193,6 +193,8 @@ a {
 
 @media screen and (max-width: 480px) {    
 
+
+    
     .note-outer {
         margin: 3px;
         width: 100%;
@@ -207,7 +209,7 @@ a {
     }
     
     .note-header > .title {
-        font-size: 1.2em;
+        font-size: 1.4em;
         margin-bottom: 5px;
     }
     
