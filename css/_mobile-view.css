@@ -52,7 +52,7 @@
         margin-right: 5px;
     }
 
-    li{
+    .mail-row{
         display: flex;
         flex-direction: row-reverse;
     }

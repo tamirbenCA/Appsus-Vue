@@ -18,7 +18,7 @@ export default {
                 <div class="location-detail-box">
                         <ul class="locations-list">
                         <h2>Your saved locations:</h2>
-                            <li v-for="currLocation in locations" @click="showDetails(currLocation)">
+                            <li class="place-row" v-for="currLocation in locations" @click="showDetails(currLocation)">
                                 {{currLocation.name}}
                             </li>
                         </ul>

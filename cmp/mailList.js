@@ -6,7 +6,7 @@ export default {
     template: `
         <section class="mails-list">
             <ul>
-                <li v-for="mail in mails" @click="mailClicked(mail)" >
+                <li class= "mail-row" v-for="mail in mails" @click="mailClicked(mail)" >
                     <i  class="fa fa-chevron-right" aria-hidden="true" @click="mailClicked(mail)" ></i>
                     <mail-preview :item="mail"  >
                     </mail-preview>
