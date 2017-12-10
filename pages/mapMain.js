@@ -3,11 +3,8 @@ import mapService from '../services/mapService.js';
 import navBar from '../cmp/navBar.js';
 import mapComp from '../cmp/mapComp.js';
 import mapSearch from '../cmp/mapSearch.js';
-// import locationPreview from '../cmp/locationPreview.js';
 import locationDetails from '../cmp/locationDetails.js';
 
-// {{ errorMsg }}    
-// <div class="map"></div>
 
 export default {
     template: `
@@ -52,6 +49,11 @@ export default {
             .then (()=> this.openDetails = true)
            
         })
+        EventBusService.$on('defaultLocation', location => {
+            console.log('bus bus bus')
+            this.chosenLocation = location;
+            this.selectedLocation = this.chosenLocation;
+        })
         mapService.getCurrPosition();
         mapService.getLocations()
             .then(locations => {
@@ -73,6 +75,7 @@ export default {
         mapLoaded() {
             this.map = mapService.getMap();
             console.log('this map:', this.map)
+<<<<<<< HEAD
         },
         searchLocation(searchTerm) {
             mapService.searchLocation(searchTerm)
@@ -89,6 +92,24 @@ export default {
             console.log('add location', this.chosenLocation)
             var newLocationId = mapService.createNewLocation(this.chosenLocation);
             this.$router.push('/map/' + newLocationId)
+=======
+       },
+       searchLocation(searchTerm) {
+           mapService.searchLocation(searchTerm)
+            .then(location => {
+                this.chosenLocation = location
+                console.log('chosen location:', this.chosenLocation)
+            })
+       },
+       displaySavedLocations(status) {
+        //    console.log(this.locations, status)
+           mapService.displayLocations(status);
+       },
+       addLocation() {
+            // console.log('add location', this.chosenLocation) 
+            var newLocationId = mapService.createNewLocation(this.chosenLocation);
+            this.$router.push('/map/' + newLocationId)               
+>>>>>>> 7f67936aae93e9141907cbcf5c8459792121e942
         }
     },
     mounted() {

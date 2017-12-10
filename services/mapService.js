@@ -12,12 +12,34 @@ var HOSP = '🏥';
 var SCHO = '🏫';
 var TOWL = '🚻';
 
+const ICON_AMBULANCE = {
+                path: "M23.04-13.751q0-1.908-1.35-3.258t-3.258-1.35-3.258 1.35-1.35 3.258 1.35 3.258 3.258 1.35 3.258-1.35 1.35-3.258zm-13.824-18.432h13.824v-9.216h-5.688q-.504.072-.792.324l-7.02 7.02q-.252.432-.324.792v1.08zm46.08 18.432q0-1.908-1.35-3.258t-3.258-1.35-3.258 1.35-1.35 3.258 1.35 3.258 3.258 1.35 3.258-1.35 1.35-3.258zm4.608-24.192v-6.912q0-.504-.324-.828t-.828-.324h-8.064v-8.064q0-.504-.324-.828t-.828-.324h-6.912q-.504 0-.828.324t-.324.828v8.064h-8.064q-.504 0-.828.324t-.324.828v6.912q0 .504.324.828t.828.324h8.064v8.064q0 .504.324.828t.828.324h6.912q.504 0 .828-.324t.324-.828v-8.064h8.064q.504 0 .828-.324t.324-.828zm9.216-19.584v41.472q0 .936-.684 1.62t-1.62.684h-6.912q0 3.816-2.7 6.516t-6.516 2.7-6.516-2.7-2.7-6.516h-13.824q0 3.816-2.7 6.516t-6.516 2.7-6.516-2.7-2.7-6.516h-4.608q-.936 0-1.62-.684t-.684-1.62.684-1.62 1.62-.684v-14.976q0-.936.468-2.088t1.152-1.836l7.128-7.128q.684-.684 1.836-1.152t2.088-.468h5.76v-11.52q0-.936.684-1.62t1.62-.684h41.472q.936 0 1.62.684t.684 1.62z",
+                fillColor: '#E32831',
+                fillOpacity: 1,
+                strokeWeight: 0,
+                scale: 0.35
+            }
+const ICON_RESTAURANT = {
+                path: "M23.04-62.135v23.04q0 2.196-1.278 3.996t-3.33 2.52v28.044q0 1.872-1.368 3.24t-3.24 1.368h-4.608q-1.872 0-3.24-1.368t-1.368-3.24v-28.044q-2.052-.72-3.33-2.52t-1.278-3.996v-23.04q0-.936.684-1.62t1.62-.684 1.62.684.684 1.62v14.976q0 .936.684 1.62t1.62.684 1.62-.684.684-1.62v-14.976q0-.936.684-1.62t1.62-.684 1.62.684.684 1.62v14.976q0 .936.684 1.62t1.62.684 1.62-.684.684-1.62v-14.976q0-.936.684-1.62t1.62-.684 1.62.684.684 1.62zm27.648 0v57.6q0 1.872-1.368 3.24t-3.24 1.368h-4.608q-1.872 0-3.24-1.368t-1.368-3.24v-18.432h-8.064q-.468 0-.81-.342t-.342-.81v-28.8q0-4.752 3.384-8.136t8.136-3.384h9.216q.936 0 1.62.684t.684 1.62z",
+                fillColor: '#E32831',
+                fillOpacity: 1,
+                strokeWeight: 0,
+                scale: 0.35
+            }
+const ICON_SCHOOL = {
+                path: "M34.56-64.439l34.56 13.824v4.608h-4.608q0 .936-.738 1.62t-1.746.684h-54.936q-1.008 0-1.746-.684t-.738-1.62h-4.608v-4.608zm-25.344 23.04h9.216v27.648h4.608v-27.648h9.216v27.648h4.608v-27.648h9.216v27.648h4.608v-27.648h9.216v27.648h2.124q1.008 0 1.746.684t.738 1.62v2.304h-59.904v-2.304q0-.936.738-1.62t1.746-.684h2.124v-27.648zm57.42 34.56q1.008 0 1.746.684t.738 1.62v4.608h-69.12v-4.608q0-.936.738-1.62t1.746-.684h64.152z",
+                fillColor: '#E32831',
+                fillOpacity: 1,
+                strokeWeight: 0,
+                scale: 0.35
+            }
+
 var locations = [
     {
     id: 0,
     name: 'Arnold',
     description: '',
-    photo: '',
+    photo: 'arnold.jpg',
     lat: 32.1047547,
     lng: 34.8197589,
     tag: 'restaurant'
@@ -26,7 +48,7 @@ var locations = [
     id: 1,
     name: 'Assuta',
     description: '',
-    photo: '',
+    photo: 'assuta.jpg',
     lat: 32.1079742,
     lng: 34.8307266,
     tag: 'hospital'
@@ -35,7 +57,7 @@ var locations = [
     id: 2,
     name: 'David Yalin',
     description: '',
-    photo: '',
+    photo: 'david-yalin.jpg',
     lat: 32.1116409,
     lng: 34.8197052,
     tag: 'school'
@@ -44,7 +66,7 @@ var locations = [
     id: 3,
     name: 'Coding Academy',
     description: '',
-    photo: '',
+    photo: 'coding-academy.png',
     lat: 32.0878925,
     lng: 34.8030375,
     tag: 'school'
@@ -79,7 +101,8 @@ function getCurrPosition() {
 function showLocation(position) {
     gCurrPosition.lat = position.coords.latitude
     gCurrPosition.lng = position.coords.longitude
-    console.log('showLocation:', position)
+    // console.log('showLocation:', position)
+    EventBusService.$emit('defaultLocation', gCurrPosition)
     initMap(gCurrPosition.lat, gCurrPosition.lng);
 }
 
@@ -135,6 +158,16 @@ function searchLocation(searchTerm) {
         });
     })
 }
+function getIcon(location) {
+    switch (location) {
+        case 'school':
+            return ICON_SCHOOL;
+        case 'hospital':
+            return ICON_AMBULANCE;
+        case 'restaurant':
+            return ICON_RESTAURANT;
+    }
+}
 
 function displayLocations(status) {
     console.log(status)
@@ -144,8 +177,12 @@ function displayLocations(status) {
                 position: { lat: location.lat , lng: location.lng },
                 map: gMap,
                 title: location.name,
+<<<<<<< HEAD
                 icon: 
                 icon: matchIcon(location)
+=======
+                icon: getIcon(location.tag)
+>>>>>>> 7f67936aae93e9141907cbcf5c8459792121e942
             });
             marker.addListener('click', function() {
                 console.log(location);

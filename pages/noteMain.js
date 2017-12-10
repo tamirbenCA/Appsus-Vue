@@ -5,9 +5,9 @@ export default {
     template: `
         <section>
         <navBar></navBar>
-        <button @click="addNote">Add New Note</button>
-        <button @click="sort('date')">Sort By Date</button>
-        <button @click="sort('priority')">Sort By Priority</button>
+        <button class="note-top-button" @click="addNote">Add New Note</button>
+        <button class="note-top-button" @click="sort('date')">Sort By Date</button>
+        <button class="note-top-button" @click="sort('priority')">Sort By Priority</button>
             <section class="containor">
                 <div v-for="note in notes" class="note-outer">
                     <router-link :to="'/note/' + note.id"><div class="note">
