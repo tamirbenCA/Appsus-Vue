@@ -28,54 +28,68 @@ export default {
             selectedMail: null,
             firstMail: null,
             chosenMail: null,
-            unreadMails:null
+            unreadMails: null
         }
     },
     methods: {
         showmail(presentMail) {
             this.chosenMail = presentMail;
             mailService.checkUnreadMails()
-            .then((res) => {
-                this.unreadMails = res
-               
-            })
+                .then((res) => {
+                    this.unreadMails = res
+
+                })
         },
         deleteMail(mailId) {
             mailService.deleteMail(mailId)
-            .then(res => {
-                this.mails = res
-                this.chosenMail = this.mails[0]                
-                mailService.checkUnreadMails()
-                .then((res) => {
-                    this.unreadMails = res
+                .then(res => {
+                    this.mails = res
+                    this.chosenMail = this.mails[0]
+                    mailService.checkUnreadMails()
+                        .then((res) => {
+                            this.unreadMails = res
+                        })
                 })
-            })
 
         },
-        filterRes(resMails){
+        filterRes(resMails) {
             this.mails = resMails;
         }
     },
     created() {
-        mailService.getMails() 
-        .then(mails => {
-            this.mails = mails
-            this.chosenMail = this.mails[0]
-            this.chosenMail.isRead = true;
-            mailService.updateMailStatus(this.chosenMail)
-            .then(()=>{
-                mailService.checkUnreadMails()
-                .then((res) => {
-                    this.unreadMails = res;
-                    // console.log(' this.unreadMails', this.unreadMails)
-                })
+        mailService.getMails()
+            .then(mails => {
+                this.mails = mails
+                if (screen.width > 480) {
+                    this.chosenMail = this.mails[0]
+                    this.chosenMail.isRead = true;
+                    mailService.updateMailStatus(this.chosenMail)
+                        .then(() => {
+                            mailService.checkUnreadMails()
+                                .then((res) => {
+                                    this.unreadMails = res;
+                                    // console.log(' this.unreadMails', this.unreadMails)
+                                })
+                        })
+                }
+                else {
+                    this.chosenMail = this.mails[0]
+                    this.chosenMail.isRead = false;
+                    mailService.updateMailStatus(this.chosenMail)
+                        .then(() => {
+                            mailService.checkUnreadMails()
+                                .then((res) => {
+                                    this.unreadMails = res;
+                                    // console.log(' this.unreadMails', this.unreadMails)
+                                })
+                        })
+                }
+
+                EventBusService.$on('deleteMail', emailId => {
+                    this.deleteMail(emailId)
+                });
             })
-            
-            EventBusService.$on('deleteMail',emailId => {
-                this.deleteMail(emailId)
-            });   
-        })
-    },  
+    },
     components: {
         navBar,
         mailDetails,
