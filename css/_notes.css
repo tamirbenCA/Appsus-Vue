@@ -5,6 +5,9 @@ input  {
     padding: 10px;
 }
 
+.note-container{
+    padding-left: 20px;
+}
 textarea {
     border: none;
     background: none;
@@ -40,10 +43,10 @@ img {
 }
 
 .note {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     width: 250px;
-    min-height: 250px;
+    min-height: 190px;
     padding: 10px;
     border: 2px solid black;
     background: linear-gradient(to bottom,white 35px,#e6ebed 1px);
@@ -185,14 +188,13 @@ a {
     color: #363636;
 }
 
-.note-main {
-    padding-left: 50px;
-}
 
 
 
 @media screen and (max-width: 480px) {    
 
+
+    
     .note-outer {
         margin: 3px;
         width: 100%;
@@ -207,7 +209,7 @@ a {
     }
     
     .note-header > .title {
-        font-size: 1.2em;
+        font-size: 1.4em;
         margin-bottom: 5px;
     }
     
@@ -223,5 +225,16 @@ a {
     .note-main {
         height: auto;
         flex-grow: 0;
+        padding: 0;
+    }
+
+    .app-header{
+        width: 70%;
+        padding-left: 21px;
+        
+    }
+
+    .note-container{
+        padding-left: 0;
     }
 }

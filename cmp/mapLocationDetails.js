@@ -97,10 +97,3 @@ export default {
   }
 }
 
-// Select tag:
-// <select>
-//     <option v-model="location.tag" value="Resturant">Resturant</option>
-//     <option v-model="location.tag" value="Hospital">Hospital</option>
-//     <option v-model="location.tag" value="School">School</option>
-//     <option v-model="location.tag" value="Shopping">Shopping</option>
-// </select>
