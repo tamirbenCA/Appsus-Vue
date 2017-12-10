@@ -10,10 +10,10 @@ export default {
                 </router-link>  
             
                 <div class="head-mail">
-                    <h3 class="subject">{{chosenMail.subject}} </br></h3>   
-                    <h5 class="mail-info"> {{chosenMail.senderName}} </br>     </h5>   
-                    <h5 class="mail-info"> {{timeStampToDate}}</br></h5>
-                    <h5 class="mail-info"> {{chosenMail.senderMail}}</br></h5>
+                    <h3 class="subject">{{chosenMail.subject}} </h3>
+                    <h5 class="mail-info"> {{chosenMail.senderName}} </h5>  
+                    <h5 class="mail-info"> {{timeStampToDate}}</br> </h5>
+                    <h5 class="mail-info"> {{chosenMail.senderMail}} </h5>
                     <div class="icons-on-mobile">
                         <i class="fa fa-reply-all" aria-hidden="true"></i>
                         <i class="fa fa-envelope" aria-hidden="true" @click="markUnread(chosenMail)"></i>
@@ -29,7 +29,7 @@ export default {
         `,
     data() {
         return {
-            chosenMail: null,
+            chosenMail: {},
 
         }
     },
@@ -37,8 +37,8 @@ export default {
         var mailId = this.$route.params.mailId;
         mailService.getMailById(mailId)
         .then(mail => {
-            this.chosenMail = mail
-            console.log(' this.chosenMail', this.chosenMail)
+            this.chosenMail = Object.assign({}, mail)
+            // console.log(' this.chosenMail', this.chosenMail)
            
         })     
     },

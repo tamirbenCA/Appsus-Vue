@@ -44,7 +44,7 @@ export default {
 data() {
   return {
     isComposeActive : true,
-    mail: null
+    mail: {}
   }
 },
     methods: {
@@ -62,8 +62,6 @@ data() {
       },
     },
     created() {
-      this.mail = {};
-      // var correctedDate;
       // console.log(this.mail)
       var chosenMailId = +this.$route.params.chosenMailId;
       mailService.getMailById(chosenMailId)
@@ -71,7 +69,7 @@ data() {
           // console.log(mail)
           this.mail = Object.assign({}, mail)
           var correctedDate = this.timeStampToDate(this.mail.timeStamp);
-          console.log(correctedDate);
+          // console.log(correctedDate);
           this.mail.subject = 'RE: ' + mail.subject;
           this.mail.body = `\n\nOn ${correctedDate}, ${this.mail.senderName} wrote: \n` + this.mail.body; 
       })

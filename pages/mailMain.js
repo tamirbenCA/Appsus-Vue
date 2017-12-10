@@ -13,7 +13,7 @@ export default {
     <section class="mail-main">
         <navBar></navBar>
          <mail-filter @filterMailsEvent="filterRes"></mail-filter>
-        <div class="box">
+        <div class="box mail-list-container">
             <div class="front-page">
                 <mail-list :mails="mails" @presentMail="showmail"></mail-list>
                 <mail-details :chosen-mail="chosenMail"></mail-details> 
