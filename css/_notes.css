@@ -5,6 +5,9 @@ input  {
     padding: 10px;
 }
 
+.note-container{
+    padding-left: 20px;
+}
 textarea {
     border: none;
     background: none;
@@ -185,9 +188,6 @@ a {
     color: #363636;
 }
 
-.note-main {
-    padding-left: 50px;
-}
 
 
 
@@ -226,9 +226,13 @@ a {
         padding: 0;
     }
 
-    .note-header{
+    .app-header{
         width: 70%;
         padding-left: 21px;
         
+    }
+
+    .note-container{
+        padding-left: 0;
     }
 }
