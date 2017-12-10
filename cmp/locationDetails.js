@@ -13,51 +13,18 @@ export default {
        
                 <div class="field">
                     <label class="label">Name</label>
-                    <div class="control">
-                        <input  v-model="location.name" class="input" type="text" placeholder="Text input">
-                    </div>
+                    {{location.name}} <span v-html="tagIcon"></span>
+                    
                 </div>
         
                 <div class="field">
                     <label class="label">Description</label>
-                    <div class="control">
-                        <textarea   rows="2" cols="30" v-model="location.description" class="textarea" placeholder="Textarea"></textarea>
-                    </div>
+                    {{location.description}}
                 </div>
         
-                <!-- <div class="field">
-                    <label class="label">Latitude</label>
-                    <div class="control">
-                        <input v-model="location.lat" class="input" type="text" placeholder="Text input">
-                    </div>
-                </div> -->
-
-                <!-- <div class="field">
-                    <label class="label">Longtitude</label>
-                    <div class="control">
-                        <input v-model="location.lng" class="input" type="text" placeholder="Text input">
-                    </div>
-                </div> -->
-
-                <div class="field">
-                    <label class="label">Tag</label>
-                    <div class="control">
-                        <input v-model="location.tag" class="input" type="text" placeholder="Text input">
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label class="label">Insert image</label>
-                    <div class="control">
-                        <input class="input" type="text" placeholder="Text input"  v-model="location.photo">
-                        <!-- <img :src="location.photo"> -->
-                    </div>
-                </div>
-            </section>
-
             <section class="field is-grouped map-details-footer">
                 <div class="control">
-                    <button class="button is-link" @click="saveLocation(location)">Save</button>
+                    <button class="button is-link" @click="editLocation(location)">Edit</button>
                 </div>
                 <div class="control">
                     <button class="button is-text" @click="closeDetails">Cancel</button>
@@ -65,18 +32,13 @@ export default {
                 <i class="fa fa-trash-o" aria-hidden="true" @click="deletLocation(location.id)"></i>
             </section>
         </section>
+    </section>
     `,
     
     props: ['location'],
     methods: {
-        saveLocation(location) {
-            mapService.saveLocation(location)
-                .then(addedNote => {
-                    this.$router.push('/map/main')
-                })
-                .catch(err => {
-                    console.error(err);
-                })
+        editLocation(location) {
+            this.$router.push('/map/' + location.id)
         },
         deletLocation(locationId) {
             console.log('locationId', locationId)
@@ -93,5 +55,18 @@ export default {
             console.log('emiting')
         }
     },
-
+    computed: {
+        tagIcon() {
+            switch (this.location.tag) {
+                case 'school':
+                    return '<i class="fa fa-university" aria-hidden="true"></i> ';
+                case 'hospital':
+                    return '<i class="fa fa-ambulance" aria-hidden="true"></i>';
+                case 'restaurant':
+                    return '<i class="fa fa-cutlery" aria-hidden="true"></i>';
+                case 'shopping':
+                    return '<i class="fa fa-shopping-cart" aria-hidden="true"></i>';
+            }
+        }  
+    }
 }

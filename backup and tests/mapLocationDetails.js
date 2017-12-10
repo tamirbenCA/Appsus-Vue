@@ -28,7 +28,7 @@ export default {
               </div>
             </div>
            
-            <label><input type="radio" value="restaurant" v-model="location.tag"><i class="fa fa-cutlery" aria-hidden="true"></i></label>
+            <label><input type="radio" value="resturant" v-model="location.tag"><i class="fa fa-cutlery" aria-hidden="true"></i></label>
             <label><input type="radio" value="hospital" v-model="location.tag"><i class="fa fa-ambulance" aria-hidden="true"></i></label>
             <label><input type="radio" value="school" v-model="location.tag"><i class="fa fa-university" aria-hidden="true"></i></label>
             <label><input type="radio" value="shopping" v-model="location.tag"><i class="fa fa-shopping-cart" aria-hidden="true"></i></label>

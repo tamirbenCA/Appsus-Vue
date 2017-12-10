@@ -282,7 +282,7 @@ export default {
     getLocationById,
     saveLocation,
     deleteLocationChosen,
-    displayMap
+    displayMap,
 }
 
 
