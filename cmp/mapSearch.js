@@ -1,11 +1,13 @@
 export default {
     template: `
         <section class="search-map">
-            <div>
+            <div class="search-container">
                 <input class="search-box" type="search" placeholder="Search Location" v-model="term" @keyup.enter="searchLocation" @blur="searchLocation">
             </div>
-            <button class="search-bar-button" @click="displaySavedLocations">Display Saved Locations</button>
-            <button class="search-bar-button" @click="addLocation">Add New Location</button>
+            <div class="search-buttons">
+              <button class="search-bar-button" @click="displaySavedLocations">Display Saved Locations</button>
+              <button class="search-bar-button" @click="addLocation">Add New Location</button>
+            </div>
         </section>
         `,
     data() {
