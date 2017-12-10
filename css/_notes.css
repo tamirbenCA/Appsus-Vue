@@ -182,3 +182,40 @@ a {
     background-color: whitesmoke;
     color: #363636;
 }
+
+
+
+@media screen and (max-width: 480px) {    
+
+    .note-outer {
+        margin: 3px;
+        width: 100%;
+        max-height: auto;
+    }
+    
+    .note {
+        width: 90%;
+        height: 100px;
+        padding: 5px;
+        padding-left: 45px;
+    }
+    
+    .note-header > .title {
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+    
+    .note-main > img {
+        height: 125px;
+    }
+    
+    .note-details {
+        font-size: 0.1em;
+    }
+
+    
+    .note-main {
+        height: auto;
+        flex-grow: 0;
+    }
+}

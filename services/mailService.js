@@ -144,7 +144,7 @@ function filterReadUnread(status) {
 
 
 function getMailById(mailId) {
-    console.log('mailId',mailId)
+    // console.log('mailId',mailId)
     return new Promise((resolve, reject) => {
         var foundMail = mails.find(mail => mail.id === +mailId)
         if (foundMail) resolve(foundMail)

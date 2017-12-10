@@ -5,9 +5,9 @@ export default {
     template: `
         <section>
         <navBar></navBar>
-        <button class="note-top-button" @click="addNote">Add New Note</button>
-        <button class="note-top-button" @click="sort('date')">Sort By Date</button>
-        <button class="note-top-button" @click="sort('priority')">Sort By Priority</button>
+        <button class="note-top-button" @click="addNote"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button class="note-top-button" @click="sort('date')"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Date</button>
+        <button class="note-top-button" @click="sort('priority')"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Priority</button>
             <section class="containor">
                 <div v-for="note in notes" class="note-outer">
                     <router-link :to="'/note/' + note.id"><div class="note">

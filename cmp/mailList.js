@@ -7,7 +7,7 @@ export default {
         <section class="mails-list">
             <ul>
                 <li v-for="mail in mails" @click="mailClicked(mail)" >
-                    <i  class="fa fa-chevron-right" aria-hidden="true" @click="goToMail(mail.id)" ></i>
+                    <i  class="fa fa-chevron-right" aria-hidden="true" @click="mailClicked(mail)" ></i>
                     <mail-preview :item="mail"  >
                     </mail-preview>
                     <!-- <img :src="mail.jpg" :alt="mailImage"> -->
@@ -22,10 +22,10 @@ export default {
                 mailService.updateMailStatus(mail);
             }    
             this.$emit('presentMail', mail)
-        },
-        goToMail(mailId) {
-            console.log('mailId',mailId)
-            this.$router.push('/mail/main/viewMail' + mailId);
+            // console.log('mailId',mailId)
+            if (screen.width <= 480) {
+                this.$router.push('/mail/main/viewMail' + mail.id);
+            }
         },
     },
 
