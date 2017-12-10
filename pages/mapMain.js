@@ -17,7 +17,7 @@ export default {
             <div class="map-box"> 
                 <div class="location-detail-box">
                         <ul class="locations-list">
-                        
+                        <h2>Your saved locations:</h2>
                             <li v-for="currLocation in locations" @click="showDetails(currLocation)">
                                 {{currLocation.name}}
                             </li>
@@ -43,14 +43,17 @@ export default {
     created() {
         mapService.getCurrPosition();
         EventBusService.$on('selectLocation', location => {
+            console.log(location)
             this.chosenLocation = location;
-            this.selectedLocation = this.chosenLocation;
-            mapService.getLocationById(this.selectedLocation.id) 
-            .then (()=> this.openDetails = true)
-           
+            this.selectedLocation = this.chosenLocation.selectedLocation;
+            if (this.selectedLocation === undefined) {
+                this.selectedLocation = location;
+                this.openDetails = true;
+                mapService.displayMap(this.selectedLocation.lat, this.selectedLocation.lng, this.selectedLocation);
+            }
+            else  mapService.displayMap(this.chosenLocation.lat, this.chosenLocation.lng, this.selectedLocation);
         })
         EventBusService.$on('defaultLocation', location => {
-            console.log('bus bus bus')
             this.chosenLocation = location;
             this.selectedLocation = this.chosenLocation;
         })
@@ -70,12 +73,11 @@ export default {
             console.log('location', location)
             this.openDetails = true;
             this.selectedLocation = location;
-            mapService.displayMap(location.lat, location.lng);
+            mapService.displayMap(location.lat, location.lng, this.selectedLocation);
         },
         mapLoaded() {
             this.map = mapService.getMap();
-            console.log('this map:', this.map)
-<<<<<<< HEAD
+            console.log('this map:', this.map);
         },
         searchLocation(searchTerm) {
             mapService.searchLocation(searchTerm)
@@ -85,31 +87,13 @@ export default {
                 })
         },
         displaySavedLocations(status) {
-               console.log(this.locations, status)
+            console.log('status', status)
             mapService.displayLocations(status);
         },
         addLocation() {
-            console.log('add location', this.chosenLocation)
-            var newLocationId = mapService.createNewLocation(this.chosenLocation);
-            this.$router.push('/map/' + newLocationId)
-=======
-       },
-       searchLocation(searchTerm) {
-           mapService.searchLocation(searchTerm)
-            .then(location => {
-                this.chosenLocation = location
-                console.log('chosen location:', this.chosenLocation)
-            })
-       },
-       displaySavedLocations(status) {
-        //    console.log(this.locations, status)
-           mapService.displayLocations(status);
-       },
-       addLocation() {
             // console.log('add location', this.chosenLocation) 
             var newLocationId = mapService.createNewLocation(this.chosenLocation);
-            this.$router.push('/map/' + newLocationId)               
->>>>>>> 7f67936aae93e9141907cbcf5c8459792121e942
+            this.$router.push('/map/' + newLocationId)
         }
     },
     mounted() {

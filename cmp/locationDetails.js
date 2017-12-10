@@ -7,7 +7,7 @@ export default {
         <section>
             <i class="fa fa-times-circle-o" aria-hidden="true" @click="closeDetails"></i>
             <section class="top-section">
-                <img :src="'../img/locations/' + location.photo" />
+                <img class="img-location" :src="'../img/locations/' + location.photo" />
             </section>
             <section class="bottom-section">
        
@@ -81,9 +81,11 @@ export default {
         deletLocation(locationId) {
             console.log('locationId', locationId)
             mapService.deleteLocationChosen(locationId)
-                .then(res =>
-                    this.$router.push('/map/main')
-                )
+                .then(res => {
+                    this.$router.push('/map/main');
+                    mapService.getCurrPosition()
+                })  
+                this.$emit('closeDetails')
         },
         closeDetails() {
             console.log('closing in location details');
