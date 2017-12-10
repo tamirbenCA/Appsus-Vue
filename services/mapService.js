@@ -178,13 +178,6 @@ function displayMap(lat, lng ,selectedLocation) {
     })
 }
 
-
-// ******************************************************************
-// var autocomplete = new google.maps.places.Autocomplete(searchTerm);
-// google.maps.event.addDomListener(window, 'load', initialize);    
-// ******************************************************************
-
-
 function searchLocation(searchTerm) {
     return new Promise((resolve, reject) => {
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchTerm}&key=${GOOGLE_API_KEY}`)
@@ -219,7 +212,7 @@ function displayLocations(status) {
                 position: { lat: location.lat, lng: location.lng },
                 map: gMap,
                 title: location.name,
-                icon: getIcon(location.tag)
+                icon: _getIcon(location.tag)
             });
             marker.addListener('click', function () {
                 EventBusService.$emit('selectLocation', location)
