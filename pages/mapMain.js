@@ -1,4 +1,4 @@
-import EventBusService from '../services/EventBusService.js'
+import eventBusService from '../services/eventBusService.js'
 import mapService from '../services/mapService.js';
 import navBar from '../cmp/navBar.js';
 import mapComp from '../cmp/mapComp.js';
@@ -42,7 +42,7 @@ export default {
     },
     created() {
         mapService.getCurrPosition();
-        EventBusService.$on('selectLocation', location => {
+        eventBusService.$on('selectLocation', location => {
             // console.log(location)
             this.chosenLocation = location;
             this.selectedLocation = this.chosenLocation.selectedLocation;
@@ -53,7 +53,7 @@ export default {
             }
             else  mapService.displayMap(this.chosenLocation.lat, this.chosenLocation.lng, this.selectedLocation);
         })
-        EventBusService.$on('defaultLocation', location => {
+        eventBusService.$on('defaultLocation', location => {
             this.chosenLocation = location;
             this.selectedLocation = this.chosenLocation;
         })

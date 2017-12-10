@@ -1,4 +1,4 @@
-import EventBusService from '../services/EventBusService.js'
+import eventBusService from '../services/eventBusService.js'
 
 
 // const MIN_TIMESTAMP = 1483221600000;        // 1/1/2017 00:00:00
@@ -77,7 +77,7 @@ function checkUnreadMails() {
     }, 0);
     var res = parseInt(UnreadMailsCount / mails.length * 100);
     // console.log('UnreadMailsCount',UnreadMailsCount)
-    EventBusService.$emit('unreadMailNotification', UnreadMailsCount)    
+    eventBusService.$emit('unreadMailNotification', UnreadMailsCount)    
     return Promise.resolve(res);
 }
 

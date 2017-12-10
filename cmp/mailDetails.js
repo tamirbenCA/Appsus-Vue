@@ -1,6 +1,6 @@
 import mailPreview from '../cmp/mailPreview.js'
 import mailService from '../services/mailService.js'
-import EventBusService from '../services/EventBusService.js'
+import eventBusService from '../services/eventBusService.js'
 
 
 export default {
@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         emitDeleteMail(mailId) {
-            EventBusService.$emit('deleteMail', mailId)
+            eventBusService.$emit('deleteMail', mailId)
             
         },
         markUnread(chosenMail) {

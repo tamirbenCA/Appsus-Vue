@@ -1,4 +1,4 @@
-import EventBusService from '../services/EventBusService.js'
+import eventBusService from '../services/eventBusService.js'
 
 
 const GOOGLE_API_KEY = 'AIzaSyCkGXo73iO3SNrjIp9hxptFfE5duOCgKk4';
@@ -109,7 +109,7 @@ function initMap(lat, lng) {
     });
     marker.addListener('click', function () {
         console.log('hi85')
-        EventBusService.$emit('selectLocation', location)
+        eventBusService.$emit('selectLocation', location)
     })
     // return Promise.resolve();
 }
@@ -125,23 +125,23 @@ function getCurrPosition() {
 function showLocation(position) {
     gCurrPosition.lat = position.coords.latitude
     gCurrPosition.lng = position.coords.longitude
-    EventBusService.$emit('defaultLocation', gCurrPosition)
+    eventBusService.$emit('defaultLocation', gCurrPosition)
     initMap(gCurrPosition.lat, gCurrPosition.lng);
 }
 
 function handleLocationError(error) {
     switch (error.code) {
         case 0:
-            EventBusService.$emit('errorMsg', 'There was an error while retrieving your location: ' + error.message)
+            eventBusService.$emit('errorMsg', 'There was an error while retrieving your location: ' + error.message)
             break;
         case 1:
-            EventBusService.$emit('errorMsg', 'The user didn\'t allow this page to retrieve a location.')
+            eventBusService.$emit('errorMsg', 'The user didn\'t allow this page to retrieve a location.')
             break;
         case 2:
-            EventBusService.$emit('errorMsg', 'The browser was unable to determine your location: ' + error.message)
+            eventBusService.$emit('errorMsg', 'The browser was unable to determine your location: ' + error.message)
             break;
         case 3:
-            EventBusService.$emit('errorMsg', 'The browser timed out before retrieving the location.')
+            eventBusService.$emit('errorMsg', 'The browser timed out before retrieving the location.')
             break;
     }
 }
@@ -174,7 +174,7 @@ function displayMap(lat, lng ,selectedLocation) {
         });
     }
     marker.addListener('click', function () {
-        EventBusService.$emit('selectLocation', location)
+        eventBusService.$emit('selectLocation', location)
     })
 }
 
@@ -215,7 +215,7 @@ function displayLocations(status) {
                 icon: _getIcon(location.tag)
             });
             marker.addListener('click', function () {
-                EventBusService.$emit('selectLocation', location)
+                eventBusService.$emit('selectLocation', location)
             })
             // console.log('location:', location)
         });
@@ -338,7 +338,7 @@ function deleteLocationChosen(locationId) {
     console.log('locationId', locationId)
     return new Promise((resolve, reject) => {
         var locationIdx = locations.findIndex(location => location.id === locationId)
-        locations.splice(locationId, 1);
+        locations.splice(locationIdx, 1);
         // getCurrPosition();
         resolve()
     });

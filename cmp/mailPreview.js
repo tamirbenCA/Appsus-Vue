@@ -1,4 +1,4 @@
-import EventBusService from '../services/EventBusService.js'
+import eventBusService from '../services/eventBusService.js'
 
 export default {
     template: `
@@ -17,7 +17,7 @@ export default {
     },
      methods: {
         emitDeleteMail(mailId) {
-            EventBusService.$emit('deleteMail', mailId)
+            eventBusService.$emit('deleteMail', mailId)
             // this.mails = mailService.deleteMail(mailId);
         },
     },
