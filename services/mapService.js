@@ -7,10 +7,7 @@ var gLng;
 var gMap;
 var gCurrPosition = {};
 var gMarkers;
-var RES = '🍴';
-var HOSP = '🏥';
-var SCHO = '🏫';
-var TOWL = '🚻';
+
 
 const ICON_AMBULANCE = {
                 path: "M23.04-13.751q0-1.908-1.35-3.258t-3.258-1.35-3.258 1.35-1.35 3.258 1.35 3.258 3.258 1.35 3.258-1.35 1.35-3.258zm-13.824-18.432h13.824v-9.216h-5.688q-.504.072-.792.324l-7.02 7.02q-.252.432-.324.792v1.08zm46.08 18.432q0-1.908-1.35-3.258t-3.258-1.35-3.258 1.35-1.35 3.258 1.35 3.258 3.258 1.35 3.258-1.35 1.35-3.258zm4.608-24.192v-6.912q0-.504-.324-.828t-.828-.324h-8.064v-8.064q0-.504-.324-.828t-.828-.324h-6.912q-.504 0-.828.324t-.324.828v8.064h-8.064q-.504 0-.828.324t-.324.828v6.912q0 .504.324.828t.828.324h8.064v8.064q0 .504.324.828t.828.324h6.912q.504 0 .828-.324t.324-.828v-8.064h8.064q.504 0 .828-.324t.324-.828zm9.216-19.584v41.472q0 .936-.684 1.62t-1.62.684h-6.912q0 3.816-2.7 6.516t-6.516 2.7-6.516-2.7-2.7-6.516h-13.824q0 3.816-2.7 6.516t-6.516 2.7-6.516-2.7-2.7-6.516h-4.608q-.936 0-1.62-.684t-.684-1.62.684-1.62 1.62-.684v-14.976q0-.936.468-2.088t1.152-1.836l7.128-7.128q.684-.684 1.836-1.152t2.088-.468h5.76v-11.52q0-.936.684-1.62t1.62-.684h41.472q.936 0 1.62.684t.684 1.62z",
@@ -177,12 +174,7 @@ function displayLocations(status) {
                 position: { lat: location.lat , lng: location.lng },
                 map: gMap,
                 title: location.name,
-<<<<<<< HEAD
-                icon: 
-                icon: matchIcon(location)
-=======
                 icon: getIcon(location.tag)
->>>>>>> 7f67936aae93e9141907cbcf5c8459792121e942
             });
             marker.addListener('click', function() {
                 console.log(location);
@@ -197,24 +189,6 @@ function displayLocations(status) {
 }
 
 
-
-
-
-
-
-function matchIcon(location) {
-    if (location.tag === 'restaurant') return '🍴';
-    if (location.tag === 'hospital') return'🏥' ;
-    if (location.tag === 'school') return '🏫';
-    if (location.tag === 'shopping') return '🚻';
-}
-
-// function matchIcon(location) {
-//     if (location.tag === 'restaurant') return '../img/icons/restaurant.png';
-//     if (location.tag === 'hospital') return '../img/icons/hospital.png';
-//     if (location.tag === 'school') return '../img/icons/school.jpg';
-//     if (location.tag === 'shopping') return '../img/icons/shopping.jpg';
-// }
 
 function saveLocation(location) {
     return new Promise((resolve, reject)=>{
