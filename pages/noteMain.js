@@ -6,7 +6,7 @@ export default {
         <section>
             <navBar></navBar>
             <div class="note-container">
-                <section class="app-header">
+                <section class="note-header">
                     <button class="compose-mail-button" @click="addNote"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                     <button class="note-top-button" @click="sort('date')"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Date</button>
                     <button class="note-top-button" @click="sort('priority')"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Priority</button>

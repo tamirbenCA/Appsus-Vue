@@ -43,7 +43,7 @@ export default {
     created() {
         mapService.getCurrPosition();
         EventBusService.$on('selectLocation', location => {
-            console.log(location)
+            // console.log(location)
             this.chosenLocation = location;
             this.selectedLocation = this.chosenLocation.selectedLocation;
             if (this.selectedLocation === undefined) {
@@ -65,19 +65,19 @@ export default {
     },
     methods: {
         closeDetails(event) {
-            console.log('closing', event)
+            // console.log('closing', event)
             this.openDetails = !this.openDetails;
-            console.log(this.openDetails)
+            // console.log(this.openDetails)
         },
         showDetails(location) {
-            console.log('location', location)
+            // console.log('location', location)
             this.openDetails = true;
             this.selectedLocation = location;
             mapService.displayMap(location.lat, location.lng, this.selectedLocation);
         },
         mapLoaded() {
             this.map = mapService.getMap();
-            console.log('this map:', this.map);
+            // console.log('this map:', this.map);
         },
         searchLocation(searchTerm) {
             mapService.searchLocation(searchTerm)
@@ -87,7 +87,7 @@ export default {
                 })
         },
         displaySavedLocations(status) {
-            console.log('status', status)
+            // console.log('status', status)
             mapService.displayLocations(status);
         },
         addLocation() {
