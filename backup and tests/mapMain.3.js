@@ -3,8 +3,11 @@ import mapService from '../services/mapService.js';
 import navBar from '../cmp/navBar.js';
 import mapComp from '../cmp/mapComp.js';
 import mapSearch from '../cmp/mapSearch.js';
+// import locationPreview from '../cmp/locationPreview.js';
 import locationDetails from '../cmp/locationDetails.js';
 
+// {{ errorMsg }}    
+// <div class="map"></div>
 
 export default {
     template: `
@@ -17,7 +20,7 @@ export default {
             <div class="map-box"> 
                 <div class="location-detail-box">
                         <ul class="locations-list">
-                        <h2>Your saved locations:</h2>
+                        
                             <li v-for="currLocation in locations" @click="showDetails(currLocation)">
                                 {{currLocation.name}}
                             </li>
@@ -43,19 +46,9 @@ export default {
     created() {
         mapService.getCurrPosition();
         EventBusService.$on('selectLocation', location => {
-            console.log(location)
-            this.chosenLocation = location;
-            this.selectedLocation = this.chosenLocation.selectedLocation;
-            if (this.selectedLocation === undefined) {
-                this.selectedLocation = location;
-                this.openDetails = true;
-                mapService.displayMap(this.selectedLocation.lat, this.selectedLocation.lng, this.selectedLocation);
-            }
-            else  mapService.displayMap(this.chosenLocation.lat, this.chosenLocation.lng, this.selectedLocation);
-        })
-        EventBusService.$on('defaultLocation', location => {
             this.chosenLocation = location;
             this.selectedLocation = this.chosenLocation;
+            this.openDetails = true;
         })
         mapService.getCurrPosition();
         mapService.getLocations()
@@ -73,11 +66,11 @@ export default {
             console.log('location', location)
             this.openDetails = true;
             this.selectedLocation = location;
-            mapService.displayMap(location.lat, location.lng, this.selectedLocation);
+            mapService.displayMap(location.lat, location.lng);
         },
         mapLoaded() {
             this.map = mapService.getMap();
-            console.log('this map:', this.map);
+            console.log('this map:', this.map)
         },
         searchLocation(searchTerm) {
             mapService.searchLocation(searchTerm)
@@ -87,11 +80,11 @@ export default {
                 })
         },
         displaySavedLocations(status) {
-            console.log('status', status)
+            //    console.log(this.locations, status)
             mapService.displayLocations(status);
         },
         addLocation() {
-            // console.log('add location', this.chosenLocation) 
+            console.log('add location', this.chosenLocation)
             var newLocationId = mapService.createNewLocation(this.chosenLocation);
             this.$router.push('/map/' + newLocationId)
         }

@@ -27,12 +27,16 @@ export default {
                 <input v-model="location.photo" class="input" type="text" placeholder="Image (Optional)">
               </div>
             </div>
+           
+            <label><input type="radio" value="resturant" v-model="location.tag" @change="searchMail"> <i class="fa fa-cutlery" aria-hidden="true"></i></label>
+            <label><input type="radio" value="hospital" v-model="location.tag" @change="searchMail"> <i class="fa fa-hospital-o" aria-hidden="true"></i></label>
+            <label><input type="radio" value="school" v-model="location.tag" @change="searchMail"> <i class="fa fa-university" aria-hidden="true"></i></label>
 
           <div class="field note-details-footer">
             <div class="control">
                 <button class="button is-link" @click="saveLocation">{{(location.name) ? 'Save' : 'Add'}}</button>
                 <button class="button is-text" @click="cancelLocation(location.id)">Cancel</button>               
-                <span class="button note-details-delete" @click="deleteLocation(location.id)" v-if="!isNew"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+               
             </div>
           </div>
         </div>
@@ -43,14 +47,14 @@ export default {
   data() {
     return {
       isComposeActive: true,
-      location: { 
-              name: '',
-              description: '',
-              photo: '',
-              lat: '',
-              lng: '',
-              tag: '',
-            },
+      location: {
+        name: '',
+        description: '',
+        photo: '',
+        lat: '',
+        lng: '',
+        tag: '',
+      },
       locationId: +this.$route.params.locationId,
       isNew: '',
     }
@@ -68,24 +72,16 @@ export default {
           console.error('Error saving');
         })
     },
-    deleteLocation(locationId) {
-      mapService.deleteLocation(locationId)
-        .then(_ => {
-          this.$router.push('/map/main')
-        })
-        .catch(err => {
-          console.error('Error deleting');
-        })
-    },
+
     cancelLocation(locationId) {
       if (this.isNew) {
-      mapService.deleteLocation(locationId)
-        .then(_ => {
-          this.$router.push('/map/main')
-        })
-        .catch(err => {
-          console.error('Error deleting');
-        })
+        mapService.deleteLocation(locationId)
+          .then(_ => {
+            this.$router.push('/map/main')
+          })
+          .catch(err => {
+            console.error('Error deleting');
+          })
       } else this.$router.push('/map/main');
     }
   },
@@ -100,3 +96,11 @@ export default {
       })
   }
 }
+
+// Select tag:
+// <select>
+//     <option v-model="location.tag" value="Resturant">Resturant</option>
+//     <option v-model="location.tag" value="Hospital">Hospital</option>
+//     <option v-model="location.tag" value="School">School</option>
+//     <option v-model="location.tag" value="Shopping">Shopping</option>
+// </select>

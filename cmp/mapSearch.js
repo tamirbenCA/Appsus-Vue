@@ -11,7 +11,8 @@ export default {
     data() {
       return {
         term: '',
-        displayLocation: false
+        displayLocation: false,
+        selectedLocation:null
       }
     },
     methods: {
