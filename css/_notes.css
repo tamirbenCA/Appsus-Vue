@@ -88,8 +88,8 @@ a {
 } */
 
 .note-header {
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     text-transform: capitalize;
     font-weight: bold;
 } 
@@ -142,7 +142,9 @@ a {
 
 .note-top-button {
     height: 40px;
-    margin: 0 10px    
+    margin: 0 10px;    
+    /* border-radius: 20px; */
+    /* border: none; */
 }
 
 .note-footer {
@@ -181,6 +183,10 @@ a {
 .note-details-delete:hover {
     background-color: whitesmoke;
     color: #363636;
+}
+
+.note-main {
+    padding-left: 50px;
 }
 
 
