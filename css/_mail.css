@@ -108,3 +108,24 @@ li{
 .status-bar-empty{
     text-align: center;
 }
+
+.compose-mail-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    background-color: #C5F4BF;
+}
+
+.mail-search-input {
+    border-radius: 20px;
+}
+
+.mail-search-bar {
+    display: flex;
+    align-items: baseline;
+}
+
+.mail-list-container {
+    box-shadow: none;
+}

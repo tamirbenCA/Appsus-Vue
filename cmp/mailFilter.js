@@ -4,7 +4,7 @@ export default {
     template: `
         <section class="mail-header">
             <div class="mail-search-bar">
-                <router-link to="/mail/newMail" tag="button" style="padding:10px"> 
+                <router-link to="/mail/newMail" tag="button" class="compose-mail-button"> 
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </router-link>
                 <input class="search-box mail-search-input" type="search" v-model="term" @input="searchMail" placeholder="Search for mail" />
@@ -60,3 +60,4 @@ export default {
 
 }
 
+// style="padding:10px"
