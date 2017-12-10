@@ -48,9 +48,7 @@ export default {
         EventBusService.$on('selectLocation', location => {
             this.chosenLocation = location;
             this.selectedLocation = this.chosenLocation;
-            mapService.getLocationById(this.selectedLocation.id) 
-            .then (()=> this.openDetails = true)
-           
+            this.openDetails = true;
         })
         mapService.getCurrPosition();
         mapService.getLocations()
@@ -82,7 +80,7 @@ export default {
                 })
         },
         displaySavedLocations(status) {
-               console.log(this.locations, status)
+            //    console.log(this.locations, status)
             mapService.displayLocations(status);
         },
         addLocation() {

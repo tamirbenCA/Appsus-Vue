@@ -7,6 +7,10 @@ var gLng;
 var gMap;
 var gCurrPosition = {};
 var gMarkers;
+var RES = '🍴';
+var HOSP = '🏥';
+var SCHO = '🏫';
+var TOWL = '🚻';
 
 var locations = [
     {
@@ -139,7 +143,9 @@ function displayLocations(status) {
             var marker = new google.maps.Marker({
                 position: { lat: location.lat , lng: location.lng },
                 map: gMap,
-                title: location.name
+                title: location.name,
+                icon: 
+                icon: matchIcon(location)
             });
             marker.addListener('click', function() {
                 console.log(location);
@@ -148,9 +154,30 @@ function displayLocations(status) {
             // console.log('location:', location)
         });
     } else {
+        console.log('hi151')
         initMap(gCurrPosition.lat, gCurrPosition.lng);
     }
 }
+
+
+
+
+
+
+
+function matchIcon(location) {
+    if (location.tag === 'restaurant') return '🍴';
+    if (location.tag === 'hospital') return'🏥' ;
+    if (location.tag === 'school') return '🏫';
+    if (location.tag === 'shopping') return '🚻';
+}
+
+// function matchIcon(location) {
+//     if (location.tag === 'restaurant') return '../img/icons/restaurant.png';
+//     if (location.tag === 'hospital') return '../img/icons/hospital.png';
+//     if (location.tag === 'school') return '../img/icons/school.jpg';
+//     if (location.tag === 'shopping') return '../img/icons/shopping.jpg';
+// }
 
 function saveLocation(location) {
     return new Promise((resolve, reject)=>{

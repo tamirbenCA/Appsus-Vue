@@ -27,6 +27,13 @@ export default {
                 <input v-model="location.photo" class="input" type="text" placeholder="Image (Optional)">
               </div>
             </div>
+           
+            <label><input type="radio" value="resturant" v-model="location.tag" @change="searchMail"> 🍴</label>
+            <label><input type="radio" value="hospital" v-model="location.tag" @change="searchMail"> 🏥</label>
+            <label><input type="radio" value="school" v-model="location.tag" @change="searchMail">  🏫</label>
+            <label><input type="radio" value="shopping" v-model="location.tag" @change="searchMail">  🚾</label>
+            <label><input type="radio" value="gas" v-model="location.tag" @change="searchMail"> ⛽</label>
+            <label><input type="radio" value="games" v-model="location.tag" @change="searchMail"> 🎳</label>
 
           <div class="field note-details-footer">
             <div class="control">
@@ -100,3 +107,11 @@ export default {
       })
   }
 }
+
+// Select tag:
+// <select>
+//     <option v-model="location.tag" value="Resturant">Resturant</option>
+//     <option v-model="location.tag" value="Hospital">Hospital</option>
+//     <option v-model="location.tag" value="School">School</option>
+//     <option v-model="location.tag" value="Shopping">Shopping</option>
+// </select>
