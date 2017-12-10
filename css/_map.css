@@ -9,12 +9,9 @@
 .location-detail-box{
     display: flex;
     flex-direction: row;
-    transition: width 1s;
+
 }
 
-.location-detail-box:active{
-    width: 300px;
-} 
 
 
 .map {
@@ -55,6 +52,7 @@
     flex-direction: row;
     justify-content: space-around;
     margin-top: 20px;
+    margin: 0 auto;
 }
 
 li{
@@ -136,7 +134,7 @@ li{
 @media screen and (max-width: 480px) {
 
     .map-main-container{
-        margin-left: 36px;
+        margin-left: 25px;
     }
     .search-container{
         margin-right: 32px;
@@ -175,8 +173,6 @@ li{
     .search-buttons{
         display: flex;
         flex-direction: row;
-
-        margin-right: 36px;
     }
 
     .search-map{

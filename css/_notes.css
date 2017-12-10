@@ -223,5 +223,12 @@ a {
     .note-main {
         height: auto;
         flex-grow: 0;
+        padding: 0;
+    }
+
+    .note-header{
+        width: 70%;
+        padding-left: 21px;
+        
     }
 }
