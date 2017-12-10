@@ -6,7 +6,6 @@ var gLat;
 var gLng;
 var gMap;
 var gCurrPosition = {};
-var gMarkers;
 
 
 const ICON_AMBULANCE = {
@@ -152,7 +151,6 @@ function getLocations() {
     // return Promise.reject();
 }
 
-
 function displayMap(lat, lng ,selectedLocation) {
     var location = { lat, lng ,selectedLocation}
     var gMap = new google.maps.Map(document.querySelector('.map'), {
@@ -191,6 +189,7 @@ function searchLocation(searchTerm) {
         });
     })
 }
+
 function _getIcon(location) {
     switch (location) {
         case 'school':
@@ -204,8 +203,8 @@ function _getIcon(location) {
     }
 }
 
-function displayLocations(status) {
-    console.log(status)
+function displaySavedLocations(status) {
+    // console.log(status)
     if (status) {
         locations.forEach(location => {
             var marker = new google.maps.Marker({
@@ -220,12 +219,9 @@ function displayLocations(status) {
             // console.log('location:', location)
         });
     } else {
-        console.log('hi151')
         initMap(gCurrPosition.lat, gCurrPosition.lng);
     }
 }
-
-
 
 function saveLocation(location) {
     return new Promise((resolve, reject) => {
@@ -234,7 +230,6 @@ function saveLocation(location) {
         resolve(location);
     });
 }
-
 
 function createNewLocation(location) {
     var newLocation = _emptyLocation(location);
@@ -262,7 +257,6 @@ function _getNextId() {
     return maxId + 1;
 }
 
-
 function getLocationById(locationId) {
     return new Promise((resolve, reject) => {
         var foundLocation = locations.find(location => location.id === +locationId)
@@ -270,69 +264,6 @@ function getLocationById(locationId) {
         else reject();
     })
 }
-
-export default {
-    initMap,
-    getMap,
-    getLocations,
-    getCurrPosition,
-    searchLocation,
-    displayLocations,
-    createNewLocation,
-    getLocationById,
-    saveLocation,
-    deleteLocationChosen,
-    displayMap,
-}
-
-
-// ***********************************************************************
-
-// function search() {
-//     var searchInput = document.querySelector('.searchInput');
-
-//     if (searchInput.value) {
-//         var input = document.querySelector('.searchInput').value;
-//         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${input}&key=AIzaSyD7eT89AbQfxKhzxEKg_lah7h0MnX_9dZc`)
-//         .then(function (res) {
-//          var latUser = res.data.results[0].geometry.location.lat;   
-//          var lngUser = res.data.results[0].geometry.location.lng;   
-//         initMap(latUser, lngUser);
-//         });
-//     }
-// }
-
-
-// function showMyLocation() {
-
-//     var elLocation = document.querySelector('input').value;
-//     fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${elLocation}&key=AIzaSyBmuWYnO-sINriMTx43J8ZUWho25YphaIs`)
-//         .then((res) => {
-//             return res.json();
-//         })
-//         .then((data) => {
-//             var lat = data.results[0].geometry.location.lat;
-//             var lng = data.results[0].geometry.location.lng;
-//             getGeoLocation(lat, lng);
-//             initMap(lat, lng)
-//         })
-// }
-
-
-// function getGeoLocation(lat, lng) {
-//     fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyBmuWYnO-sINriMTx43J8ZUWho25YphaIs`)
-//         .then((res) => {
-//             return res.json();
-//         })
-//         .then((data) => {
-//             var address = data.results[0].formatted_address;
-//             document.querySelector('.pst').innerText = address;
-//         })
-// }
-
-
-
-
 
 function deleteLocationChosen(locationId) {
     console.log('locationId', locationId)
@@ -345,43 +276,16 @@ function deleteLocationChosen(locationId) {
 }
 
 
-
-
-// function getPosition() {
-//     if (!navigator.geolocation) {
-//         alert("HTML5 Geolocation is not supported in your browser.");
-//         return;
-//     }
-//     navigator.geolocation.getCurrentPosition(showLocation, handleLocationError);
-//     //navigator.geolocation.watchPosition(showLocation, handleLocationError);
-// }
-
-// function showLocation(position) {
-//     var date = new Date(position.timestamp);
-//     getGeoLocation(position.coords.latitude, position.coords.longitude);
-//     gLat = position.coords.latitude;
-//     gLng = position.coords.longitude;
-//     gUrl = `https://mayschil.github.io/ca-gallery-2/projects/TravelTip/index.html?lat=${gLat}&lng=${gLng} `;
-//     initMap(position.coords.latitude, position.coords.longitude);
-// }
-
-// function initMap(lat, lng) {
-//     if (!lat) lat = 32.0749831;
-//     if (!lng) lng = 34.9120554;
-
-//     var map = new google.maps.Map(
-//         document.getElementById('map'),
-//         {
-//             center: { lat: lat, lng: lng },
-//             zoom: 21
-//         }
-// );
-
-//     var image = 'oldman.png';
-//     var marker = new google.maps.Marker({
-//         position: { lat: lat, lng: lng },
-//         map: map,
-//         title: 'You Are Here!',
-//         icon: image
-//     });
-// }
+export default {
+    initMap,
+    getMap,
+    getLocations,
+    getCurrPosition,
+    searchLocation,
+    displaySavedLocations,
+    createNewLocation,
+    getLocationById,
+    saveLocation,
+    deleteLocationChosen,
+    displayMap,
+}

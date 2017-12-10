@@ -88,7 +88,7 @@ export default {
         },
         displaySavedLocations(status) {
             // console.log('status', status)
-            mapService.displayLocations(status);
+            mapService.displaySavedLocations(status);
         },
         addLocation() {
             // console.log('add location', this.chosenLocation) 
