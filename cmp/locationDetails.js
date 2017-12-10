@@ -24,7 +24,7 @@ export default {
         
             <section class="field is-grouped map-details-footer">
                 <div class="control">
-                    <button class="button is-link" @click="editLocation(location)">Edit</button>
+                    <button class="button is-warning" @click="editLocation(location)">Edit</button>
                 </div>
                 <div class="control">
                     <button class="button is-text" @click="closeDetails">Cancel</button>
