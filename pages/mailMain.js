@@ -41,11 +41,9 @@ export default {
             })
         },
         deleteMail(mailId) {
-           
             mailService.deleteMail(mailId)
             .then(res => {
                 this.mails = res
-                
                 this.chosenMail = this.mails[0]                
                 mailService.checkUnreadMails()
                 .then((res) => {
@@ -63,11 +61,16 @@ export default {
         .then(mails => {
             this.mails = mails
             this.chosenMail = this.mails[0]
-            mailService.checkUnreadMails()
-            .then((res) => {
-                this.unreadMails = res;
-                // console.log(' this.unreadMails', this.unreadMails)
+            this.chosenMail.isRead = true;
+            mailService.updateMailStatus(this.chosenMail)
+            .then(()=>{
+                mailService.checkUnreadMails()
+                .then((res) => {
+                    this.unreadMails = res;
+                    // console.log(' this.unreadMails', this.unreadMails)
+                })
             })
+            
             EventBusService.$on('deleteMail',emailId => {
                 this.deleteMail(emailId)
             });   
