@@ -2,7 +2,7 @@ export default {
     template: `
         <section class="search-map">
             <div>
-                <input class="search-box" type="search" placeholder="Search Location" v-model="term" @keyup.enter="searchLocation" @blur="searchLocation">
+                <input class="search-box" id="searchTextField" type="search" placeholder="Search Location" v-model="term" @keyup.enter="searchLocation" @blur="searchLocation">
             </div>
             <button class="search-bar-button" @click="displaySavedLocations">Display Saved Locations</button>
             <button class="search-bar-button" @click="addLocation">Add New Location</button>
@@ -25,6 +25,13 @@ export default {
       },
       addLocation() {
         this.$emit('addLocation')
-      }
+      },
+      initialize() {  
+        var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        }
+    },
+    created() {
+      google.maps.event.addDomListener(window, 'load', this.initialize);      
     }
   }

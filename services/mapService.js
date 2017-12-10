@@ -31,6 +31,14 @@ const ICON_SCHOOL = {
     scale: 0.35
 }
 
+const ICON_SHOOPING = {
+    path: "M23.04-9.143q0 1.872-1.368 3.24t-3.24 1.368-3.24-1.368-1.368-3.24 1.368-3.24 3.24-1.368 3.24 1.368 1.368 3.24zm32.256 0q0 1.872-1.368 3.24t-3.24 1.368-3.24-1.368-1.368-3.24 1.368-3.24 3.24-1.368 3.24 1.368 1.368 3.24zm4.608-39.168v18.432q0 .864-.594 1.53t-1.458.774l-37.584 4.392q.468 2.16.468 2.52 0 .576-.864 2.304h33.12q.936 0 1.62.684t.684 1.62-.684 1.62-1.62.684h-36.864q-.936 0-1.62-.684t-.684-1.62q0-.396.288-1.134t.576-1.296.774-1.44.558-1.062l-6.372-29.628h-7.344q-.936 0-1.62-.684t-.684-1.62.684-1.62 1.62-.684h9.216q.576 0 1.026.234t.702.558.468.882.288.936.198 1.062.162.936h43.236q.936 0 1.62.684t.684 1.62z","FOLDER":"M59.904-42.551v25.344q0 3.312-2.376 5.688t-5.688 2.376h-43.776q-3.312 0-5.688-2.376t-2.376-5.688v-34.56q0-3.312 2.376-5.688t5.688-2.376h11.52q3.312 0 5.688 2.376t2.376 5.688v1.152h24.192q3.312 0 5.688 2.376t2.376 5.688z","FOLDER_OPEN":"M67.644-30.167q0 1.116-1.116 2.376l-12.096 14.256q-1.548 1.836-4.338 3.114t-5.166 1.278h-39.168q-1.224 0-2.178-.468t-.954-1.548q0-1.116 1.116-2.376l12.096-14.256q1.548-1.836 4.338-3.114t5.166-1.278h39.168q1.224 0 2.178.468t.954 1.548zm-12.348-12.384v5.76h-29.952q-3.384 0-7.092 1.71t-5.904 4.302l-12.132 14.256-.18.216-.018-.45-.018-.45v-34.56q0-3.312 2.376-5.688t5.688-2.376h11.52q3.312 0 5.688 2.376t2.376 5.688v1.152h19.584q3.312 0 5.688 2.376t2.376 5.688z",
+    fillColor: '#008000',
+    fillOpacity: 1,
+    strokeWeight: 0,
+    scale: 0.35
+}
+
 var locations = [
     {
         id: 0,
@@ -67,6 +75,24 @@ var locations = [
         lat: 32.0878925,
         lng: 34.8030375,
         tag: 'school'
+    },
+    {
+        id: 4,
+        name: 'Benedict Tel-Aviv',
+        description: '',
+        photo: 'benedict.jpg',
+        lat: 32.0636727,
+        lng: 34.772772,
+        tag: 'restaurant'
+    },
+    {
+        id: 5,
+        name: 'Ramat Aviv Mall',
+        description: '',
+        photo: 'ramat-aviv-mall.jpg',
+        lat: 32.1122669,
+        lng: 34.7958357,
+        tag: 'shopping'
     }
 ]
 
@@ -134,29 +160,45 @@ function displayMap(lat, lng ,selectedLocation) {
         zoom: 15
     }
     );
-    var marker = new google.maps.Marker({
-        position: { lat, lng },
-        map: gMap,
-        icon:getIcon(selectedLocation.tag)
-    });
+
+    if (selectedLocation === undefined) {
+        var marker = new google.maps.Marker({
+            position: { lat, lng },
+            map: gMap
+        })
+    } else {
+        var marker = new google.maps.Marker({
+            position: { lat, lng },
+            map: gMap,
+            icon: _getIcon(selectedLocation.tag)
+        });
+    }
     marker.addListener('click', function () {
         EventBusService.$emit('selectLocation', location)
     })
 }
 
+
+// ******************************************************************
+// var autocomplete = new google.maps.places.Autocomplete(searchTerm);
+// google.maps.event.addDomListener(window, 'load', initialize);    
+// ******************************************************************
+
+
 function searchLocation(searchTerm) {
     return new Promise((resolve, reject) => {
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchTerm}&key=${GOOGLE_API_KEY}`)
-            .then(res => {
-                // console.log(res)
-                var geoLatLng = res.data.results[0].geometry.location;
-                displayMap(geoLatLng.lat, geoLatLng.lng)
-                // console.log(geoLatLng)
-                resolve(geoLatLng);
-            });
+        .then(res => {
+            // console.log(res)
+            var geoLatLng = res.data.results[0].geometry.location;
+            displayMap(geoLatLng.lat, geoLatLng.lng)
+            // console.log(geoLatLng)
+            // var autocomplete = new google.maps.places.Autocomplete(input);
+            resolve(geoLatLng);
+        });
     })
 }
-function getIcon(location) {
+function _getIcon(location) {
     switch (location) {
         case 'school':
             return ICON_SCHOOL;
@@ -164,6 +206,8 @@ function getIcon(location) {
             return ICON_AMBULANCE;
         case 'restaurant':
             return ICON_RESTAURANT;
+        case 'shopping':
+            return ICON_SHOOPING;
     }
 }
 

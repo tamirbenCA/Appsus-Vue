@@ -81,9 +81,9 @@ export default {
         },
         searchLocation(searchTerm) {
             mapService.searchLocation(searchTerm)
-                .then(location => {
+            .then(location => {
                     this.chosenLocation = location
-                    console.log('chosen location:', this.chosenLocation)
+                    // console.log('chosen location:', this.chosenLocation)
                 })
         },
         displaySavedLocations(status) {
@@ -94,7 +94,7 @@ export default {
             // console.log('add location', this.chosenLocation) 
             var newLocationId = mapService.createNewLocation(this.chosenLocation);
             this.$router.push('/map/' + newLocationId)
-        }
+        },
     },
     mounted() {
         // mapService.getPosition()         
