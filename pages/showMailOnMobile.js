@@ -1,4 +1,6 @@
 import mailService from '../services/mailService.js';
+import EventBusService from '../services/EventBusService.js'
+
 
 export default {
 
@@ -15,7 +17,7 @@ export default {
                     <h5 class="mail-info"> {{timeStampToDate}}</br> </h5>
                     <h5 class="mail-info"> {{chosenMail.senderMail}} </h5>
                     <div class="icons-on-mobile">
-                        <i class="fa fa-reply-all" aria-hidden="true"></i>
+                        <i class="fa fa-reply-all" aria-hidden="true" @click="reply(chosenMail.id)""></i>
                         <i class="fa fa-envelope" aria-hidden="true" @click="markUnread(chosenMail)"></i>
                         <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDeleteMail(chosenMail.id)"></i>
                     </div>
@@ -44,15 +46,17 @@ export default {
     },
     methods: {
         emitDeleteMail(mailId) {
-            console.log('hiiii')
-            EventBusService.$emit('deleteMail', mailId)
- 
+            EventBusService.$emit('deleteMail', mailId);
+            this.$router.push('/mail/main');
         },
         markUnread(chosenMail) {
             chosenMail.isRead = false;
-            mailService.updateMailStatus(chosenMail)
+            mailService.updateMailStatus(chosenMail);
+            this.$router.push('/mail/main');
         },
-      
+        reply(chosenMailId) {
+            this.$router.push('/mail/replyMail/' + chosenMailId)
+        }
     },
     computed: {
         timeStampToDate() {
