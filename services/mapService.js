@@ -42,7 +42,7 @@ var locations = [
     {
         id: 0,
         name: 'Arnold',
-        description: '',
+        description: 'Quis est mollit ex tempor in ex ea aute eiusmod do aute enim veniam duis.',
         photo: 'arnold.jpg',
         lat: 32.1047547,
         lng: 34.8197589,
@@ -51,7 +51,7 @@ var locations = [
     {
         id: 1,
         name: 'Assuta',
-        description: '',
+        description: 'Officia commodo consectetur cillum reprehenderit enim officia aute officia velit reprehenderit laborum nostrud proident.',
         photo: 'assuta.jpg',
         lat: 32.1079742,
         lng: 34.8307266,
@@ -60,7 +60,7 @@ var locations = [
     {
         id: 2,
         name: 'David Yalin',
-        description: '',
+        description: 'Sint ea cupidatat laborum amet cupidatat minim ea et et.',
         photo: 'david-yalin.jpg',
         lat: 32.1116409,
         lng: 34.8197052,
@@ -69,7 +69,7 @@ var locations = [
     {
         id: 3,
         name: 'Coding Academy',
-        description: '',
+        description: 'Quis consectetur duis officia aliqua.',
         photo: 'coding-academy.png',
         lat: 32.0878925,
         lng: 34.8030375,
@@ -78,7 +78,7 @@ var locations = [
     {
         id: 4,
         name: 'Benedict Tel-Aviv',
-        description: '',
+        description: 'Cupidatat cillum quis incididunt ipsum velit fugiat eu.',
         photo: 'benedict.jpg',
         lat: 32.0636727,
         lng: 34.772772,
@@ -87,7 +87,7 @@ var locations = [
     {
         id: 5,
         name: 'Ramat Aviv Mall',
-        description: '',
+        description: 'Lorem exercitation sint mollit nostrud.',
         photo: 'ramat-aviv-mall.jpg',
         lat: 32.1122669,
         lng: 34.7958357,
