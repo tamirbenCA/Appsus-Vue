@@ -1,9 +1,9 @@
 import mailService from '../services/mailService.js';
-import navBar from '../cmp/navBar.js';
-import mailDetails from '../cmp/mailDetails.js';
-import mailList from '../cmp/mailList.js';
-import mailFilter from '../cmp/mailFilter.js';
-import mailStatus from '../cmp/mailStatus.js';
+import navBar from '../cmps/navBar.js';
+import mailDetails from '../cmps/mailDetails.js';
+import mailList from '../cmps/mailList.js';
+import mailFilter from '../cmps/mailFilter.js';
+import mailStatus from '../cmps/mailStatus.js';
 import eventBusService from '../services/eventBusService.js';
 
 

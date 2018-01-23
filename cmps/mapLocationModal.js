@@ -27,12 +27,12 @@ export default {
                 <input v-model="location.photo" class="input" type="text" placeholder="Image (Optional)">
               </div>
             </div>
-           
+           <div class="icon-choose">
             <label><input type="radio" value="restaurant" v-model="location.tag"><i class="fa fa-cutlery" aria-hidden="true"></i></label>
             <label><input type="radio" value="hospital" v-model="location.tag"><i class="fa fa-ambulance" aria-hidden="true"></i></label>
             <label><input type="radio" value="school" v-model="location.tag"><i class="fa fa-university" aria-hidden="true"></i></label>
             <label><input type="radio" value="shopping" v-model="location.tag"><i class="fa fa-shopping-cart" aria-hidden="true"></i></label>
-
+            </div>
           <div class="field note-details-footer">
             <div class="control">
                 <button class="button is-link" @click="saveLocation">{{(location.name) ? 'Save' : 'Add'}}</button>

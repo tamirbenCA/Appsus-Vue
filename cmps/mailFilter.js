@@ -21,7 +21,7 @@ export default {
     data() {
         return {
             term: '',
-            type:null,
+            type: 'all',
             filterMails: [],
         }
     },
@@ -41,7 +41,7 @@ export default {
                     })
             }
             else {
-                console.log('this.type',this.type)
+                // console.log('this.type',this.type)
                 mailService.filterReadUnread(this.type)
                     .then(mails => {
                         this.filterMails = mails
@@ -59,5 +59,3 @@ export default {
 
 
 }
-
-// style="padding:10px"

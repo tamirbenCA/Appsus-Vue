@@ -1,4 +1,4 @@
-import mailPreview from '../cmp/mailPreview.js'
+import mailPreview from '../cmps/mailPreview.js'
 import mailService from '../services/mailService.js';
 
 

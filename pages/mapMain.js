@@ -1,9 +1,9 @@
 import eventBusService from '../services/eventBusService.js'
 import mapService from '../services/mapService.js';
-import navBar from '../cmp/navBar.js';
-import mapComp from '../cmp/mapComp.js';
-import mapSearch from '../cmp/mapSearch.js';
-import locationDetails from '../cmp/locationDetails.js';
+import navBar from '../cmps/navBar.js';
+import mapComp from '../cmps/mapComp.js';
+import mapSearch from '../cmps/mapSearch.js';
+import locationDetails from '../cmps/locationDetails.js';
 
 
 export default {
@@ -88,7 +88,7 @@ export default {
         },
         displaySavedLocations(status) {
             // console.log('status', status)
-            mapService.displaySavedLocations(status);
+            mapService.displayLocations(status);
         },
         addLocation() {
             // console.log('add location', this.chosenLocation) 

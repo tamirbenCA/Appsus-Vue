@@ -1,5 +1,5 @@
 import noteService from '../services/noteService.js'
-import navBar from '../cmp/navBar.js'
+import navBar from '../cmps/navBar.js'
 
 export default {
     template: `
@@ -11,11 +11,11 @@ export default {
                     <button class="note-top-button" @click="sort('date')"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Date</button>
                     <button class="note-top-button" @click="sort('priority')"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Priority</button>
                 </section>
-                <section class="containor">
+                <section class="containor note-list">
                     <div v-for="note in notes" class="note-outer">
                         <router-link :to="'/note/' + note.id"><div class="note">
-                            <div class="note-header">
-                                <span class="title"> {{note.title}} </span>
+                            <div class="note-title">
+                                <span class="title"> {{note.title}} </span> <br>
                                 <span :style="{color: note.color}">Priority: {{note.priority}} </span>
                             </div>
                             <div class="note-main">
@@ -23,8 +23,7 @@ export default {
                                 <img v-if="note.image" :src="'../img/' + note.image" />
                             </div>
                             <div class="note-footer">
-                                <!-- <button class="deleteOnNote" @click="deleteNote(note.id)">🗑</button><br> -->
-                                <i class="fa fa-trash-o" aria-hidden="true" @click="deleteNote(note.id)"></i>
+                                <i class="fa fa-trash-o" aria-hidden="true" @click.prevent="deleteNote(note.id)"></i>
                             </div>
                         </div></router-link>
                     </div>
@@ -49,13 +48,29 @@ export default {
     },
     methods: {
         deleteNote(noteId) {
-            noteService.deleteNote(noteId)
-            .then(_ => {
-            })
-            .catch(err => {
-                console.error('Error deleting');                                            
-            })
-        },     
+            swal({
+                title: 'Are you sure?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.value) {
+                  swal(
+                    'Deleted!',
+                    'The note has been deleted.',
+                    'success'
+                  )
+                  noteService.deleteNote(noteId)
+                  .then(_ => {
+                    // this.$router.push('/note/main')
+                  })
+                  .catch(err => {
+                    console.error('Error deleting');
+                  })
+                }})
+            },
         addNote() {
             var newNoteId = noteService.createNote();
             this.$router.push('/note/' + newNoteId)    

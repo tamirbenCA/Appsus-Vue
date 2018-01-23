@@ -26,6 +26,7 @@
     /* padding: 10px; */
     margin: 10px;
     border-radius: 20px;
+    outline: none;
 }
 
 .search-map {
@@ -36,7 +37,11 @@
 
 .search-bar-button {
     height: 40px;
-    margin: 0 10px
+    margin: 0 10px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+    outline: none;
 }
 
 .map-control-container {
@@ -128,8 +133,13 @@ li{
     flex-wrap: wrap;
 }
 
+.icon-choose  input {
+    margin: 5px;
+}
 
-
+.control{
+    margin-top: 10px;
+}
 
 
 @media screen and (max-width: 480px) {
@@ -193,6 +203,10 @@ li{
    
         width: 94%;
         margin-left: -34px;
+    }
+    
+    .search-bar-button {
+        font-size: 0.8em;
     }
 
 }

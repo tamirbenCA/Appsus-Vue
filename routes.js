@@ -1,13 +1,13 @@
 import homePage from './pages/homePage.js'
 import noteMain from './pages/noteMain.js'
-import noteDetailsPage from './pages/noteDetailsPage.js'
 import mapMain from './pages/mapMain.js'
-import mapLocationModal from './cmp/mapLocationModal.js'
 import mailMain from './pages/mailMain.js'
-import mailCompose from './cmp/mailCompose.js'
-import mailReply from './cmp/mailReply.js'
-import mailDetails from './cmp/mailDetails.js'
-import showMailOnMobile from './pages/showMailOnMobile.js'
+import noteDetailsPage from './cmps/noteDetailsPage.js'
+import mapLocationModal from './cmps/mapLocationModal.js'
+import mailCompose from './cmps/mailCompose.js'
+import mailReply from './cmps/mailReply.js'
+import mailDetails from './cmps/mailDetails.js'
+import showMailOnMobile from './cmps/showMailOnMobile.js'
 
 
 const routes = [

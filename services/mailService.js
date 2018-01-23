@@ -1,4 +1,5 @@
-import eventBusService from '../services/eventBusService.js'
+import eventBusService from './eventBusService.js'
+import mailBackup from './mailBackup.js'
 
 
 // const MIN_TIMESTAMP = 1483221600000;        // 1/1/2017 00:00:00
@@ -20,43 +21,30 @@ function getMails() {
         // prev ajax `http://www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&timeStamp={numberRange|${MIN_TIMESTAMP},${MAX_TIMESTAMP}}&body={lorem|30}&isRead={bool}&pretty=true`
         return axios.get(`//www.filltext.com/?rows=50&senderName={firstName}~{lastName}&senderMail={email}&subject={lorem}&time={date|${MIN_DATE},${MAX_DATE}}&body={lorem|30}&isRead={bool}&pretty=true`)
             .then(fillTextMails => {
-                mails = fillTextMails.data
-                // first time after receving the mails from server it sort by date, newest first.
-                mails.forEach((mail, idx) => {
-                    mail.id = idx + 1;
-                    mail.timeStamp = (new Date(mail.time)).getTime();
-                })
-                mails = mails.sort((a, b) => {
-                    return b.timeStamp - a.timeStamp
-                })
+                mails = sortMails(fillTextMails.data)
                 // console.log('mails:', mails)
-                return mails
-            })
-            .catch(err => {
-                mails = [
-                    {
-                        id: 1,
-                        senderName: 'Ben Tamir',
-                        senderMail: 'tamirben@gmail.com',
-                        subject: 'no filltext service',
-                        timeStamp: Date.now(),
-                        body: 'When will filltext fix the site? error 503',
-                        isRead: false
-                    },
-                    {
-                        id: 2,
-                        senderName: 'May Schiller',
-                        senderMail: 'mayschiller@gmail.com',
-                        subject: 'ben wrote this for me',
-                        timeStamp: Date.now(),
-                        body: 'bla bla bla',
-                        isRead: false
-                    },
-                ]
                 return mails;
             })
-    
-        }
+            .catch(err => {
+                return mailBackup.getMails()
+                    .then(mailsBackup => {
+                        mails = sortMails(mailsBackup);
+                        return mails;
+            })
+        })
+    }
+}
+
+function sortMails(unsortMails) {
+    // first time after receving the mails from server it sort by date, newest first.
+    unsortMails.forEach((mail, idx) => {
+        mail.id = idx + 1;
+        mail.timeStamp = (new Date(mail.time)).getTime();
+    })
+    sortMails = unsortMails.sort((a, b) => {
+        return b.timeStamp - a.timeStamp
+    })
+    return sortMails;
 }
 
 function queryBySearchWord(term) {

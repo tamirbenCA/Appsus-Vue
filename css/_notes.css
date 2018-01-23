@@ -45,7 +45,7 @@ img {
 .note {
     /* display: flex; */
     flex-direction: column;
-    width: 250px;
+    min-width: 250px;
     min-height: 190px;
     padding: 10px;
     border: 2px solid black;
@@ -91,14 +91,17 @@ a {
 } */
 
 .note-header {
+    padding-left: 50px;    
+}
+
+.note-title {
     /* display: flex; */
     /* flex-direction: column; */
     text-transform: capitalize;
     font-weight: bold;
-    padding-left: 50px;    
 } 
 
-.note-header > .title {
+.note-title > .title {
     font-size: 2em;
     margin-bottom: 10px;
 }
@@ -146,9 +149,10 @@ a {
 
 .note-top-button {
     height: 40px;
-    margin: 0 10px;    
-    /* border-radius: 20px; */
-    /* border: none; */
+    margin: 0 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+    outline: none; 
 }
 
 .note-footer {
@@ -204,7 +208,7 @@ a {
     
     .note {
         width: 90%;
-        height: 100px;
+        min-height: 100px;
         padding: 5px;
         padding-left: 45px;
     }
@@ -230,7 +234,11 @@ a {
     }
 
     .note-header{
-        width: 90%;        
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        padding-left: 21px;
+        
     }
 
     .note-container{
