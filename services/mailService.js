@@ -26,12 +26,18 @@ function getMails() {
                 return mails;
             })
             .catch(err => {
-                return mailBackup.getMails()
-                    .then(mailsBackup => {
-                        mails = sortMails(mailsBackup);
+                // return mailBackup.getMails()
+                    // .then(mailsBackup => {
+                        // mails = sortMails(mailsBackup);
+                        // return mails;
+                return axios.get('https://next.json-generator.com/api/json/get/EkwSSt3QN')
+                    .then(jsonTextMails => {
+                        mails = sortMails(jsonTextMails.data)
+                        console.log('catch:', mails)
                         return mails;
+                    })
             })
-        })
+        // })
     }
 }
 

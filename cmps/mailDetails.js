@@ -8,24 +8,20 @@ export default {
         <section class="mailDetails" v-if="chosenMail">  
             <div class="head-mail">
                 <div>
-                    <h3 class="subject">{{chosenMail.subject}} </br></h3>   
-                    <h5 class="mail-info"> {{chosenMail.senderName}} </br>     </h5>   
-                    <h5 class="mail-info"> {{timeStampToDate}}</br></h5>
-                    <h5 class="mail-info"> {{chosenMail.senderMail}}</br></h5>
+                    <h3 class="subject"> {{chosenMail.subject}} </br></h3>   
+                    <h5 class="mail-info"> {{chosenMail.senderName}} </br></h5>   
+                    <h5 class="mail-info"> {{timeStampToDate}} </br></h5>
+                    <h5 class="mail-info"> {{chosenMail.senderMail}} </br></h5>
                 </div>
                 <div class="icons-on-mobile">
-                <i class="fa fa-reply-all" aria-hidden="true" @click="replyMail(chosenMail.id)"></i>  
-                <i class="fa fa-envelope" aria-hidden="true" @click="markUnread(chosenMail)"></i>
-                <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDeleteMail(chosenMail.id)"></i>
-                
+                    <i class="fa fa-reply-all" aria-hidden="true" @click="replyMail(chosenMail.id)"></i>  
+                    <i class="fa fa-envelope" aria-hidden="true" @click="markUnread(chosenMail)"></i>
+                    <i class="fa fa-trash-o" aria-hidden="true"  @click="emitDeleteMail(chosenMail.id)"></i>
+                </div>
             </div>
+            <div>
+                <h5 class="mail-info mail-body"> {{chosenMail.body}}</h5>  
             </div>
-         <div>
-            <h5 class="mail-info"> {{chosenMail.body}}</h5>  
-         </div>
-        
-         
-         
         </section>
     `,
     props: ['chosen-mail'],
@@ -59,6 +55,3 @@ export default {
         mailPreview
     }
 }
-
-
-
