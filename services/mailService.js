@@ -33,7 +33,11 @@ function getMails() {
                 return axios.get('https://next.json-generator.com/api/json/get/EkwSSt3QN')
                     .then(jsonTextMails => {
                         mails = sortMails(jsonTextMails.data)
-                        console.log('catch:', mails)
+                        // console.log('catch:', mails)
+                        mails.forEach(mail => {
+                            mail.senderMail = mail.senderMail.split(' ').join('_');
+                            // console.log('senderMail:', mail.senderMail)
+                        })
                         return mails;
                     })
             })
